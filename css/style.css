@@ -169,12 +169,12 @@ code {
 }
 .logo {
   width: 40px;
-  height: 40px;
+  height: 52px;
   background-repeat: no-repeat;
   background-image: url("images/logo.png");
-  -webkit-background-size: 40px 40px;
-  -moz-background-size: 40px 40px;
-  background-size: 40px 40px;
+  -webkit-background-size: 40px 52px;
+  -moz-background-size: 40px 52px;
+  background-size: 40px 52px;
 }
 #container {
   position: relative;
@@ -354,9 +354,9 @@ code {
 #main-nav,
 #sub-nav,
 #search-form-wrap {
-  height: 40px;
-  line-height: 40px;
-  padding: 12px 15px;
+  height: 52px;
+  line-height: 52px;
+  padding: 6px 15px;
 }
 .header-inner #logo,
 #main-nav {
@@ -385,11 +385,11 @@ code {
 }
 #header-title {
   text-align: center;
-  height: 40px;
+  height: 52px;
   position: absolute;
   top: 50%;
   left: 0;
-  margin-top: -20px;
+  margin-top: -26px;
 }
 .header-sub {
   border-top: 1px solid #eceff2;
@@ -460,8 +460,8 @@ code {
   height: 14px;
   position: relative;
   cursor: pointer;
-  height: 40px !important;
-  line-height: 40px !important;
+  height: 52px !important;
+  line-height: 52px !important;
 }
 .main-nav-link {
   font-weight: 300;
@@ -473,8 +473,8 @@ code {
 }
 #sub-nav #profile-nav #profile-anchor {
   display: block;
-  height: 40px;
-  line-height: 40px;
+  height: 52px;
+  line-height: 52px;
 }
 #sub-nav #profile-nav #profile-anchor:before,
 #sub-nav #profile-nav #profile-anchor:after {
@@ -490,11 +490,13 @@ code {
 }
 #sub-nav #profile-nav .avatar {
   width: 40px;
-  height: 40px;
+  height: 52px;
   margin-right: 8px;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
 }
 #sub-nav #profile-nav .fa {
-  line-height: 40px;
+  line-height: 52px;
 }
 @media screen and (max-width: 559px) {
   #search-form-wrap {
@@ -507,10 +509,10 @@ code {
 #search-form-wrap .search-form .search-form-input {
   width: 100%;
   padding: 0 30px 0 15px;
-  line-height: 40px;
-  height: 40px !important;
-  -webkit-border-radius: 21px;
-  border-radius: 21px;
+  line-height: 52px;
+  height: 52px !important;
+  -webkit-border-radius: 27px;
+  border-radius: 27px;
 }
 #search-form-wrap .search-form .search-form-input::-webkit-search-results-decoration,
 #search-form-wrap .search-form .search-form-input::-webkit-search-cancel-button {
@@ -652,7 +654,9 @@ code {
   display: block;
   margin: 10px auto 20px;
   width: 128px;
-  height: 128px;
+  height: 148px;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
 }
 #profile .inner .base-info #name,
 #profile .inner .base-info #title,
