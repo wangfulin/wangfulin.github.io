@@ -183,7 +183,7 @@
 
             
             <section id="main">
-    <article id="post-Singleton-Pattern" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-circular-image-with-css" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -192,7 +192,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2015/11/10/Singleton-Pattern/">&lt;译&gt; 单例模式</a>
+            <a class="article-title" href="/2016/01/24/circular-image-with-css/">&lt;译&gt;用CSS剪切圆形图片</a>
         </h1>
     
 
@@ -200,486 +200,8 @@
                     
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2015/11/10/Singleton-Pattern/">
-            <time datetime="2015-11-09T16:00:00.000Z" itemprop="datePublished">2015-11-10</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/javascript/">javascript</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/javascript/设计模式/">设计模式</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/javascript-设计模式/">javascript, 设计模式</a>
-    </div>
-
-                </div>
-            </header>
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <blockquote>
-<p><strong>原文：</strong><a href="http://addyosmani.com/resources/essentialjsdesignpatterns/book/#singletonpatternjavascript" target="_blank" rel="external">The Single Pattern</a></p>
-</blockquote>
-<p>单例模式被熟知是因为它把一个类的实例化限制在只有一个对象。传统的实现方式是：创建一个类，这个类里面有一个方法在对象不存在的时候创造一个实例，存在的时候，只需要返回这个对象的引用即可。</p>
-<p>单例和静态类（或者对象）是有区别的，因为我们可以延迟他们的初始化。因为他们需要一些在初始化的时候不能获得的信息。他们没有提供一种方式让不知道他们之前引用的代码去获取他们。这是因为由单例返回的既不是对象也不是类，而是一种结构。想想大括号形成的不是真正的闭包，函数作用于提供的闭包才是真正的闭包。</p>
-<p>Javascript中，单例作为共享资源的命名空间，它隔离了实现的代码和全局变量，为了能够让函数有唯一的一个入口。</p>
-<p>我们可以通过下面的方法实现单例：</p>
-<pre><code>var mySingleton=(function(){
-    //存储单例引用的实例
-    var instance;
-
-    function init(){
-        //单例
-
-        //私有方法和属性
-        function privateMethod(){
-            console.log(&quot;I am private);
-        }
-
-        var privateVariable=&quot;I&apos;m alse private&quot;;
-
-        var privateRandomNumber=Math.random();
-
-        return {
-            //公有方法和属性
-            publicMethod:function(){
-                console.log(&quot;The public can see me!);
-            },
-            publicProperty:&quot;I am also public&quot;,
-            getRandomNumber:function(){
-                return privateRandomNumber;
-            }
-        };
-    }
-
-    return {
-
-        //如果存在获取单例实例的引用
-        //不存在，创建实例
-        getInstance:function(){
-            if(!instance){
-                instance=init();
-            }
-            return instance;
-        }
-    };
-
-})();
-
-var myBadSingleton=(function(){
-    //指向单例的引用
-    var instance;
-
-    function init(){
-        //单例
-        var privateRandomNumber=Math.random();
-
-        return {
-            getRandomNumber:function(){
-                return privateRandomNumber;
-            }
-        }
-    }
-
-    return {
-        //无论什么时候都创建一个单例实例
-        getInstance:function(){
-            instance=init();
-
-            return instance;
-        }
-    };
-})();
-
-//使用：
-
-var singleA=mySingleton.getInstance();
-var singleB=mySingleton.getInstance();
-console.log(singA.getRandomNumber()===singleB.getRandomNumber()); //true
-
-var badSingleA=myBadSingleton.getInstance();
-var badSingleB=myBadSingleton.getInstance();
-console.log(badSingleA.getRandomNumber()!==badSingleB.getRandomNumber());//true
-
-//注意：因为我们使用的是随机数
-//所以上面的值还是有可能相同的
-//但是可能性很低，上面的例子还是有效的。
-</code></pre><p>使用单例可以让我们有一个指向实例的统一入口（一般通过<code>MySingleton.getInstance()</code>的方式），这样我们就不需要直接通过<code>new MySingleton()</code>的方式直接调用啦。这在javascript中也是可以实现的。</p>
-<p>在四人帮这本书中，单例的适用场景被描述为下面这些：</p>
-<ul>
-<li><p>必须只有一个类的实例，而且必须可以通过大家都知道的入口让大家可以访问到。</p>
-</li>
-<li><p>当这个唯一的实例需要被之类扩展的时候，用户可以在不需要修改代码的情况下扩展它。</p>
-</li>
-</ul>
-<p>第二点指出了我们可能遇到的场景，比如：</p>
-<pre><code>mySingleton.getInstance=function(){
-    if(this._instance==null){
-        if(isFoo()){
-            this._instance=new FooSingleton();
-        }else{
-            this._instance=new BasicSingleton();
-        }
-    }
-    return this._instance;
-}
-</code></pre><p>这里，<code>getInstance</code>变得有些像工厂方法，我们访问它的时候并不需要更新我们的每一部分代码。上面的<code>FooSingleton</code>可能是<code>BasicSingleton</code>的之类，并且实现了同样的接口。</p>
-<p>为什么在单例中延迟执行被认为很重要呢？：</p>
-<blockquote>
-<p>在C++中，它被用来让我们解决动态初始化执行顺序的不可预测性，把控制权交给了程序。</p>
-</blockquote>
-<p>需要注意的是区分类的静态实例和单例的区别是很重要的。尽管单例可以被实现成静态实例。但是同时也可以延迟构造，不需要消耗资源也不会消耗内存直到需要它的时候再初始化。</p>
-<p>如果我们有一个可以被直接初始化的静态对象，我们需要确保代码是按照顺序执行的。（比如，车的对象初始化的时候车轮必须已经存在）并且它在你有很多资源文件的时候不会变大。</p>
-<p>单例和静态对象都很有用，但是不能过度使用。就像不能过度使用其他模式一样。</p>
-<p>实践中，当我们在整个系统中只需要一个对象与其他对象通信的时候，单例模式是非常有用的。下面就是单例在上下文中使用模式的一个例子：</p>
-<pre><code>var SingletonTester = (function () {
-
-  // options: an object containing configuration options for the singleton
-  // e.g var options = { name: &quot;test&quot;, pointX: 5};
-  function Singleton( options ) {
-
-// set options to the options supplied
-// or an empty object if none are provided
-options = options || {};
-
-// set some properties for our singleton
-this.name = &quot;SingletonTester&quot;;
-
-this.pointX = options.pointX || 6;
-
-this.pointY = options.pointY || 10;
-
-   }
-
-   // our instance holder
-  var instance;
-
-  // an emulation of static variables and methods
-  var _static = {
-
-name: &quot;SingletonTester&quot;,
-
-    // Method for getting an instance. It returns
-    // a singleton instance of a singleton object
-    getInstance: function( options ) {
-      if( instance === undefined ) {
-        instance = new Singleton( options );
-      }
-
-      return instance;
-
-    }
-  };
-
-  return _static;
-
-})();
-
-var singletonTest = SingletonTester.getInstance({
-      pointX: 5
-});
-
-// Log the output of pointX just to verify it is correct
-// Outputs: 5
-console.log( singletonTest.pointX );
-</code></pre><p>尽管单例在这里使用时有效的，但是经常当我们需要在javascript中使用它的时候，往往意味着我们应该重新审视我们的设计啦。</p>
-<p>他们往往意味着系统的模块要不就是耦合过紧啦，要么逻辑延伸的太大啦。单例的使用往往会让测试变得更加困难，因为存在隐藏依赖，难以创建多个实例，难以找到根依赖等问题。</p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-    <div class="jiathis_style">
-    <span class="jiathis_txt">分享到：</span>
-    <a class="jiathis_button_qzone">QQ空间</a>
-    <a class="jiathis_button_tsina">新浪微博</a>
-    <a class="jiathis_button_tqq">腾讯微博</a>
-    <a class="jiathis_button_weixin">微信</a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
-    <a class="jiathis_counter_style"></a>
-</div>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-<style>
-    .jiathis_style div:first-child:not(.jiadiv_01) {
-        width: auto !important;
-        border: none !important;
-    }
-    .jiathis_style .jiadiv_01 {
-        margin: 10px 0;
-        border-radius: 4px;
-        border: #e1e1e1 solid 1px;
-    }
-    .jiathis_style .jiadiv_01 div:first-child {
-        display: none;
-    }
-    .jiathis_style .jiadiv_02 {
-        padding: 7px 0 !important;
-    }
-    .jiathis_style .jiadiv_02 .jiatitle {
-        width: 85px;
-        border: none;
-        height: auto;
-        margin: 3px 10px;
-        padding: 6px 10px;
-        border-radius: 4px;
-    }
-    .jiathis_style .jiadiv_02 .jiatitle:hover {
-        border: none;
-    }
-    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
-        margin-left: 0;
-    }
-    .jiathis_style .jtico:hover {
-        opacity: 1;
-    }
-    .jiathis_style .ckepopBottom,
-    .jiathis_style .centerBottom {
-        width: auto !important;
-        padding: 5px;
-        background: #f7f7f7;
-    }
-</style>
-
-
-
-</div>
-
-            
-    
-        <a href="http://wangfulin.github.io/2015/11/10/Singleton-Pattern/#comments" class="article-comment-link ds-thread-count" data-thread-key="http://wangfulin.github.io/2015/11/10/Singleton-Pattern/">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-design-patterns-pub-sub-explained-in-js" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2015/10/20/design-patterns-pub-sub-explained-in-js/">&lt;译&gt;设计模式：发布/订阅模式解析</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2015/10/20/design-patterns-pub-sub-explained-in-js/">
-            <time datetime="2015-10-19T16:00:00.000Z" itemprop="datePublished">2015-10-20</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/javascript/">javascript</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/javascript/设计模式/">设计模式</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/javascript-设计模式/">javascript, 设计模式</a>
-    </div>
-
-                </div>
-            </header>
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <blockquote>
-<p><strong>原文：</strong><a href="http://abdulapopoola.com/2013/03/12/design-patterns-pub-sub-explained/" target="_blank" rel="external">Design Patterns:PubSub Explained</a></p>
-</blockquote>
-<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>这个模式用来作为中间人，一个把发布者和订阅者架接在一起的代理。发布者是当完成某些过程的时候触发事件的对象，订阅者是希望当发布者发布的时候希望被通知的对象。</p>
-<p>生活中有一个很好地例子，广播电台，人们会把频道调到他们最喜欢的节目。广播站不知道观众听得是什么或者他们正在听什么。他只需要发布他们的节目就可以啦。观众也不知道广播站制作节目的过程。他们只要在他们最喜欢的节目运行的时候把台调到对应的频道或者告知朋友就行。</p>
-<p>发布/订阅者模式实现了松耦合：你可以让发布者发布消息，订阅者接受消息而不是寻找一种方式把两个分离的系统连接在一起。</p>
-<h2 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h2><ul>
-<li>松耦合</li>
-</ul>
-<p>发布者不需要知道订阅者的数量，订阅者听得话题或者订阅者是通过什么方式运行的。他们能够相互独立地运行，这样就可以让你分开开发这两部分而不需要担心对状态或实现的任何细微的影响。</p>
-<ul>
-<li>可扩展性</li>
-</ul>
-<p>发布/订阅模式可以让系统在无论什么时候无法负载的时候扩展</p>
-<ul>
-<li>更干净地设计</li>
-</ul>
-<p>充分地利用好发布/订阅模式，你不得不深入地思考不同的组件是如何交互的。这通常会让我们有更干净地设计因为我们对解耦和松耦合的强调。</p>
-<ul>
-<li>灵活性</li>
-</ul>
-<p>你不需要担心不同的组件是如何组合在一起的。只要他们共同遵守一份协议</p>
-<ul>
-<li>容易测试</li>
-</ul>
-<p>你可以很好地找出发布者或订阅者是否会得到错误的信息</p>
-<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><p>发布/订阅模式最大的有点是解耦，但同时也是最大的缺点：</p>
-<ul>
-<li><p>中间人也许不会通知系统消息传送的状态。所以我们无法知道消息传送是成功的还是失败的。紧耦合是需要保证这一点的。</p>
-</li>
-<li><p>发布者不知道订阅者的状态，反之亦然，这样的话，你根本不知道在另一端是否会没有问题？</p>
-</li>
-<li><p>随着订阅者和发布者数量的增加，不断增加的消息传送回导致架构的不稳定，容易在负载大的时候出问题</p>
-</li>
-<li><p>攻击者（恶意的发布者）能够入侵系统并且撕开它。这会导致恶意的消息被发布，订阅者能够获得他们以前并不能获得的消息。</p>
-</li>
-<li><p>更新发布者和订阅者的关系会是一个很难的问题，因为毕竟他们根本不认识对方。</p>
-</li>
-<li><p>需要中间人/代理商，消息规范和相关的规则会给系统增加一些复杂度</p>
-</li>
-</ul>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>现实没有银弹，但是这个模式是设计松耦合系统的很好地方式。这和RSS,Atom和PubSubHubbub的思想一样。</p>
-<p>发布/订阅模式例子（Javascript）</p>
-<pre><code>var makePubSub=function(){
-    var callbacks={},
-    publish=function(){
-        //Turn arguments object into real array
-        var args=Array.prototype.slice.call(arguments,0);
-
-        //Extract the event name which is the first entry
-        var ev=args.shift();
-
-        //Return if callbacks object doesn&apos;t contain
-        //any entry for event
-        var list,i,l;
-        if(!callbacks[ev]){
-            return this;
-        }
-        list=callbacks[ev];
-
-        //Invoke the callbacks,passing in the rest of parameters
-        for(i=0,l=list.length;i&lt;l;i++){
-            list[i].apply(this,args);
-        }
-
-        return this;
-    },
-    subscribe=function(ev,callback){
-        //Check if ev is already registered
-        //If it isn&apos;t create an array entry for it
-        if(!callbacks[ev]){
-            callbacks[ev]=[];
-        }
-        callbacks[ev].push(callback);
-        return this;
-    };
-
-    return {pub:publish,sub:subscribe};
-}
-
-test=makePubSub();
-test.sub(&quot;alert&quot;,function(){alert(&quot;hell0&quot;);})
-test.pub(&quot;alert&quot;);
-</code></pre>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-    <div class="jiathis_style">
-    <span class="jiathis_txt">分享到：</span>
-    <a class="jiathis_button_qzone">QQ空间</a>
-    <a class="jiathis_button_tsina">新浪微博</a>
-    <a class="jiathis_button_tqq">腾讯微博</a>
-    <a class="jiathis_button_weixin">微信</a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
-    <a class="jiathis_counter_style"></a>
-</div>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-<style>
-    .jiathis_style div:first-child:not(.jiadiv_01) {
-        width: auto !important;
-        border: none !important;
-    }
-    .jiathis_style .jiadiv_01 {
-        margin: 10px 0;
-        border-radius: 4px;
-        border: #e1e1e1 solid 1px;
-    }
-    .jiathis_style .jiadiv_01 div:first-child {
-        display: none;
-    }
-    .jiathis_style .jiadiv_02 {
-        padding: 7px 0 !important;
-    }
-    .jiathis_style .jiadiv_02 .jiatitle {
-        width: 85px;
-        border: none;
-        height: auto;
-        margin: 3px 10px;
-        padding: 6px 10px;
-        border-radius: 4px;
-    }
-    .jiathis_style .jiadiv_02 .jiatitle:hover {
-        border: none;
-    }
-    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
-        margin-left: 0;
-    }
-    .jiathis_style .jtico:hover {
-        opacity: 1;
-    }
-    .jiathis_style .ckepopBottom,
-    .jiathis_style .centerBottom {
-        width: auto !important;
-        padding: 5px;
-        background: #f7f7f7;
-    }
-</style>
-
-
-
-</div>
-
-            
-    
-        <a href="http://wangfulin.github.io/2015/10/20/design-patterns-pub-sub-explained-in-js/#comments" class="article-comment-link ds-thread-count" data-thread-key="http://wangfulin.github.io/2015/10/20/design-patterns-pub-sub-explained-in-js/">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-disable-text-selection" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2015/09/20/disable-text-selection/">&lt;译&gt;用CSS来禁止文本选择</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2015/09/20/disable-text-selection/">
-            <time datetime="2015-09-19T16:00:00.000Z" itemprop="datePublished">2015-09-20</time>
+        <a href="/2016/01/24/circular-image-with-css/">
+            <time datetime="2016-01-23T16:00:00.000Z" itemprop="datePublished">2016-01-24</time>
         </a>
     </div>
 
@@ -693,7 +215,188 @@ test.pub(&quot;alert&quot;);
                     
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/css/">css</a>
+        <a class="tag-link" href="/tags/CSS/">CSS</a>
+    </div>
+
+                </div>
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>在这个教程，我们会介绍一下使用CSS技巧来渲染出圆形的<img>元素，主要来实现这个效果的CSS属性是border-radius.</p>
+<p>尽管对于正方形的图片来实现圆形这个效果是相当简单的，但是对于长方形来说可能需要多一点点工作。</p>
+<p> <img src="imgs\circular-image-with-css\circular-images-lead.jpg" alt="lead"></p>
+<h2 id="正方形图片"><a href="#正方形图片" class="headerlink" title="正方形图片"></a>正方形图片</h2><p>一个百分百正方形的img标签要变成圆形的只需要一行CSS代码。这个技巧在正方形图片上使用的最方便。</p>
+<p>HTML</p>
+<pre><code>&lt;img class=&quot;circle--square&quot; src=&quot;woman.png&quot; /&gt;
+</code></pre><p>CSS</p>
+<pre><code>.circular--squareP{
+    border-radius:50%;
+}
+</code></pre><p>通过设置img标签的所有的border-radius属性为正方形宽/高的50%，我们就可以把这个img标签变成圆的。</p>
+<p><img src="imgs\circular-image-with-css\circular-image-square.png" alt="square"></p>
+<h2 id="长方形图片"><a href="#长方形图片" class="headerlink" title="长方形图片"></a>长方形图片</h2><p>长方形图片会稍微有一点技巧一点。</p>
+<p>去渲染一个圆形，必须以圆形图片为基础</p>
+<p>要解决这个问题，我们可以通过在img标签外面套一层div，然后我们通过将超过这个外层div的img标签的内容给裁掉来实现。具体的话可以通过将外层div的overflow属性设置为hidden。</p>
+<p>为了能够让照片的主题不要被裁掉，我们必须要区别对待水平和垂直方向的图片。</p>
+<h3 id="水平方向的图片"><a href="#水平方向的图片" class="headerlink" title="水平方向的图片"></a>水平方向的图片</h3><p>HTML</p>
+<pre><code>&lt;div&gt;
+    &lt;img src=&quot;images/brack-obama.png&quot; /&gt;
+&lt;/div&gt;
+</code></pre><p>CSS</p>
+<pre><code>.circular--landscape{
+    display:inline-block;
+    position:relative;
+    width:200px;
+    height:200px;
+    overflow:hidden;
+    border-radius:50%;
+}
+
+.circular--landscape img{
+    width:auto;
+    height:100%;
+    margin-left:-50%;
+}
+</code></pre><p>高度和宽度属性必须要保持一样来确保这个div（.circular–landscape）能够作为正方形渲染起来</p>
+<p>除此之外，高度和宽度属性必须要等于或者小于img的高度。这能够确保img元素能够占满外层div而不会多出一部分空白</p>
+<p>一般来说，水平方向图片的主题（但不一定）会位于图片的中心位置。为了能够让我们尽量不会把图片的主题裁剪啦，我们可以通过把图片往左移来弥补图片剪切的内容有点偏右的问题。</p>
+<p>我们移动img标签的大小是外层div的25%，在这个例子中就是向左50px，我们可以通过设置margin-left的属性来完成设置</p>
+<pre><code>margin-left:-50px;
+</code></pre><p><img src="imgs\circular-image-with-css\circular-image-landscape-mode.png" alt="landscape"></p>
+<p>图片的主题会接近图片的水平方向中心的假设并不一定是对的，最好在你选择使用这个技巧的使用把这个假设记住。</p>
+<h3 id="垂直方向的图片"><a href="#垂直方向的图片" class="headerlink" title="垂直方向的图片"></a>垂直方向的图片</h3><p>HTML</p>
+<pre><code>&lt;div&gt;
+    &lt;img src=&quot;images/woman-portrait.png&quot; /&gt;
+&lt;/div&gt;
+</code></pre><p>CSS</p>
+<pre><code>.circular--portrait{
+    position:relative;
+    width:200px;
+    height:200px;
+    overflow:hidden;
+    border-radius:50%;
+}
+
+.circular--portrait img{
+    width:100%;
+    height:auto;
+}
+</code></pre><p>对于垂直方向上的图片的主题在垂直方向的中心的假设当然也不适用于每一个垂直方向上的图片。</p>
+<p>和水平方向的图片类似，外层div的宽度和高度最好等于垂直方向图片你的宽度，这样的话可以产生最好的效果。</p>
+<p>对于垂直方向的图片，我们把宽度设置为100%，高度设置为auto（和水平方向的图片相反）</p>
+<p>我们不需要移动这个img元素，因为这张照片的主题就在上方中心位置。</p>
+<p><img src="imgs\circular-image-with-css\circular-image-portrait.png" alt="portrait"></p>
+<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>这个技巧最好适用于正方形的img标签，主题正好位于图片的中心。但是，我们的世界并不是那么完美的，所有如果需求是这样，我们就可以使用div来把长方形img标签变圆。</p>
+<p>CSS中用来负责把图片变圆的属性是border-radius，把边的圆角变成高度/宽度的50%就可以产生一个圆。</p>
+<p>原文链接：<a href="http://sixrevisions.com/css/circular-images-css/" target="_blank" rel="external">circular-images-css</a></p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+    <div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone">QQ空间</a>
+    <a class="jiathis_button_tsina">新浪微博</a>
+    <a class="jiathis_button_tqq">腾讯微博</a>
+    <a class="jiathis_button_weixin">微信</a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<style>
+    .jiathis_style div:first-child:not(.jiadiv_01) {
+        width: auto !important;
+        border: none !important;
+    }
+    .jiathis_style .jiadiv_01 {
+        margin: 10px 0;
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .jiathis_style .jiadiv_01 div:first-child {
+        display: none;
+    }
+    .jiathis_style .jiadiv_02 {
+        padding: 7px 0 !important;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle {
+        width: 85px;
+        border: none;
+        height: auto;
+        margin: 3px 10px;
+        padding: 6px 10px;
+        border-radius: 4px;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:hover {
+        border: none;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
+        margin-left: 0;
+    }
+    .jiathis_style .jtico:hover {
+        opacity: 1;
+    }
+    .jiathis_style .ckepopBottom,
+    .jiathis_style .centerBottom {
+        width: auto !important;
+        padding: 5px;
+        background: #f7f7f7;
+    }
+</style>
+
+
+
+</div>
+
+            
+    
+        <a href="http://wangfulin.github.io/2016/01/24/circular-image-with-css/#comments" class="article-comment-link ds-thread-count" data-thread-key="http://wangfulin.github.io/2016/01/24/circular-image-with-css/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-css-box-shadow" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2015/12/24/css-box-shadow/">&lt;译&gt;深入了解CSS Box Shadow</a>
+        </h1>
+    
+
+                <div class="article-meta">
+                    
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2015/12/24/css-box-shadow/">
+            <time datetime="2015-12-23T16:00:00.000Z" itemprop="datePublished">2015-12-24</time>
+        </a>
+    </div>
+
+
+                    
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/CSS/">CSS</a>
+    </div>
+
+                    
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/CSS/">CSS</a>
     </div>
 
                 </div>
@@ -703,65 +406,137 @@ test.pub(&quot;alert&quot;);
         
             
             <blockquote>
-<p><strong>原文：</strong><a href="http://sixrevisions.com/css/disable-text-selection/" target="_blank" rel="external">Disable Text Selection with CSS</a></p>
+<p><strong>原文：</strong><a href="http://sixrevisions.com/css/css-box-shadow/" target="_blank" rel="external">A Close Look at CSS Box Shadow</a></p>
 </blockquote>
-<p>有些时候我们需要禁止网页的部分文本不能被选择。你可以使用<code>user-select</code>这个CSS特性来实现这个需求。</p>
-<h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><p>下面是一个使用了<code>disable-selection</code>类的样式规则，当它作用于一个HTML元素的时候，它会让我们不能够选择这个元素。</p>
-<pre><code>.disable-selection{
-    -moz-user-select:none; /* Firefox */
-     -ms-user-select:none; /* Internet Explorer */
-   -ktml-user-select:none; /* KHTML浏览器（比如：Konqueror） */
- -webkit-user-select:none; /* Chrome,Safari,and Opera */
-   -webkit-touch-callout:none; /* Disable Android and IOS callout */
-}
-</code></pre><p>关于这些样式的一些细节的解释：</p>
-<ul>
-<li><code>-webkit-user-select</code>是给Chrome,Safari和Opera用的（并不需要使用<code>-o-user-select</code>）。</li>
-<li>没有前缀的<code>user-select</code>是被故意略去的。</li>
-<li><code>-webkit-touch-callout</code>属性可以让在移动设备上的触摸后弹出失效。就像下面的这些，我们可以让它们不能出现。</li>
-</ul>
-<p><img src="imgs\disable-text-selection\disable-callout.jpg" alt="disable-callout"></p>
-<h2 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h2><p><img src="imgs\disable-text-selection\disable-text-selection.jpg" alt="disable-selection"></p>
-<p><a href="http://cdn.sixrevisions.com/demos/disable-text-selection/index.html" target="_blank" rel="external">查看演示</a></p>
-<h2 id="要时常记住的"><a href="#要时常记住的" class="headerlink" title="要时常记住的"></a>要时常记住的</h2><p>有一个陷阱就是：<code>user-select</code>并不是W3C规范中标准的CSS特性。尽管<code>user-select</code>通过添加浏览器前缀有很好的浏览器支持。</p>
-<p>前面的例子中，我没有使用没有前缀的<code>user-select</code>特性声明。那是因为在web标准中根本就没有这个属性。我们可以对它的使用类比于于IE专有的CSS属性<code>ms-filter</code>或者<code>-ms-text-kashida-space</code>的属性的使用。</p>
-<p>其他需要注意的地方：</p>
-<ul>
-<li><code>user-select</code>是<strong>有问题并且是不稳定的</strong>。有些时候你依然还是可以选择文本，特别是当你从没有被屏蔽掉文本选择的文本的那部分开始选择。</li>
-<li><strong>使用全选快捷键有些时候还是会把屏蔽文本选择</strong>(Win:Ctrl+A/Mac:Cmd+A)。这种情况你可以在IE11中清楚的了解到。</li>
-<li><strong>这不是一种万全的保证文本不被选择的策略。</strong>CSS能够很容易被屏蔽。这种技巧依赖于非标准的CSS特性，这意味着未来对这个属性的可持续支持上面存在着很大的不确定性。</li>
-<li><strong>屏蔽掉文本选择是很恼人的。</strong>我会在渐进提升的过程中使用这个技巧：只有当它可以提高使用支持这个<code>user-select</code>特性的浏览器和设备的用户的用户体验的时候才使用它。但是，我绝不会把它设置成一个大范围的CSS选择器像全部选择器(*）或者<code>body</code>.</li>
-<li><strong>这个<code>user-select</code>特性可能会让你的样式表失效</strong>。如果遵循标准对你来说非常重要，使用这个属性会在你使用规范测试比如说<a href="https://jigsaw.w3.org/css-validator/" target="_blank" rel="external">CSS Validation Service</a>的使用出现问题</li>
-</ul>
-<p><img src="imgs\disable-text-selection\user-select-validation.png" alt="user-select-validation"></p>
-<h2 id="浏览器支持"><a href="#浏览器支持" class="headerlink" title="浏览器支持"></a>浏览器支持</h2><p><strong>更新于：</strong>2015年3月</p>
-<table>
+<p>CSS的<code>box-shadow</code>可以被用来给块级元素一个外阴影或者是内阴影。接下来让我们仔细地看一下这个CSS的特性吧。</p>
+<h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><p>下面有三个把CSS的<code>box-shadow</code>属性使用在<code>div</code>里的例子。</p>
+<p>###　例１：简单的外阴影</p>
+<p>下面是是给副标题添加阴影的样式。</p>
+<pre><code>box-shadow:0 0 10px gray;
+</code></pre><p><img src="imgs\css-box-shadow\basic-box-shadow-example.png" alt="simple-drop-shadow"></p>
+<h3 id="例2：内阴影"><a href="#例2：内阴影" class="headerlink" title="例2：内阴影"></a>例2：内阴影</h3><p>一个内阴影可以通过使用inset属性值来渲染出来。</p>
+<pre><code>box-shadow:inset 0 0 10px;
+</code></pre><p><img src="imgs\css-box-shadow\basic-inset-box-shadow-example.png" alt="inner-shadow"></p>
+<h3 id="例3：偏移外阴影"><a href="#例3：偏移外阴影" class="headerlink" title="例3：偏移外阴影"></a>例3：偏移外阴影</h3><p>这个例子中我们通过水平和垂直方向下和右偏移5px来实现阴影向右下方偏移</p>
+<pre><code>box-shadow:5px 5px 10px;
+</code></pre><p><img src="imgs\css-box-shadow\offset-box-shadow-example-01.png" alt="offset-drop-shadow-bottom-right"></p>
+<p>加入你想要阴影向左上方偏移呢？我们可以通过将水平和垂直方向的偏移量设置为-5px，正如下面的例子：</p>
+<pre><code>box-shadow:-5px -5px 10px;
+</code></pre><p><img src="imgs\css-box-shadow\offset-box-shadow-example-02.png" alt="offset-drop-shadow-top-left"></p>
+<p>既然你已经看到了<code>box-shadow</code>在现实中的使用，接下来让我们更加深入地了解一下。</p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p><code>box-shadow</code>的一般语法如下：</p>
+<pre><code>box-shadow:[inset] [horizontal offset] [vertical 
+offset] [blur radius] [spread distance] [color]
+</code></pre><h2 id="CSS属性值"><a href="#CSS属性值" class="headerlink" title="CSS属性值"></a>CSS属性值</h2><p>CSS的<code>box-shadow</code>可能会有6个属性值：</p>
+<ol>
+<li>inset</li>
+<li>horizontal offset</li>
+<li>vertical offset</li>
+<li>blur radius</li>
+<li>spread distance</li>
+<li>color</li>
+</ol>
+<p>只有两个属性是必须的：水平偏移和垂直偏移量。</p>
+<p>四个属性值，水平偏移，垂直偏移，模糊半径，扩展距离，必须使用CSS长度单元（比如：px,em,%等）</p>
+<p>这个颜色值必须是必须是一个颜色单元，比如十六进制值（如：#000000）。</p>
+<h3 id="属性和值总结表"><a href="#属性和值总结表" class="headerlink" title="属性和值总结表"></a>属性和值总结表</h3><table>
 <thead>
 <tr>
-<th style="text-align:left">浏览器</th>
-<th style="text-align:left">版本支持（以上）</th>
+<th>属性</th>
+<th>是否必须</th>
+<th>单位</th>
+<th>默认值</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">Chrome</td>
-<td style="text-align:left">6</td>
+<td>inset</td>
+<td>不是</td>
+<td>关键词</td>
+<td>没有指定的时候，阴影默认在外面</td>
 </tr>
 <tr>
-<td style="text-align:left">Firefox</td>
-<td style="text-align:left">2</td>
+<td>水平偏移</td>
+<td>是</td>
+<td>长度</td>
+<td>没有默认值，一定有指定</td>
 </tr>
 <tr>
-<td style="text-align:left">IE</td>
-<td style="text-align:left">10</td>
+<td>垂直偏移</td>
+<td>是</td>
+<td>长度</td>
+<td>没有默认值，一定要指定</td>
 </tr>
 <tr>
-<td style="text-align:left">Safari</td>
-<td style="text-align:left">3.1</td>
+<td>模糊半径</td>
+<td>不是</td>
+<td>长度</td>
+<td>0</td>
+</tr>
+<tr>
+<td>扩展距离</td>
+<td>不是</td>
+<td>长度</td>
+<td>0</td>
+</tr>
+<tr>
+<td>颜色</td>
+<td>不是</td>
+<td>颜色</td>
+<td>和box shadow属性作用的元素的color值一样</td>
 </tr>
 </tbody>
 </table>
-<p>移动端<br>|浏览器|版本支持（以上）|<br>|:——|:—–|<br>|Chrome(Android)|2.1|<br>|Safari(IOS)|3.2|</p>
+<h2 id="inset"><a href="#inset" class="headerlink" title="inset"></a>inset</h2><p>如果<code>inset</code>关键词存在，盒阴影将会放在HTML元素的内部</p>
+<pre><code>box-shadow:inset 0 0 5px 5px olive;
+</code></pre><p><img src="imgs\css-box-shadow\css-box-shadow-inset-property.png" alt="inset-shadow"></p>
+<p>作为对比，这里是一个没有<code>inset</code>属性的<code>box-shadow</code>样式。</p>
+<pre><code>box-shadow:0 0 5px 5px olive;
+</code></pre><p><img src="imgs\css-box-shadow\css-box-shadow-no-inset-property.png" alt="no-inset-shadow"></p>
+<h3 id="水平偏移"><a href="#水平偏移" class="headerlink" title="水平偏移"></a>水平偏移</h3><p>水平偏移控制了盒子阴影在x轴的偏移。正值会把盒子的阴影向右移动，负值的话会把它向左移动。</p>
+<p>下面的例子中，我们把水平的偏移设置成20px，刚好是水平偏移量的两倍，所以阴影水平宽度刚好是垂直高度的两倍。</p>
+<pre><code>box-shadow:20px 10px;
+</code></pre><p><img src="imgs\css-box-shadow\css-box-shadow-horizontal-offset-property.png" alt="horizontal offset value"></p>
+<h3 id="垂直偏移"><a href="#垂直偏移" class="headerlink" title="垂直偏移"></a>垂直偏移</h3><p>垂直偏移控制了盒阴影在y轴的偏移量。正值会把盒子的阴影向下移动，负值刚好相反会把盒子网上移动。</p>
+<p>下面的例子中，垂直的偏移设置成-20px，刚好是水平偏移的两倍。同时，因为是负值，所以向上移动。</p>
+<pre><code>box-shadow:10px -20px;
+</code></pre><p><img src="imgs\css-box-shadow\css-box-shadow-vertical-offset-property.png" alt="vertical offset value"></p>
+<h3 id="模糊半径"><a href="#模糊半径" class="headerlink" title="模糊半径"></a>模糊半径</h3><p>这个模糊半径会影响到阴影的模糊和锐利程度。</p>
+<p>模糊半径是可选的，如果你不指定它，默认值是0.另外，你不能指定它为负值，这个和水平偏移和垂直偏移不一样。</p>
+<p>如果模糊半径是0，盒子阴影会很锐利并且它的颜色是很实的。随着你不断的增大这个值，它会变得越来越模糊和透明。</p>
+<p>下面的例子，模糊半径被设置成20px，因此模糊度是相当突出。</p>
+<pre><code>box-shadow:5px 5px 20px;
+</code></pre><p><img src="imgs\css-box-shadow\css-box-shadow-blur-radius.png" alt="css-box-shadow-blur-radius"></p>
+<h3 id="扩展距离"><a href="#扩展距离" class="headerlink" title="扩展距离"></a>扩展距离</h3><p>这个扩展距离会让盒子的阴影在各个方向上都会变大或变小。如果它有一个正值，盒子阴影会在各个方向上增加大小。如果是负值，则会在各个方向上收缩。</p>
+<p>值得注意的是，因为它的扩展距离是正5，所以会在各个方向上增加10px因为没有水平和垂直偏移。</p>
+<pre><code>box-shadow:0 0 10px 5px;
+</code></pre><p><img src="imgs\css-box-shadow\css-box-shadow-spread-distance.png" alt="css-box-shadow-spread-distance"></p>
+<p>当扩展距离是负的时候，阴影就会在各个方向上收缩。下面的例子展示当阴影的宽度比盒子小的时候的情况</p>
+<pre><code>box-shadow:0 10px 10px -5px;
+</code></pre><p><img src="imgs\css-box-shadow\css-box-shadow-negative-spread-distance.png" alt="css-box-shadow-negative-spread-distance"></p>
+<p>###　颜色</p>
+<p>通过名字你就可以判断出来，颜色值会设置盒阴影的颜色。它可以通过任何可以表示颜色的方式来表示颜色。是否设置颜色值是可选的。</p>
+<p>换句话说，默认情况下当你没有指明颜色值，阴影颜色会等于这个盒子对应的html元素的颜色值。比如有一个<code>div</code>的颜色被设置成红色，这个盒子阴影的颜色也会变成红色：</p>
+<pre><code>color:red;
+box-shadow:0 0 10px 5px;
+</code></pre><p><img src="imgs\css-box-shadow\css-box-shadow-default-color.png" alt="css-box-shadow-default-color"></p>
+<p>如果你想要设置阴影的颜色和<code>div</code>的颜色不一样，可以通过下面的方式，你会发现尽管你的文字颜色是红色，盒子阴影颜色依然可以是蓝色。</p>
+<pre><code>color:red;
+box-shadow:0 0 10px 5px blue;
+</code></pre><p><img src="imgs\css-box-shadow\css-box-shadow-color-specified.png" alt="css-box-shadow-color-specified"></p>
+<h2 id="多阴影效果"><a href="#多阴影效果" class="headerlink" title="多阴影效果"></a>多阴影效果</h2><p>这个就是能够让我们变得有创造力的CSS属性。你能够在一个盒子上设置多个阴影。</p>
+<p>语法就像下面这样。</p>
+<pre><code>box-shadow: [box shadow properties 1],
+ [box shadow properties 2],
+ [box shadow properties n];
+</code></pre><p>换句话说，你可以通过在每个属性设置组后面添加逗号(,)来实现多阴影。</p>
+<p>下面的例子展示了两个阴影的情况，左上方红色的阴影，右下方蓝色的阴影。</p>
+<pre><code>box-shadow: -5px -5px 30px 5px red,
+         5px 5px 30px 5px blue;
+</code></pre><p><img src="imgs\css-box-shadow\multiple-box-shadows.png" alt="multiple-box-shadows"></p>
+<h2 id="浏览器支持"><a href="#浏览器支持" class="headerlink" title="浏览器支持"></a>浏览器支持</h2><p>这个CSS的<code>box-shadow</code>属性有着很好地浏览器支持。使用这个属性在拖后腿的IE浏览器也能在IE9以后得到支持啦。</p>
+<p><a href="http://cdn.sixrevisions.com/0457-01-css-box-shadow-demo/demo.html" target="_blank" rel="external">查看演示</a></p>
+<p><img src="imgs\css-box-shadow\css-box-shadow-examples.png" alt="css-box-shadow-example"></p>
 
         
         </div>
@@ -825,503 +600,7 @@ test.pub(&quot;alert&quot;);
 
             
     
-        <a href="http://wangfulin.github.io/2015/09/20/disable-text-selection/#comments" class="article-comment-link ds-thread-count" data-thread-key="http://wangfulin.github.io/2015/09/20/disable-text-selection/">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-easy-two-way-data-binding-in-javascript" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2015/08/20/easy-two-way-data-binding-in-javascript/">&lt;译&gt;简单的用javascript实现的数据双向绑定</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2015/08/20/easy-two-way-data-binding-in-javascript/">
-            <time datetime="2015-08-19T16:00:00.000Z" itemprop="datePublished">2015-08-20</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/javascript/">javascript</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/javascript/设计模式/">设计模式</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/javascript-设计模式/">javascript, 设计模式</a>
-    </div>
-
-                </div>
-            </header>
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <blockquote>
-<p><strong>原文：</strong><a href="http://www.lucaongaro.eu/blog/2012/12/02/easy-two-way-data-binding-in-javascript/" target="_blank" rel="external">Easy Two-Way Data Binding in Javascript</a></p>
-</blockquote>
-<p>双向数据绑定指的是当对象的属性发生变化时能够同时改变对应的UI，反之亦然。换句话说，如果我们有一个<code>user</code>对象，这个对象有一个<code>name</code>属性，无论何时你对<code>user.name</code>设置了一个新值，UI也会展示这个新的值。同样的，如果UI包含一个用于数据用户名字的输入框，输入一个新值也会导致<code>user</code>对象的<code>name</code>属性发生相应的改变。</p>
-<p>许多流行的javascript框架，像Ember.js,Angular.js或者KnockoutJS都会把双向数据绑定作为其中的主要特性来宣传。这并不意味着从头开始实现它很难，也不意味着当我们需要这种功能的时候，使用这些框架是我们唯一的选择。内部的潜在思想事实上是相当基础的，实现它可以归纳为以下三点：</p>
-<ol>
-<li>我们需要一种方式确定哪个UI元素绑定在哪个属性上。</li>
-<li>我们需要监控属性和UI的变化</li>
-<li>我们需要把所有绑定的对象和UI元素的变化传播出去。</li>
-</ol>
-<p>尽管有好多种方式去实现这几点，一种简单高效的方法是我们通过发布订阅者模式来实现。方法很简单：我们可以使用定制的<code>data</code>属性作为HTML代码中需要绑定的属性。所有的绑定在一起的Javascript对象和DOM元素将会<code>订阅</code>这个发布订阅对象。任何时候我们检测到无论是Javascript对象亦或是HTML的input元素的变化，我们都是把事件代理传递给发布订阅对象，然后通过它把所有发生在绑定的对象和元素的的变化传递和广播出去。</p>
-<h2 id="一个用jQuery实现的简单例子"><a href="#一个用jQuery实现的简单例子" class="headerlink" title="一个用jQuery实现的简单例子"></a>一个用jQuery实现的简单例子</h2><p>通过jQuery实现我们上面讨论的东西是相当简单明了的，因为作为一个流行的库，它让我们很简单的实现订阅和发布DOM事件，同时我们也可以定制一个：</p>
-<pre><code>function DataBinder(object_id){
-    // Use a jQuery object as simple PubSub
-    var pubSub=jQuery({});
-
-    // We expect a `data` element specifying the binding
-    // in the form:data-bind-&lt;object_id&gt;=&quot;&lt;property_name&gt;&quot;
-    var data_attr=&quot;bind-&quot;+object_id,
-        message=object_id+&quot;:change&quot;;
-
-    // Listen to chagne events on elements with data-binding attribute and proxy
-    // then to the PubSub, so that the change is &quot;broadcasted&quot; to all connected objects
-    jQuery(document).on(&quot;change&quot;,&quot;[data-]&quot;+data_attr+&quot;]&quot;,function(eve){
-        var $input=jQuery(this);
-
-        pubSub.trigger(message,[$input.data(data_attr),$input.val()]);
-    });
-
-    // PubSub propagates chagnes to all bound elemetns,setting value of
-    // input tags or HTML content of other tags
-    pubSub.on(message,function(evt,prop_name,new_val){
-        jQuery(&quot;[data-&quot;+data_attr+&quot;=&quot;+prop_name+&quot;]&quot;).each(function(){
-            var $bound=jQuery(this);
-
-            if($bound.is(&quot;&quot;)){
-                $bound.val(new_val);
-            }else{
-                $bound.html(new_val);
-            }
-        });
-    });
-    return pubSub;
-}
-</code></pre><p>至于javascript对象，下面是最小化的<code>user</code>数据模型实现的例子：</p>
-<pre><code>function User(uid){
-    var binder=new DataBinder(uid),
-
-        user={
-            attributes:{},
-            // The attribute setter publish changes using the DataBinder PubSub
-            set:function(attr_name,val){
-                this.attributes[attr_name]=val;
-                binder.trigger(uid+&quot;:change&quot;,[attr_name,val,this]);
-            },
-
-            get:function(attr_name){
-                return this.attributes[attr_name];
-            },
-
-            _binder:binder
-        };
-
-    // Subscribe to PubSub
-    binder.on(uid+&quot;:change&quot;,function(evt,attr_name,new_val,initiator){
-        if(initiator!==user){
-            user.set(attr_name,new_val);
-        }
-    });
-
-    return user;
-}
-</code></pre><p>现在，无论何时我们想要绑定一个对象的属性到UI上，我们只要在对应的HTML元素上设置合适的<code>data</code>属性。</p>
-<pre><code>// javascript 
-var user=new User(123);
-user.set(&quot;name&quot;,&quot;Wolfgang&quot;);
-
-// html
-&lt;input type=&quot;number&quot; data-bind-123=&quot;name&quot; /&gt;
-</code></pre><p>input输入框上值得变化会自动的映射到<code>user</code>的<code>name</code>属性，反之亦然。大功告成！</p>
-<h2 id="不需要jQuery的实现方式"><a href="#不需要jQuery的实现方式" class="headerlink" title="不需要jQuery的实现方式"></a>不需要jQuery的实现方式</h2><p>现在的大部分项目一般jQuery都已经在使用啦，所以上面的例子是完全可以接受的。但是如果我们需要完全不依赖jQuery，那么该怎么实现呢？好吧，事实上其实也不难办到（特别是当我们把对IE的支持只提供IE8以上的支持）。最后，我们只是要通过发布订阅者模式来观察DOM事件而已。</p>
-<pre><code>function DataBinder( object_id ) {
-  // Create a simple PubSub object
-  var pubSub = {
-    callbacks: {},
-
-    on: function( msg, callback ) {
-      this.callbacks[ msg ] = this.callbacks[ msg ] || [];
-      this.callbacks[ msg ].push( callback );
-    },
-
-    publish: function( msg ) {
-      this.callbacks[ msg ] = this.callbacks[ msg ] || []
-      for ( var i = 0, len = this.callbacks[ msg ].length; i &lt; len; i++ ) {
-        this.callbacks[ msg ][ i ].apply( this, arguments );
-      }
-    }
-  },
-
-  data_attr = &quot;data-bind-&quot; + object_id,
-  message = object_id + &quot;:change&quot;,
-
-  changeHandler = function( evt ) {
-    var target = evt.target || evt.srcElement, // IE8 compatibility
-        prop_name = target.getAttribute( data_attr );
-
-    if ( prop_name &amp;&amp; prop_name !== &quot;&quot; ) {
-      pubSub.publish( message, prop_name, target.value );
-    }
-  };
-
- // Listen to change events and proxy to PubSub
-  if ( document.addEventListener ) {
-    document.addEventListener( &quot;change&quot;, changeHandler, false );
-  } else {
-    // IE8 uses attachEvent instead of addEventListener
-    document.attachEvent( &quot;onchange&quot;, changeHandler );
-  }
-
-  // PubSub propagates changes to all bound elements
-  pubSub.on( message, function( evt, prop_name, new_val ) {
-var elements = document.querySelectorAll(&quot;[&quot; + data_attr + &quot;=&quot; + prop_name + &quot;]&quot;),
-    tag_name;
-
-for ( var i = 0, len = elements.length; i &lt; len; i++ ) {
-  tag_name = elements[ i ].tagName.toLowerCase();
-
-  if ( tag_name === &quot;input&quot; || tag_name === &quot;textarea&quot; || tag_name === &quot;select&quot; ) {
-    elements[ i ].value = new_val;
-  } else {
-    elements[ i ].innerHTML = new_val;
-  }
-}
-  });
-
-  return pubSub;
-}
-</code></pre><p>数据模型可以保持不变，除了在setter中对jQuery中<code>trigger</code>方法的调用，我们可以通过我们在PubSub中自定义的<code>publish</code>方法来代替。</p>
-<pre><code>// In the model&apos;s setter:
-function User( uid ) {
-  // ...
-
-  user = {
-    // ...
-    set: function( attr_name, val ) {
-          this.attributes[ attr_name ] = val;
-          // Use the `publish` method
-          binder.publish( uid + &quot;:change&quot;, attr_name, val, this );
-    }
-  }
-
-  // ...
-}
-</code></pre><p>我们又一次通过一百行不到，又可维护的纯javascript完成了我们想要的结果。</p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-    <div class="jiathis_style">
-    <span class="jiathis_txt">分享到：</span>
-    <a class="jiathis_button_qzone">QQ空间</a>
-    <a class="jiathis_button_tsina">新浪微博</a>
-    <a class="jiathis_button_tqq">腾讯微博</a>
-    <a class="jiathis_button_weixin">微信</a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
-    <a class="jiathis_counter_style"></a>
-</div>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-<style>
-    .jiathis_style div:first-child:not(.jiadiv_01) {
-        width: auto !important;
-        border: none !important;
-    }
-    .jiathis_style .jiadiv_01 {
-        margin: 10px 0;
-        border-radius: 4px;
-        border: #e1e1e1 solid 1px;
-    }
-    .jiathis_style .jiadiv_01 div:first-child {
-        display: none;
-    }
-    .jiathis_style .jiadiv_02 {
-        padding: 7px 0 !important;
-    }
-    .jiathis_style .jiadiv_02 .jiatitle {
-        width: 85px;
-        border: none;
-        height: auto;
-        margin: 3px 10px;
-        padding: 6px 10px;
-        border-radius: 4px;
-    }
-    .jiathis_style .jiadiv_02 .jiatitle:hover {
-        border: none;
-    }
-    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
-        margin-left: 0;
-    }
-    .jiathis_style .jtico:hover {
-        opacity: 1;
-    }
-    .jiathis_style .ckepopBottom,
-    .jiathis_style .centerBottom {
-        width: auto !important;
-        padding: 5px;
-        background: #f7f7f7;
-    }
-</style>
-
-
-
-</div>
-
-            
-    
-        <a href="http://wangfulin.github.io/2015/08/20/easy-two-way-data-binding-in-javascript/#comments" class="article-comment-link ds-thread-count" data-thread-key="http://wangfulin.github.io/2015/08/20/easy-two-way-data-binding-in-javascript/">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-Effective Event Binding with jQuery" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2015/06/20/Effective Event Binding with jQuery/">&lt;译&gt;jQuery事件绑定的最佳实践</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2015/06/20/Effective Event Binding with jQuery/">
-            <time datetime="2015-06-19T16:00:00.000Z" itemprop="datePublished">2015-06-20</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/javascript/">javascript</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/javascript/jQuery/">jQuery</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/javascript-jQuery/">javascript, jQuery</a>
-    </div>
-
-                </div>
-            </header>
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <blockquote>
-<p><strong>原文：</strong><a href="http://www.sitepoint.com/effective-event-binding-jquery/" target="_blank" rel="external">Effective Event Binding with jQuery</a></p>
-</blockquote>
-<p>如果你经常使用jQuery，那么你也许很熟悉事件绑定。这是很基本的东西，但是深入一点，你就能够找到机会让你事件驱动的代码变得不太零碎，并且更容易管理。</p>
-<h2 id="更好的选择器策略"><a href="#更好的选择器策略" class="headerlink" title="更好的选择器策略"></a>更好的选择器策略</h2><p>让我们从基础的例子开始。下面的HTML代码表示的是可以开合的导航菜单。</p>
-<pre><code>&lt;button class=&quot;nav-menu-toggle&quot;&gt;Toggle Nav Menu&lt;/button&gt;
-&lt;nav&gt;
-    &lt;ul&gt;
-        &lt;li&gt;&lt;a href=&quot;/&quot;&gt;West Philadelphia&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;/cab&quot;&gt;Cab Whistling&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;/throne&quot;&gt;Throne Sitting&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/nav&gt;
-</code></pre><p>下面这个是点击按钮之后控制导航菜单开合的javascript代码</p>
-<pre><code>$(&apos;.nav-menu-toggle&apos;).on(&apos;click&apos;,function(){
-    $(&apos;nav&apos;).toggle();
-});
-</code></pre><p>这可能是最常用的实现方式。它能够使用，但是比较脆。javascript代码依赖了按钮的类名<code>nav-menu-toggle</code>。很可能在未来其他开发者或者健忘的你在重构代码的时候会删除或者重命名这个类名。</p>
-<p>问题的核心是我们同时在表现和交互中使用了CSS的类名。这违反了关注点分离的原则，让维护更容易出错。</p>
-<p>让我们用一个不同的方法来实现</p>
-<pre><code>&lt;button data-hook=&quot;nav-menu-toggle&quot;&gt;Toggle Nav Menu&lt;/button&gt;
-&lt;nav data-hook=&quot;nav-menu&quot;&gt;
-    &lt;ul&gt;
-        &lt;li&gt;&lt;a href=&quot;/&quot;&gt;West Philadelphia&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;/cab&quot;&gt;Cab Whistling&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;/throne&quot;&gt;Throne Sitting&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/nav&gt;
-</code></pre><p>这次我们使用这个data属性（data-hook）来选择元素。任何对CSS类的改变将不会影响到javascript，让我们能够实现关注点分离以及更加稳定的代码。</p>
-<p>下面我们用<code>data-hook</code>属性来选择对应的元素：</p>
-<pre><code>$(&apos;[data-hook=&quot;nav-menu-toggle&quot;]&apos;).on(&apos;click&apos;,function(){
-    $(&apos;[data-hook=&quot;nav-menu&quot;]&apos;).toggle();
-});
-</code></pre><p>需要注意的是，我也使用<code>data-hook</code>作为<code>nav</code>元素的选择器。你不一定需要，但是我喜欢这里面包含的思想：任何使用你看到<code>data-hook</code>，你会知道这个元素在javascript中引用到啦。</p>
-<h2 id="一些语法糖"><a href="#一些语法糖" class="headerlink" title="一些语法糖"></a>一些语法糖</h2><p>我必须承认<code>data-hook</code>选择器并不是很漂亮。让我们通过扩展jQuery实现一个自定义的函数：</p>
-<pre><code>$.extend({
-    hook:function(hookName){
-        var selector;
-        if(!hookName || hookName === &apos;*&apos;){
-            // select all data-hooks
-            selector=&apos;[data-hook]&apos;
-        }else{
-            // select specific data-hook
-            selector=&apos;[data-hook*=&quot;&apos;+hookName+&apos;&quot;]&apos;;
-        }
-        return $(selector);
-    }
-});
-</code></pre><p>上面准备完毕，我们来重写一下javascript。</p>
-<pre><code>$.hook(&apos;nav-menu-toggle&apos;).on(&apos;&apos;,function(){
-    $.hook(&apos;nav-menu&apos;).toggle();
-});
-</code></pre><p>更好的是，我们甚至可以把一系列以空格分开的hook名字放在一个元素上。</p>
-<pre><code>&lt;button data-hook=&quot;nav-menu-toggle video-pause click-track&quot;&gt;Toggle Nav Menu&lt;/button&gt;
-</code></pre><p>我们可以找到里面的任意个hook名字：<br>    $.hook(‘click-track’); // returns the button as expected</p>
-<p>我们也能够找到页面上所有的hook元素</p>
-<pre><code>// both are equivalent
-$.hook();
-$.hook(&apos;*&apos;);
-</code></pre><h2 id="防止函数表达式"><a href="#防止函数表达式" class="headerlink" title="防止函数表达式"></a>防止函数表达式</h2><p>到目前为止，我们在事件处理中使用的都是匿名函数。让我们重写一下，使用声明的函数来代替它。</p>
-<pre><code>function toggleNavMenu(){
-    $.hook(&apos;nav-menu&apos;).toggle();
-}
-
-$.hook(&apos;nav-menu-toggle&apos;).on(&apos;click&apos;,toggleNavMenu);
-</code></pre><p>这让事件绑定的代码更加易读。这个<code>toggleNavMenu</code>函数名表达了意图，是代码自我注释的好例子。</p>
-<p>我们同时也获得了可复用的能力，因为其他地方可能需要使用<code>toggleNavMenu</code>函数。</p>
-<p>最后，这对于自动化测试来说是意见大喜事，因为声明的函数的单元测试要比匿名函数单元测试容易的多。</p>
-<h2 id="同时使用多个事件"><a href="#同时使用多个事件" class="headerlink" title="同时使用多个事件"></a>同时使用多个事件</h2><p>jQuery提供了一个简单方便的语法来处理多事件的问题。比如，你可以为一系列空格隔开的事件列表绑定同一个事件处理函数。</p>
-<pre><code>$.hook(&apos;nav-menu-toggle&apos;).on(&apos;click keydown mouseenter&apos;,trackAction);
-</code></pre><p>如果你需要为不同的事件绑定不同的处理函数，你可以使用对象表达方式：<br>    $.hook(‘nav-menu-toggle’).on({<br>        ‘click’:trackClick,<br>        ‘keydown’:tranckKeyDown,<br>        ‘mouseenter’:trackMouseEnter<br>    });</p>
-<p>反过来，你可以同时取消多个事件的绑定：</p>
-<pre><code>// unbinds keydown and mouseenter
-$.hook(&apos;nav-menu-toggle&apos;).off(&apos;keydown mouseenter&apos;);
-
-// nuclear options:unbinds everything
-$.hook(&apos;nav-menu-toggle&apos;).off();
-</code></pre><p>你可以想象到的是，不小心的取消事件绑定可能会导致严重的我们不想要的副作用。继续看我们可以通过哪些技巧来减轻这个问题。</p>
-<h2 id="小心的取消事件绑定"><a href="#小心的取消事件绑定" class="headerlink" title="小心的取消事件绑定"></a>小心的取消事件绑定</h2><p>一般情况下我们不会在一个元素的同一事件类型绑定多个事件处理函数。让我们再看一下之前的那个按钮：</p>
-<pre><code>&lt;button data-hook=&quot;nav-menu-toggle video-pause click-track&quot;&gt;Toggle Nav Menu&lt;/button&gt;
-</code></pre><p>不同的代码区域可能会在同一个元素的同一事件绑定不同的事件处理函数：</p>
-<pre><code>// somewhere in the nav code
-$.hook(&apos;nav-menu-toggle&apos;).on(&apos;click&apos;,toggleNavMenu);
-
-// somewhere in the video playback code
-$.hook(&apos;video-pause&apos;).on(&apos;click&apos;,pauseCarltonDanceVideo);
-
-// somewhere in the analytics code
-$.hook(&apos;click-track&apos;).on(&apos;click&apos;,trackClick);
-</code></pre><p>尽管我们使用了不同的选择器，但是这个元素现在有三个事件处理函数啦。假如我们的分析代码不在关心这个按钮：</p>
-<pre><code>// no good
-$.hook(&apos;click-track&apos;).off(&apos;click&apos;);
-</code></pre><p>糟糕的是，上面的代码实际上回删除所有的点击事件处理函数，不仅仅是<code>trackClick</code>。我们应该实用更加有辨别力的方式来指定我们需要删除的事件处理函数：</p>
-<pre><code>$.hook(&apos;click-track&apos;).off(&apos;click&apos;,trackClick);
-</code></pre><p>另一种方式是使用命名空间。任何事件都有资格使用一个命名空间来实现绑定和取消绑定，这样你就可以更好的控制事件绑定和取消绑定。</p>
-<pre><code>// binds a click event in the &quot;analytics&quot; namespace
-$.hook(&apos;click-track&apos;).on(&apos;click.analytics&apos;, trackClick);
-
-// unbinds only click events in the &quot;analytics&quot; namespace
-$.hook(&apos;click-track&apos;).off(&apos;click.analytics&apos;);
-</code></pre><p>你也可以使用多个命名空间：</p>
-<pre><code>// binds a click event in both the &quot;analytics&quot; and &quot;usability&quot; namespaces
-$.hook(&apos;click-track&apos;).on(&apos;click.analytics.usability&apos;,trackClick);
-
-// unbinds any events in either the &quot;analytics&quot; OR &quot;usability&quot; namespaces
-$.hook(&apos;click-track&apos;).off(&apos;.usability .analytics&apos;);
-
-// unbinds any events in both the &quot;analytics&quot; AND &quot;usability&quot; namespaces
-$.hook(&apos;click-track&apos;).off(&apos;.usability.analytics&apos;);
-</code></pre><p>需要注意的是，命名空间的顺序是没有关系的，因为命名空间不是层级式的。</p>
-<p>如果你有一个复杂的功能需要多个元素绑定多个事件，那么使用命名空间是一种简单的把他们组织起来然后快速清除的方式：</p>
-<pre><code>// free all elements on the page of any &quot;analytics&quot; event handling
-$(&apos;*&apos;).off(&apos;.analytics&apos;);
-</code></pre><p>命名空间在写插件的时候尤其有用，因为这样你就能保证只会取消自己命名空间范围内的事件处理函数的绑定。</p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-    <div class="jiathis_style">
-    <span class="jiathis_txt">分享到：</span>
-    <a class="jiathis_button_qzone">QQ空间</a>
-    <a class="jiathis_button_tsina">新浪微博</a>
-    <a class="jiathis_button_tqq">腾讯微博</a>
-    <a class="jiathis_button_weixin">微信</a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
-    <a class="jiathis_counter_style"></a>
-</div>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-<style>
-    .jiathis_style div:first-child:not(.jiadiv_01) {
-        width: auto !important;
-        border: none !important;
-    }
-    .jiathis_style .jiadiv_01 {
-        margin: 10px 0;
-        border-radius: 4px;
-        border: #e1e1e1 solid 1px;
-    }
-    .jiathis_style .jiadiv_01 div:first-child {
-        display: none;
-    }
-    .jiathis_style .jiadiv_02 {
-        padding: 7px 0 !important;
-    }
-    .jiathis_style .jiadiv_02 .jiatitle {
-        width: 85px;
-        border: none;
-        height: auto;
-        margin: 3px 10px;
-        padding: 6px 10px;
-        border-radius: 4px;
-    }
-    .jiathis_style .jiadiv_02 .jiatitle:hover {
-        border: none;
-    }
-    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
-        margin-left: 0;
-    }
-    .jiathis_style .jtico:hover {
-        opacity: 1;
-    }
-    .jiathis_style .ckepopBottom,
-    .jiathis_style .centerBottom {
-        width: auto !important;
-        padding: 5px;
-        background: #f7f7f7;
-    }
-</style>
-
-
-
-</div>
-
-            
-    
-        <a href="http://wangfulin.github.io/2015/06/20/Effective Event Binding with jQuery/#comments" class="article-comment-link ds-thread-count" data-thread-key="http://wangfulin.github.io/2015/06/20/Effective Event Binding with jQuery/">评论</a>
+        <a href="http://wangfulin.github.io/2015/12/24/css-box-shadow/#comments" class="article-comment-link ds-thread-count" data-thread-key="http://wangfulin.github.io/2015/12/24/css-box-shadow/">评论</a>
     
 
         </footer>
@@ -1332,7 +611,7 @@ $(&apos;*&apos;).off(&apos;.analytics&apos;);
 
 
     <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
+        <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
     </nav>
 </section>
             
