@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>&lt;译&gt; Node.js 教程 | wangfulin&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="[译]Node.js Tutorial: Promise, Generator, Event and Filestream
+在前面的教程中，你已经看到了我们在异步事件中使用回调函数。但是有些时候当它们开始不断嵌套，并且程序变得越来越长越来越复杂的时候，回调函数就会像恶梦一般。
+在这些情况下，Node.js 提供了额外的特性来修复我们在使用回调的时候遇到的问题。这些特性被分成 Promise, ge">
+<meta property="og:type" content="article">
+<meta property="og:title" content="<译> Node.js 教程">
+<meta property="og:url" content="http://wangfulin.github.io/2014/11/20/node-js-promise-generator-event/index.html">
+<meta property="og:site_name" content="wangfulin's blog">
+<meta property="og:description" content="[译]Node.js Tutorial: Promise, Generator, Event and Filestream
+在前面的教程中，你已经看到了我们在异步事件中使用回调函数。但是有些时候当它们开始不断嵌套，并且程序变得越来越长越来越复杂的时候，回调函数就会像恶梦一般。
+在这些情况下，Node.js 提供了额外的特性来修复我们在使用回调的时候遇到的问题。这些特性被分成 Promise, ge">
+<meta property="og:image" content="http://wangfulin.github.io/./imgs/node-js-promise-generator-event/callback.png">
+<meta property="og:updated_time" content="2016-04-28T04:12:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="<译> Node.js 教程">
+<meta name="twitter:description" content="[译]Node.js Tutorial: Promise, Generator, Event and Filestream
+在前面的教程中，你已经看到了我们在异步事件中使用回调函数。但是有些时候当它们开始不断嵌套，并且程序变得越来越长越来越复杂的时候，回调函数就会像恶梦一般。
+在这些情况下，Node.js 提供了额外的特性来修复我们在使用回调的时候遇到的问题。这些特性被分成 Promise, ge">
+<meta name="twitter:image" content="http://wangfulin.github.io/./imgs/node-js-promise-generator-event/callback.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+    
+    
+
+</head>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">wangfulin&#39;s blog</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.png" />
+            <h2 id="name">wangfulin</h2>
+            <h3 id="title">Web Developer</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Beijing, China</span>
+            <a id="follow" target="_blank" href="https://github.com/wangfulin">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                25
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                15
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    <td><a href="https://github.com/wangfulin" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+                    
+                    <td><a href="https://segmentfault.com/u/wangfulin" target="_blank" title="segmentfault"><i class="fa fa-segmentfault"></i></a></td>
+                    
+                    <td><a href="/" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></td>
+                    
+                    <td><a href="/" target="_blank" title="dribbble"><i class="fa fa-dribbble"></i></a></td>
+                    
+                    <td><a href="/" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-node-js-promise-generator-event" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            &lt;译&gt; Node.js 教程
+        </h1>
+    
+
+                <div class="article-meta">
+                    
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2014/11/20/node-js-promise-generator-event/">
+            <time datetime="2014-11-19T16:00:00.000Z" itemprop="datePublished">2014-11-20</time>
+        </a>
+    </div>
+
+
+                    
+                    
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/javascript-Node-js/">javascript, Node.js</a>
+    </div>
+
+                </div>
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>[译]<a href="http://www.guru99.com/node-js-promise-generator-event.html" target="_blank" rel="external">Node.js Tutorial: Promise, Generator, Event and Filestream</a></p>
+<p>在前面的教程中，你已经看到了我们在异步事件中使用回调函数。但是有些时候当它们开始不断嵌套，并且程序变得越来越长越来越复杂的时候，回调函数就会像恶梦一般。</p>
+<p>在这些情况下，Node.js 提供了额外的特性来修复我们在使用回调的时候遇到的问题。这些特性被分成 Promise, generates 和 events. 这篇文章我们会更详细地学习和理解这些概念。</p>
+<h2 id="什么是-promises"><a href="#什么是-promises" class="headerlink" title="什么是 promises"></a>什么是 promises</h2><p>在我们开始讲 promises 之前，让我们首先来回顾一下 Node.js 中 “callback” 是什么。我们在前面的章节中看到过很多，所以让我们快速地过一下其中的一个。</p>
+<p>下面的例子展示了一段代码片段，它被用来连接一个 MongoDB 的数据库，并且在数据库的一条记录中执行更新操作。</p>
+<p><img src="./imgs/node-js-promise-generator-event/callback.png" alt="callback"></p>
+<p><strong>代码解释：</strong></p>
+<ol>
+<li><p>上面的代码中，function(err,db) 这段代码被称作匿名函数的声明或者回调函数。当 MongoClient 创建了一个 MongoDB 数据库的连接时，一旦这个连接操作结束，它就会返回到回调函数执行。所以，某种意义上来说，连接操作在后台运行，并且当它结束之后，就会调用这个回调函数。记住这是之所以 Node.js 可以让很多操作同时发生但是不会阻塞用户执行操作的关键。</p>
+</li>
+<li><p>第二段代码片段就是回调函数被调用的时候真正执行的代码。这个回调函数就在 MongoDB 数据库中更新一条记录。</p>
+</li>
+</ol>
+<p>那么什么是 promise 呢？promise 就是 Node.js 中回调函数的一个改进。在开发的时候，我们可能遇到这样的场景，我们可能需要将多个回调函数嵌套起来。这种情况在一段时间后会变得有些杂乱和难以维护。简单的说，promise 就是来解决回调的这些问题的一个改进版。</p>
+<p>promise 的基本语法就像下面这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var promise = doSomethingAsync();</span><br><span class="line">promise.then(onFullfilled, onRejected);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>doSomethingAsync</code>指的是任何执行某些异步操作回调或者匿名函数</li>
+<li>这一次，当定义回调的时候，有一个叫做<code>promise</code>的值返回给我们</li>
+<li>当一个 promise 返回的时候，它有两个输出。这个由<code>then clause</code>来定义。这个操作要么成功，这里通过<code>onFullfilled</code>参数来表示，要么出错，这里通过<code>onRejected</code>参数来表示。</li>
+</ul>
+<p><strong>注意:</strong> 所以 promise 的关键是这个返回值。当我们在 Node.js 中处理正常的回调的时候，并没有返回值的概念。因为有了这个返回值，我们对回调函数有了更多的控制权。</p>
+<h2 id="回调到-promise"><a href="#回调到-promise" class="headerlink" title="回调到 promise"></a>回调到 promise</h2><p>现在让我们看一个例子，看看我们在 Node.js 应用中是如何使用 <code>promises</code> 的。为了能够在 Node.js 的应用程序中使用 <code>promise</code> ,这个 <code>promise</code> 模块首先需要下载和安装。</p>
+<p>接下来我们用 promises 来修改我们的代码，来更新 <code>Employee</code> 集合中的 Employeename。</p>
+<ol>
+<li><p>安装 npm 模块</p>
+<p>为了能够在 NodeJS 应用中使用 promise, 我们需要安装这个 promise 模块，运行下面的命令<br>npm install promise</p>
+</li>
+<li><p>修改代码来引入 promise</p>
+</li>
+</ol>
+<p><img src="./imgs/node-js-promise-generator-event/callback-to-promises.png" alt="callback-to-promises"></p>
+<p><strong>代码解释：</strong></p>
+<ol>
+<li>第一部分是包含这个<code>promise</code>模块，让我们能够在代码中可以使用 promise 的功能。</li>
+<li>现在我们可以在 <code>MongoClient.connect</code>函数后面添加<code>then</code>函数啦。所以，这段代码的意思是当建立数据库连接之后，我们需要执行定义在<code>then</code>里面的代码片段。</li>
+<li>最后，我们定义了执行更新操作的代码片段</li>
+</ol>
+<p><strong>注意：</strong></p>
+<p>如果你现在检查 MongoDB 数据库，你会发现如果<code>Martin</code>雇员的名字存在，它会被更新成<code>Mohan</code>.</p>
+<p>如果要检查是否在数据库中正确插入，你需要执行下面 MongoDB 的命令。</p>
+<ol>
+<li>use EmployeeDB</li>
+<li>db.Employee.find({EmployeeName:mohan})</li>
+</ol>
+<p>第一个命令是保证你连上 <code>EmployeeDB</code> 的数据库。第二个命令是查找名字为 <code>Mohan</code> 的雇员的纪录</p>
+<h2 id="处理嵌套的-promises"><a href="#处理嵌套的-promises" class="headerlink" title="处理嵌套的 promises"></a>处理嵌套的 promises</h2><p>当我们定义 promises 的时候，需要注意的是<code>then</code>方法本身返回的也是一个 promise。所以，某种意义上来说 promises 可以嵌套或者链式调用。</p>
+<p>下面的例子中，我们使用链式调用来定义了两个回调函数。两个都向数据库插入了一条记录。</p>
+<p><strong>注意：</strong>链式调用是把一个方法的执行链接到另一个上的概念。假如你的应用有两个方法分别叫做<code>methodA</code>和<code>methodB</code>.并且逻辑是<code>methodB</code>要在<code>methodA</code>之后调用，这个时候你就可以把这种执行顺序通过在<code>methodA</code>之后直接调用<code>methodB</code>来链接起来。</p>
+<p>这个例子需要注意的关键是通过使用嵌套 promises 使得代码变得更简洁，可读和可维护了。</p>
+<p><img src="./imgs/node-js-promise-generator-event/nested-promises.png" alt="nested-promises"></p>
+<p><strong>代码解释：</strong></p>
+<ol>
+<li>我们定义了两个<code>then</code>语句来实现在一个执行完之后再执行另一个。第一个<code>then</code>语句，我们将包含数据库连接的<code>db</code>作为参数传递给它。接下来我们通过使用<code>db</code>连接的属性<code>collection</code>来插入一条记录。这个<code>insertOne</code>方法被用来插入一个真正的文档对象给<code>Employee</code>集合。</li>
+<li>接下来我们使用第二个<code>then</code>语句来向数据库插入另一条记录。</li>
+</ol>
+<p>如果你现在查看 MongoDB 数据库，你会在数据库中找到这两条记录。</p>
+<h2 id="通过-BlueBird-库来生成-promises"><a href="#通过-BlueBird-库来生成-promises" class="headerlink" title="通过 BlueBird 库来生成 promises"></a>通过 <a href="https://github.com/petkaantonov/bluebird" target="_blank" rel="external">BlueBird</a> 库来生成 promises</h2><p>Bluebird 是一个功能完善的 promise 库。Bluebird 最重要的特性是它能够 <code>promisify</code>其他<code>Node</code>模块来异步地使用它们。Promisify 是一个应用在回调函数上的概念。这个概念用来保证每一个回调函数会返回一些值。</p>
+<p>所以，如果一个 NodeJS 模块包含了一个不返回任何值的回调函数，如果我们 <code>Promisify</code>这个<code>node</code>模块，那么所有在这个模块内部的函数都会被自动修改保证它有返回值。</p>
+<p>所以，你可以使用 Bluebird 让 MongoDB 模块异步运行。这样就从另一层面上提高了写 Node.js 应用程序的舒适性。</p>
+<p>我们接下来就看一个如果使用 bluebird 模块的例子。</p>
+<p>我们的例子首先建立一个到 <code>EmployeeDB</code> 数据库中 <code>Employee collection</code>的一个连接。如果接下来连接建立好了，它就会获取所有的集合中的记录并且在控制台中打印出来。</p>
+<ol>
+<li><p>安装 npm 模块</p>
+<p> 要在 Node 应用程序中使用 Bluebird，必须包含这个模块，运行下面的命令：<br> npm install bluebird</p>
+</li>
+<li><p>接下来就是包含这个 bluebird 模块，然后 promise 化整个 MongoDB 模块。这里的 promise 化，我们的意思是 bluebird 确保每一个定义在 MongoDB 类库中的方法都会返回一个 promise。</p>
+</li>
+</ol>
+<p><img src="./imgs/node-js-promise-generator-event/bluebird.png" alt="bluebird"></p>
+<p><strong>代码解释：</strong></p>
+<ul>
+<li><code>require</code>命令是用来包含这个 Bluebird 库的。</li>
+<li>通过使用 Bluebird 的 <code>promisifyAll()</code>这个方法来创建 MongoDB 模块中每一个方法的异步版本。这确保每一个 MongoDB 模块的方法都会在后台中运行，并且确保 MongoDB 库的每一个方法都会返回一个   promise。</li>
+</ul>
+<ol>
+<li>最后一步就是连接数据库，获取集合中的所有记录然后在控制台展示它们。</li>
+</ol>
+<p><img src="./imgs/node-js-promise-generator-event/bluebird2.png" alt="bluebird2"></p>
+<p><strong>代码解释：</strong></p>
+<ol>
+<li>你会发现我们这里使用<code>connectAsync</code>方法而不是正常的<code>connect</code>方法来连接数据库。Bluebird 是通过给每一个方法添加 Async 关键字来区分返回 promise 和不返回 promise 的调用。所以我们并不能保证没有 Async 关键字的方法会有返回值。</li>
+<li>和<code>connectAsync</code>类似，我们现在使用<code>findAsync</code>方法来返回所有在 MongoDB 数据库中 <code>Employee</code>集合中的记录。</li>
+<li>最后，如果这个 <code>findAsync</code>方法成功返回一个 promise ，我们接下来就可以定义一段代码来遍历集合中的每一个记录然后把它们的内容打印出来。</li>
+</ol>
+<p>如果上面的步骤正确的执行，所有在<code>Employee</code>集合的文档都会被打印到控制台，就像下面这样.</p>
+<p><img src="./imgs/node-js-promise-generator-event/bluebird3.png" alt="bluebird3"></p>
+<h2 id="创建一个自定义的-promise"><a href="#创建一个自定义的-promise" class="headerlink" title="创建一个自定义的 promise"></a>创建一个自定义的 promise</h2><p>一个自定义promise可以通过一个叫做<code>q</code>的 node 模块来创建。这个<code>q</code>模块需要通过 node 包管理工具来下载和安装。在使用<code>q</code>这个库之后，这个<code>denodeify</code>方法被调用之后会让任何函数变成一个会返回 promise 的函数。</p>
+<p>下面的例子中，我们首先创建一个简单的函数叫做<code>Add</code>，它会把两个数加起来。我们要让这个函数转化为一个返回 promise 对象的函数.</p>
+<p>一旦转化成功之后，我们就会通过这个<code>Add</code>函数返回的 promise 来在控制台中展示信息</p>
+<p>接下来让我们按照下面的方法来创建一个自定义的返回 promise 对象的方法。</p>
+<ol>
+<li><p>安装 npm 模块</p>
+<p> 要使用<code>q</code>这个模块，我们需要在 NodeJs 应用程序中包含它。安装这个<code>q</code>模块，我们可以运行下面的命令<br> npm install q</p>
+</li>
+<li><p>定义下面的代码来创建自定义的 promise</p>
+</li>
+</ol>
+<p><img src="./imgs/node-js-promise-generator-event/q.png" alt="q"></p>
+<p><strong>代码解释：</strong></p>
+<ol>
+<li>第一段的作用是通过<code>require</code>关键字包含这个<code>q</code>库，通过使用这个库，我们就能够定义任何函数来返回一个回调函数。</li>
+<li>我们创建了一个叫做 Add 的函数，它会把两个有变量<code>a</code>和<code>b</code>表示的数字加起来，结果保存在<code>c</code>中。</li>
+<li>我们使用<code>q</code>库来<code>denodeify</code>（用来将任何函数转化成能够返回 promise 的函数的方法）我们的<code>Add</code>函数。</li>
+<li>现在我们调用这个<code>Add</code>函数就能够返回一个 promise ，因为我们之前<code>denodeify</code>了这个<code>Add</code>函数</li>
+<li>这里的<code>then</code>关键词被用来表示当函数成功执行之后在控制台中展示<code>Addition function completed</code>.</li>
+</ol>
+<p>当上面的代码执行之后，就会在控制台输出下面的内容<br><img src="./imgs/node-js-promise-generator-event/q1.png" alt="q1"></p>
+<h2 id="什么是-generators"><a href="#什么是-generators" class="headerlink" title="什么是 generators"></a>什么是 generators</h2><p>generators 最近在 Node.js 中变得相当有名，这也许和它们能够做的事情有关。</p>
+<ul>
+<li>Generators 是一个能够让函数执行挂起，并且在后面的某个时间点恢复</li>
+<li>Generators 在实现比如说<code>懒执行</code>的概念的时候非常有用。这基本意味着通过挂起操作和随心所欲地恢复执行，我们能够只有在我们需要的时候取数据。</li>
+</ul>
+<p>Generators 有下面两个关键字:</p>
+<ol>
+<li>Yield 方法：这个<code>yield</code>方法是在要在停止函数执行的时候调用的，函数就在<code>yield</code>方法被调用的那一行停止。</li>
+<li>Next 方法：这个<code>next</code>方法从主应用调用去恢复拥有<code>yield</code>方法的函数的执行。这个函数会一直执行到遇到下一个<code>yield</code>方法或者直到函数的结束.</li>
+</ol>
+<p>让我们看一下下面的例子看看 generators 是怎么使用的。</p>
+<p>下面的例子中，我们会有一个把两个数字相加的<code>Add</code>函数，但是但是我们会在函数中不同的地方停止函数的执行来展示 generators 是如何使用的。</p>
+<p><img src="./imgs/node-js-promise-generator-event/generators.png" alt="generators"></p>
+<p><strong>代码解释：</strong></p>
+<ol>
+<li>第一步是定义我们的 generator 函数。注意这里是通过在 function 关键字后面添加<code>*</code>完成的。接下来我们定义一个叫做<code>Add</code> 的函数，接受一个<code>x</code>作为参数.</li>
+<li>这个<code>yield</code>关键字只用在 generators 中。这让它拥有能够在函数的人和位置暂停的能力。所以在这里，这个函数会一直停止，知道我们调用<code>next()</code>函数，在第4步会调用。在这里，<code>x</code>的值会变成6并且函数的执行会停止。</li>
+<li>这里就是我们调用 generator 函数并且把 5 作为参数传给这个函数的地方。</li>
+<li>一旦我们调用<code>next()</code>方法，<code>Add()</code>函数会恢复执行。当我们执行到下面这一个语句<code>var y = yield(null)</code>的时候又会停止执行。(此时返回的 value 是 6,而不是上面说的 null)</li>
+<li>再次调用<code>next()</code>方法，一只执行到<code>return x + y;</code>结束。（此时返回的 value 是 null,而不是上面说的 11）。</li>
+<li>再次调用<code>next()</code>方法，会直接返回 11.</li>
+</ol>
+<h2 id="回调-VS-generators"><a href="#回调-VS-generators" class="headerlink" title="回调 VS generators"></a>回调 VS generators</h2><p> Generators 被用来解决一个叫做回调hell的问题。有些时候在 Node.js 应用中，回调函数嵌套的如此之深以至于它变得太复杂而不能使用回调。</p>
+<p> 这个时候 Generators 就派上用场啦。一个最常用的例子就是创建定时器函数。</p>
+<p> 让我们看看下面的例子来看看 generators 是如何证明它比回调更有用的。</p>
+<p> 我们的例子只创建一个简单的时间延迟函数。我们接下来会在 1s,2s,3s之后调用这个函数。</p>
+<ol>
+<li><p>创建一个回调函数有必要的时间延迟的代码</p>
+<p><img src="./imgs/node-js-promise-generator-event/callbackVsGenerators.png" alt="callbacksVsGenerators"></p>
+<p><strong>代码解释：</strong></p>
+<ul>
+<li>这里我们创建了一个叫做<code>Timedelay</code>的函数，里面包含一个叫做 ptime 的参数，这个可以让我们等待给定的时间来执行回调</li>
+<li>下一步就是创建一条消息，告诉用户说这个应用程序会暂停这么多时间</li>
+</ul>
+</li>
+<li><p>现在我们来看一下如果我们包含很多回调的代码。假如我们想要在每次调用之后都增加 1s 再调用回调函数，下面的代码就是我们需要的用来实现的回调代码。</p>
+<p><img src="./imgs/node-js-promise-generator-event/callbackVsGenerators1.png" alt="callbacksVsGenerators1"></p>
+<p><strong>代码解释：</strong></p>
+<ul>
+<li>我们以 1000 作为参数调用 Timedelay 函数</li>
+<li>接下来，我们以 2000 作为参数调用 Timedelay 函数</li>
+<li>最后，我们以 3000 作为参数调用 Timedelay 函数</li>
+</ul>
+<ol>
+<li>现在我们来看看如何通过 generators 来实现上面一样的功能。</li>
+</ol>
+<p><img src="./imgs/node-js-promise-generator-event/callbackVsGenerators2.png" alt="callbacksVsGenerators2"></p>
+</li>
+</ol>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+    <div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone">QQ空间</a>
+    <a class="jiathis_button_tsina">新浪微博</a>
+    <a class="jiathis_button_tqq">腾讯微博</a>
+    <a class="jiathis_button_weixin">微信</a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<style>
+    .jiathis_style div:first-child:not(.jiadiv_01) {
+        width: auto !important;
+        border: none !important;
+    }
+    .jiathis_style .jiadiv_01 {
+        margin: 10px 0;
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .jiathis_style .jiadiv_01 div:first-child {
+        display: none;
+    }
+    .jiathis_style .jiadiv_02 {
+        padding: 7px 0 !important;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle {
+        width: 85px;
+        border: none;
+        height: auto;
+        margin: 3px 10px;
+        padding: 6px 10px;
+        border-radius: 4px;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:hover {
+        border: none;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
+        margin-left: 0;
+    }
+    .jiathis_style .jtico:hover {
+        opacity: 1;
+    }
+    .jiathis_style .ckepopBottom,
+    .jiathis_style .centerBottom {
+        width: auto !important;
+        padding: 5px;
+        background: #f7f7f7;
+    }
+</style>
+
+
+
+</div>
+
+            
+    
+        <a href="http://wangfulin.github.io/2014/11/20/node-js-promise-generator-event/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://wangfulin.github.io/2014/11/20/node-js-promise-generator-event/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2014/12/20/JS_Module/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    JS模块化初探
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2014/10/20/npm/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">npm常用命令解析</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+</section>
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/24/45-useful-javascript-tips-tricks-and-best-practices/" class="thumbnail">
+    
+    
+        <span style="background-image:url(imgs\45-useful-javascript-tips\keep-calm-and-learn-javascript.jpg)" alt="45个javascript技巧和最佳实践" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/24/45-useful-javascript-tips-tricks-and-best-practices/" class="title">45个javascript技巧和最佳实践</a></p>
+                            <p class="item-date"><time datetime="2016-03-23T16:00:00.000Z" itemprop="datePublished">2016-03-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/02/24/broswerify/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://camo.githubusercontent.com/e19e230a9371a44a2eeb484b83ff4fcf8c824cf7/687474703a2f2f737562737461636b2e6e65742f696d616765732f62726f777365726966795f6c6f676f2e706e67)" alt="browserify简介" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/02/24/broswerify/" class="title">browserify简介</a></p>
+                            <p class="item-date"><time datetime="2016-02-23T16:00:00.000Z" itemprop="datePublished">2016-02-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/01/24/circular-image-with-css/" class="thumbnail">
+    
+    
+        <span style="background-image:url(imgs\circular-image-with-css\circular-images-lead.jpg)" alt="&lt;译&gt;用CSS剪切圆形图片" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/01/24/circular-image-with-css/" class="title">&lt;译&gt;用CSS剪切圆形图片</a></p>
+                            <p class="item-date"><time datetime="2016-01-23T16:00:00.000Z" itemprop="datePublished">2016-01-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/12/24/css-box-shadow/" class="thumbnail">
+    
+    
+        <span style="background-image:url(imgs\css-box-shadow\basic-box-shadow-example.png)" alt="&lt;译&gt;深入了解CSS Box Shadow" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2015/12/24/css-box-shadow/" class="title">&lt;译&gt;深入了解CSS Box Shadow</a></p>
+                            <p class="item-date"><time datetime="2015-12-23T16:00:00.000Z" itemprop="datePublished">2015-12-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/11/20/css-methodologies/" class="thumbnail">
+    
+    
+        <span style="background-image:url(imgs\css-methodologies\object-oriented-css.png)" alt="&lt;译&gt;聊一聊CSS方法论" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2015/11/20/css-methodologies/" class="title">&lt;译&gt;聊一聊CSS方法论</a></p>
+                            <p class="item-date"><time datetime="2015-11-19T16:00:00.000Z" itemprop="datePublished">2015-11-20</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">七月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-Node-js/">javascript, Node.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-React/">javascript, React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-Web-Storage/">javascript, Web Storage</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-browserify/">javascript, browserify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-closure/">javascript, closure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-es6/">javascript, es6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-jQuery/">javascript, jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-jQuery-Ajax/">javascript, jQuery, Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-模块化/">javascript, 模块化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-设计模式/">javascript, 设计模式</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm-Node-js/">npm, Node.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web-CSS/">web, CSS</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/CSS/" style="font-size: 16.67px;">CSS</a> <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-Node-js/" style="font-size: 10px;">javascript, Node.js</a> <a href="/tags/javascript-React/" style="font-size: 10px;">javascript, React</a> <a href="/tags/javascript-Web-Storage/" style="font-size: 10px;">javascript, Web Storage</a> <a href="/tags/javascript-browserify/" style="font-size: 10px;">javascript, browserify</a> <a href="/tags/javascript-closure/" style="font-size: 10px;">javascript, closure</a> <a href="/tags/javascript-es6/" style="font-size: 10px;">javascript, es6</a> <a href="/tags/javascript-jQuery/" style="font-size: 10px;">javascript, jQuery</a> <a href="/tags/javascript-jQuery-Ajax/" style="font-size: 10px;">javascript, jQuery, Ajax</a> <a href="/tags/javascript-模块化/" style="font-size: 10px;">javascript, 模块化</a> <a href="/tags/javascript-设计模式/" style="font-size: 16.67px;">javascript, 设计模式</a> <a href="/tags/npm-Node-js/" style="font-size: 10px;">npm, Node.js</a> <a href="/tags/web-CSS/" style="font-size: 10px;">web, CSS</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2016 wangfulin<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-icarus';
+    
+    
+    var disqus_url = 'http://wangfulin.github.io/2014/11/20/node-js-promise-generator-event/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

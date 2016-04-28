@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>browserify简介 | wangfulin&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="在浏览器中使用require(&amp;#39;modules&amp;#39;)
+使用node的风格来组织浏览器端的代码并且可以加载通过npm安装的模块。
+browerify将递归分析你应用中所有的require()调用去构建一个能够通过单个&amp;lt;script&amp;gt;标签引用的js文件。
+如何开始
+安装
+npm install -g browserify
+
+
+创建modules
+创建foo.js
+module">
+<meta property="og:type" content="article">
+<meta property="og:title" content="browserify简介">
+<meta property="og:url" content="http://wangfulin.github.io/2016/02/24/broswerify/index.html">
+<meta property="og:site_name" content="wangfulin's blog">
+<meta property="og:description" content="在浏览器中使用require(&amp;#39;modules&amp;#39;)
+使用node的风格来组织浏览器端的代码并且可以加载通过npm安装的模块。
+browerify将递归分析你应用中所有的require()调用去构建一个能够通过单个&amp;lt;script&amp;gt;标签引用的js文件。
+如何开始
+安装
+npm install -g browserify
+
+
+创建modules
+创建foo.js
+module">
+<meta property="og:image" content="https://camo.githubusercontent.com/e19e230a9371a44a2eeb484b83ff4fcf8c824cf7/687474703a2f2f737562737461636b2e6e65742f696d616765732f62726f777365726966795f6c6f676f2e706e67">
+<meta property="og:updated_time" content="2016-04-28T04:04:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="browserify简介">
+<meta name="twitter:description" content="在浏览器中使用require(&amp;#39;modules&amp;#39;)
+使用node的风格来组织浏览器端的代码并且可以加载通过npm安装的模块。
+browerify将递归分析你应用中所有的require()调用去构建一个能够通过单个&amp;lt;script&amp;gt;标签引用的js文件。
+如何开始
+安装
+npm install -g browserify
+
+
+创建modules
+创建foo.js
+module">
+<meta name="twitter:image" content="https://camo.githubusercontent.com/e19e230a9371a44a2eeb484b83ff4fcf8c824cf7/687474703a2f2f737562737461636b2e6e65742f696d616765732f62726f777365726966795f6c6f676f2e706e67">
+    
+
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+    
+    
+
+</head>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">wangfulin&#39;s blog</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.png" />
+            <h2 id="name">wangfulin</h2>
+            <h3 id="title">Web Developer</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Beijing, China</span>
+            <a id="follow" target="_blank" href="https://github.com/wangfulin">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                25
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                15
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    <td><a href="https://github.com/wangfulin" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+                    
+                    <td><a href="https://segmentfault.com/u/wangfulin" target="_blank" title="segmentfault"><i class="fa fa-segmentfault"></i></a></td>
+                    
+                    <td><a href="/" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></td>
+                    
+                    <td><a href="/" target="_blank" title="dribbble"><i class="fa fa-dribbble"></i></a></td>
+                    
+                    <td><a href="/" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-broswerify" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            browserify简介
+        </h1>
+    
+
+                <div class="article-meta">
+                    
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/02/24/broswerify/">
+            <time datetime="2016-02-23T16:00:00.000Z" itemprop="datePublished">2016-02-24</time>
+        </a>
+    </div>
+
+
+                    
+                    
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/javascript-browserify/">javascript, browserify</a>
+    </div>
+
+                </div>
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p><img src="https://camo.githubusercontent.com/e19e230a9371a44a2eeb484b83ff4fcf8c824cf7/687474703a2f2f737562737461636b2e6e65742f696d616765732f62726f777365726966795f6c6f676f2e706e67" alt="browserify"><br>在浏览器中使用<code>require(&#39;modules&#39;)</code></p>
+<p>使用<code>node</code>的风格来组织浏览器端的代码并且可以加载通过<code>npm</code>安装的模块。</p>
+<p>browerify将递归分析你应用中所有的<code>require()</code>调用去构建一个能够通过单个<code>&lt;script&gt;</code>标签引用的<code>js</code>文件。</p>
+<h2 id="如何开始"><a href="#如何开始" class="headerlink" title="如何开始"></a>如何开始</h2><ol>
+<li>安装<blockquote>
+<p><code>npm install -g browserify</code></p>
+</blockquote>
+</li>
+<li>创建modules<ul>
+<li>创建foo.js<blockquote>
+<p><code>module.exports=function(n){return n*111;}</code></p>
+</blockquote>
+</li>
+<li>创建bar.js<blockquote>
+<p><code>module.exports=function(s){return s+&quot;!&quot;;}</code></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>创建main.js入口文件</p>
+<pre><code>var foo=require(&quot;foo.js&quot;);
+var bar=require(&quot;bar.js&quot;);
+var str=foo(100)+bar(&quot;bar&quot;);
+console.log(str);
+</code></pre></li>
+<li>使用browerify命令预编译main.js<blockquote>
+<p>browserify main.js &gt; bundle.js</p>
+</blockquote>
+</li>
+</ol>
+<p>参考链接：</p>
+<ol>
+<li><a href="https://github.com/substack/node-browserify" target="_blank" rel="external">node-browerify</a></li>
+<li><a href="https://github.com/substack/browserify-handbook" target="_blank" rel="external">browserify-handbook</a></li>
+</ol>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+    <div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone">QQ空间</a>
+    <a class="jiathis_button_tsina">新浪微博</a>
+    <a class="jiathis_button_tqq">腾讯微博</a>
+    <a class="jiathis_button_weixin">微信</a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<style>
+    .jiathis_style div:first-child:not(.jiadiv_01) {
+        width: auto !important;
+        border: none !important;
+    }
+    .jiathis_style .jiadiv_01 {
+        margin: 10px 0;
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .jiathis_style .jiadiv_01 div:first-child {
+        display: none;
+    }
+    .jiathis_style .jiadiv_02 {
+        padding: 7px 0 !important;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle {
+        width: 85px;
+        border: none;
+        height: auto;
+        margin: 3px 10px;
+        padding: 6px 10px;
+        border-radius: 4px;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:hover {
+        border: none;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
+        margin-left: 0;
+    }
+    .jiathis_style .jtico:hover {
+        opacity: 1;
+    }
+    .jiathis_style .ckepopBottom,
+    .jiathis_style .centerBottom {
+        width: auto !important;
+        padding: 5px;
+        background: #f7f7f7;
+    }
+</style>
+
+
+
+</div>
+
+            
+    
+        <a href="http://wangfulin.github.io/2016/02/24/broswerify/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://wangfulin.github.io/2016/02/24/broswerify/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2016/03/24/45-useful-javascript-tips-tricks-and-best-practices/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    45个javascript技巧和最佳实践
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2016/01/24/circular-image-with-css/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">&lt;译&gt;用CSS剪切圆形图片</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+</section>
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/24/45-useful-javascript-tips-tricks-and-best-practices/" class="thumbnail">
+    
+    
+        <span style="background-image:url(imgs\45-useful-javascript-tips\keep-calm-and-learn-javascript.jpg)" alt="45个javascript技巧和最佳实践" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/24/45-useful-javascript-tips-tricks-and-best-practices/" class="title">45个javascript技巧和最佳实践</a></p>
+                            <p class="item-date"><time datetime="2016-03-23T16:00:00.000Z" itemprop="datePublished">2016-03-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/02/24/broswerify/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://camo.githubusercontent.com/e19e230a9371a44a2eeb484b83ff4fcf8c824cf7/687474703a2f2f737562737461636b2e6e65742f696d616765732f62726f777365726966795f6c6f676f2e706e67)" alt="browserify简介" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/02/24/broswerify/" class="title">browserify简介</a></p>
+                            <p class="item-date"><time datetime="2016-02-23T16:00:00.000Z" itemprop="datePublished">2016-02-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/01/24/circular-image-with-css/" class="thumbnail">
+    
+    
+        <span style="background-image:url(imgs\circular-image-with-css\circular-images-lead.jpg)" alt="&lt;译&gt;用CSS剪切圆形图片" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/01/24/circular-image-with-css/" class="title">&lt;译&gt;用CSS剪切圆形图片</a></p>
+                            <p class="item-date"><time datetime="2016-01-23T16:00:00.000Z" itemprop="datePublished">2016-01-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/12/24/css-box-shadow/" class="thumbnail">
+    
+    
+        <span style="background-image:url(imgs\css-box-shadow\basic-box-shadow-example.png)" alt="&lt;译&gt;深入了解CSS Box Shadow" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2015/12/24/css-box-shadow/" class="title">&lt;译&gt;深入了解CSS Box Shadow</a></p>
+                            <p class="item-date"><time datetime="2015-12-23T16:00:00.000Z" itemprop="datePublished">2015-12-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/11/20/css-methodologies/" class="thumbnail">
+    
+    
+        <span style="background-image:url(imgs\css-methodologies\object-oriented-css.png)" alt="&lt;译&gt;聊一聊CSS方法论" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2015/11/20/css-methodologies/" class="title">&lt;译&gt;聊一聊CSS方法论</a></p>
+                            <p class="item-date"><time datetime="2015-11-19T16:00:00.000Z" itemprop="datePublished">2015-11-20</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">七月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-Node-js/">javascript, Node.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-React/">javascript, React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-Web-Storage/">javascript, Web Storage</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-browserify/">javascript, browserify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-closure/">javascript, closure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-es6/">javascript, es6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-jQuery/">javascript, jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-jQuery-Ajax/">javascript, jQuery, Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-模块化/">javascript, 模块化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-设计模式/">javascript, 设计模式</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm-Node-js/">npm, Node.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web-CSS/">web, CSS</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/CSS/" style="font-size: 16.67px;">CSS</a> <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-Node-js/" style="font-size: 10px;">javascript, Node.js</a> <a href="/tags/javascript-React/" style="font-size: 10px;">javascript, React</a> <a href="/tags/javascript-Web-Storage/" style="font-size: 10px;">javascript, Web Storage</a> <a href="/tags/javascript-browserify/" style="font-size: 10px;">javascript, browserify</a> <a href="/tags/javascript-closure/" style="font-size: 10px;">javascript, closure</a> <a href="/tags/javascript-es6/" style="font-size: 10px;">javascript, es6</a> <a href="/tags/javascript-jQuery/" style="font-size: 10px;">javascript, jQuery</a> <a href="/tags/javascript-jQuery-Ajax/" style="font-size: 10px;">javascript, jQuery, Ajax</a> <a href="/tags/javascript-模块化/" style="font-size: 10px;">javascript, 模块化</a> <a href="/tags/javascript-设计模式/" style="font-size: 16.67px;">javascript, 设计模式</a> <a href="/tags/npm-Node-js/" style="font-size: 10px;">npm, Node.js</a> <a href="/tags/web-CSS/" style="font-size: 10px;">web, CSS</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2016 wangfulin<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-icarus';
+    
+    
+    var disqus_url = 'http://wangfulin.github.io/2016/02/24/broswerify/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

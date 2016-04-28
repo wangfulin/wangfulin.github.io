@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>&lt;译&gt;深入了解CSS Box Shadow | wangfulin&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="原文：A Close Look at CSS Box Shadow
+
+CSS的box-shadow可以被用来给块级元素一个外阴影或者是内阴影。接下来让我们仔细地看一下这个CSS的特性吧。
+举例下面有三个把CSS的box-shadow属性使用在div里的例子。
+###　例１：简单的外阴影
+下面是是给副标题添加阴影的样式。
+box-shadow:0 0 10px gray;
+
+例2：内阴影一个内阴影">
+<meta property="og:type" content="article">
+<meta property="og:title" content="<译>深入了解CSS Box Shadow">
+<meta property="og:url" content="http://wangfulin.github.io/2015/12/24/css-box-shadow/index.html">
+<meta property="og:site_name" content="wangfulin's blog">
+<meta property="og:description" content="原文：A Close Look at CSS Box Shadow
+
+CSS的box-shadow可以被用来给块级元素一个外阴影或者是内阴影。接下来让我们仔细地看一下这个CSS的特性吧。
+举例下面有三个把CSS的box-shadow属性使用在div里的例子。
+###　例１：简单的外阴影
+下面是是给副标题添加阴影的样式。
+box-shadow:0 0 10px gray;
+
+例2：内阴影一个内阴影">
+<meta property="og:image" content="http://wangfulin.github.io/imgs\css-box-shadow\basic-box-shadow-example.png">
+<meta property="og:updated_time" content="2016-04-28T04:05:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="<译>深入了解CSS Box Shadow">
+<meta name="twitter:description" content="原文：A Close Look at CSS Box Shadow
+
+CSS的box-shadow可以被用来给块级元素一个外阴影或者是内阴影。接下来让我们仔细地看一下这个CSS的特性吧。
+举例下面有三个把CSS的box-shadow属性使用在div里的例子。
+###　例１：简单的外阴影
+下面是是给副标题添加阴影的样式。
+box-shadow:0 0 10px gray;
+
+例2：内阴影一个内阴影">
+<meta name="twitter:image" content="http://wangfulin.github.io/imgs\css-box-shadow\basic-box-shadow-example.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+    
+    
+
+</head>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">wangfulin&#39;s blog</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.png" />
+            <h2 id="name">wangfulin</h2>
+            <h3 id="title">Web Developer</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Beijing, China</span>
+            <a id="follow" target="_blank" href="https://github.com/wangfulin">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                25
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                15
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    <td><a href="https://github.com/wangfulin" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+                    
+                    <td><a href="https://segmentfault.com/u/wangfulin" target="_blank" title="segmentfault"><i class="fa fa-segmentfault"></i></a></td>
+                    
+                    <td><a href="/" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></td>
+                    
+                    <td><a href="/" target="_blank" title="dribbble"><i class="fa fa-dribbble"></i></a></td>
+                    
+                    <td><a href="/" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-css-box-shadow" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            &lt;译&gt;深入了解CSS Box Shadow
+        </h1>
+    
+
+                <div class="article-meta">
+                    
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2015/12/24/css-box-shadow/">
+            <time datetime="2015-12-23T16:00:00.000Z" itemprop="datePublished">2015-12-24</time>
+        </a>
+    </div>
+
+
+                    
+                    
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/CSS/">CSS</a>
+    </div>
+
+                </div>
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <blockquote>
+<p><strong>原文：</strong><a href="http://sixrevisions.com/css/css-box-shadow/" target="_blank" rel="external">A Close Look at CSS Box Shadow</a></p>
+</blockquote>
+<p>CSS的<code>box-shadow</code>可以被用来给块级元素一个外阴影或者是内阴影。接下来让我们仔细地看一下这个CSS的特性吧。</p>
+<h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><p>下面有三个把CSS的<code>box-shadow</code>属性使用在<code>div</code>里的例子。</p>
+<p>###　例１：简单的外阴影</p>
+<p>下面是是给副标题添加阴影的样式。</p>
+<pre><code>box-shadow:0 0 10px gray;
+</code></pre><p><img src="imgs\css-box-shadow\basic-box-shadow-example.png" alt="simple-drop-shadow"></p>
+<h3 id="例2：内阴影"><a href="#例2：内阴影" class="headerlink" title="例2：内阴影"></a>例2：内阴影</h3><p>一个内阴影可以通过使用inset属性值来渲染出来。</p>
+<pre><code>box-shadow:inset 0 0 10px;
+</code></pre><p><img src="imgs\css-box-shadow\basic-inset-box-shadow-example.png" alt="inner-shadow"></p>
+<h3 id="例3：偏移外阴影"><a href="#例3：偏移外阴影" class="headerlink" title="例3：偏移外阴影"></a>例3：偏移外阴影</h3><p>这个例子中我们通过水平和垂直方向下和右偏移5px来实现阴影向右下方偏移</p>
+<pre><code>box-shadow:5px 5px 10px;
+</code></pre><p><img src="imgs\css-box-shadow\offset-box-shadow-example-01.png" alt="offset-drop-shadow-bottom-right"></p>
+<p>加入你想要阴影向左上方偏移呢？我们可以通过将水平和垂直方向的偏移量设置为-5px，正如下面的例子：</p>
+<pre><code>box-shadow:-5px -5px 10px;
+</code></pre><p><img src="imgs\css-box-shadow\offset-box-shadow-example-02.png" alt="offset-drop-shadow-top-left"></p>
+<p>既然你已经看到了<code>box-shadow</code>在现实中的使用，接下来让我们更加深入地了解一下。</p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p><code>box-shadow</code>的一般语法如下：</p>
+<pre><code>box-shadow:[inset] [horizontal offset] [vertical 
+offset] [blur radius] [spread distance] [color]
+</code></pre><h2 id="CSS属性值"><a href="#CSS属性值" class="headerlink" title="CSS属性值"></a>CSS属性值</h2><p>CSS的<code>box-shadow</code>可能会有6个属性值：</p>
+<ol>
+<li>inset</li>
+<li>horizontal offset</li>
+<li>vertical offset</li>
+<li>blur radius</li>
+<li>spread distance</li>
+<li>color</li>
+</ol>
+<p>只有两个属性是必须的：水平偏移和垂直偏移量。</p>
+<p>四个属性值，水平偏移，垂直偏移，模糊半径，扩展距离，必须使用CSS长度单元（比如：px,em,%等）</p>
+<p>这个颜色值必须是必须是一个颜色单元，比如十六进制值（如：#000000）。</p>
+<h3 id="属性和值总结表"><a href="#属性和值总结表" class="headerlink" title="属性和值总结表"></a>属性和值总结表</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>是否必须</th>
+<th>单位</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>inset</td>
+<td>不是</td>
+<td>关键词</td>
+<td>没有指定的时候，阴影默认在外面</td>
+</tr>
+<tr>
+<td>水平偏移</td>
+<td>是</td>
+<td>长度</td>
+<td>没有默认值，一定有指定</td>
+</tr>
+<tr>
+<td>垂直偏移</td>
+<td>是</td>
+<td>长度</td>
+<td>没有默认值，一定要指定</td>
+</tr>
+<tr>
+<td>模糊半径</td>
+<td>不是</td>
+<td>长度</td>
+<td>0</td>
+</tr>
+<tr>
+<td>扩展距离</td>
+<td>不是</td>
+<td>长度</td>
+<td>0</td>
+</tr>
+<tr>
+<td>颜色</td>
+<td>不是</td>
+<td>颜色</td>
+<td>和box shadow属性作用的元素的color值一样</td>
+</tr>
+</tbody>
+</table>
+<h2 id="inset"><a href="#inset" class="headerlink" title="inset"></a>inset</h2><p>如果<code>inset</code>关键词存在，盒阴影将会放在HTML元素的内部</p>
+<pre><code>box-shadow:inset 0 0 5px 5px olive;
+</code></pre><p><img src="imgs\css-box-shadow\css-box-shadow-inset-property.png" alt="inset-shadow"></p>
+<p>作为对比，这里是一个没有<code>inset</code>属性的<code>box-shadow</code>样式。</p>
+<pre><code>box-shadow:0 0 5px 5px olive;
+</code></pre><p><img src="imgs\css-box-shadow\css-box-shadow-no-inset-property.png" alt="no-inset-shadow"></p>
+<h3 id="水平偏移"><a href="#水平偏移" class="headerlink" title="水平偏移"></a>水平偏移</h3><p>水平偏移控制了盒子阴影在x轴的偏移。正值会把盒子的阴影向右移动，负值的话会把它向左移动。</p>
+<p>下面的例子中，我们把水平的偏移设置成20px，刚好是水平偏移量的两倍，所以阴影水平宽度刚好是垂直高度的两倍。</p>
+<pre><code>box-shadow:20px 10px;
+</code></pre><p><img src="imgs\css-box-shadow\css-box-shadow-horizontal-offset-property.png" alt="horizontal offset value"></p>
+<h3 id="垂直偏移"><a href="#垂直偏移" class="headerlink" title="垂直偏移"></a>垂直偏移</h3><p>垂直偏移控制了盒阴影在y轴的偏移量。正值会把盒子的阴影向下移动，负值刚好相反会把盒子网上移动。</p>
+<p>下面的例子中，垂直的偏移设置成-20px，刚好是水平偏移的两倍。同时，因为是负值，所以向上移动。</p>
+<pre><code>box-shadow:10px -20px;
+</code></pre><p><img src="imgs\css-box-shadow\css-box-shadow-vertical-offset-property.png" alt="vertical offset value"></p>
+<h3 id="模糊半径"><a href="#模糊半径" class="headerlink" title="模糊半径"></a>模糊半径</h3><p>这个模糊半径会影响到阴影的模糊和锐利程度。</p>
+<p>模糊半径是可选的，如果你不指定它，默认值是0.另外，你不能指定它为负值，这个和水平偏移和垂直偏移不一样。</p>
+<p>如果模糊半径是0，盒子阴影会很锐利并且它的颜色是很实的。随着你不断的增大这个值，它会变得越来越模糊和透明。</p>
+<p>下面的例子，模糊半径被设置成20px，因此模糊度是相当突出。</p>
+<pre><code>box-shadow:5px 5px 20px;
+</code></pre><p><img src="imgs\css-box-shadow\css-box-shadow-blur-radius.png" alt="css-box-shadow-blur-radius"></p>
+<h3 id="扩展距离"><a href="#扩展距离" class="headerlink" title="扩展距离"></a>扩展距离</h3><p>这个扩展距离会让盒子的阴影在各个方向上都会变大或变小。如果它有一个正值，盒子阴影会在各个方向上增加大小。如果是负值，则会在各个方向上收缩。</p>
+<p>值得注意的是，因为它的扩展距离是正5，所以会在各个方向上增加10px因为没有水平和垂直偏移。</p>
+<pre><code>box-shadow:0 0 10px 5px;
+</code></pre><p><img src="imgs\css-box-shadow\css-box-shadow-spread-distance.png" alt="css-box-shadow-spread-distance"></p>
+<p>当扩展距离是负的时候，阴影就会在各个方向上收缩。下面的例子展示当阴影的宽度比盒子小的时候的情况</p>
+<pre><code>box-shadow:0 10px 10px -5px;
+</code></pre><p><img src="imgs\css-box-shadow\css-box-shadow-negative-spread-distance.png" alt="css-box-shadow-negative-spread-distance"></p>
+<p>###　颜色</p>
+<p>通过名字你就可以判断出来，颜色值会设置盒阴影的颜色。它可以通过任何可以表示颜色的方式来表示颜色。是否设置颜色值是可选的。</p>
+<p>换句话说，默认情况下当你没有指明颜色值，阴影颜色会等于这个盒子对应的html元素的颜色值。比如有一个<code>div</code>的颜色被设置成红色，这个盒子阴影的颜色也会变成红色：</p>
+<pre><code>color:red;
+box-shadow:0 0 10px 5px;
+</code></pre><p><img src="imgs\css-box-shadow\css-box-shadow-default-color.png" alt="css-box-shadow-default-color"></p>
+<p>如果你想要设置阴影的颜色和<code>div</code>的颜色不一样，可以通过下面的方式，你会发现尽管你的文字颜色是红色，盒子阴影颜色依然可以是蓝色。</p>
+<pre><code>color:red;
+box-shadow:0 0 10px 5px blue;
+</code></pre><p><img src="imgs\css-box-shadow\css-box-shadow-color-specified.png" alt="css-box-shadow-color-specified"></p>
+<h2 id="多阴影效果"><a href="#多阴影效果" class="headerlink" title="多阴影效果"></a>多阴影效果</h2><p>这个就是能够让我们变得有创造力的CSS属性。你能够在一个盒子上设置多个阴影。</p>
+<p>语法就像下面这样。</p>
+<pre><code>box-shadow: [box shadow properties 1],
+ [box shadow properties 2],
+ [box shadow properties n];
+</code></pre><p>换句话说，你可以通过在每个属性设置组后面添加逗号(,)来实现多阴影。</p>
+<p>下面的例子展示了两个阴影的情况，左上方红色的阴影，右下方蓝色的阴影。</p>
+<pre><code>box-shadow: -5px -5px 30px 5px red,
+         5px 5px 30px 5px blue;
+</code></pre><p><img src="imgs\css-box-shadow\multiple-box-shadows.png" alt="multiple-box-shadows"></p>
+<h2 id="浏览器支持"><a href="#浏览器支持" class="headerlink" title="浏览器支持"></a>浏览器支持</h2><p>这个CSS的<code>box-shadow</code>属性有着很好地浏览器支持。使用这个属性在拖后腿的IE浏览器也能在IE9以后得到支持啦。</p>
+<p><a href="http://cdn.sixrevisions.com/0457-01-css-box-shadow-demo/demo.html" target="_blank" rel="external">查看演示</a></p>
+<p><img src="imgs\css-box-shadow\css-box-shadow-examples.png" alt="css-box-shadow-example"></p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+    <div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone">QQ空间</a>
+    <a class="jiathis_button_tsina">新浪微博</a>
+    <a class="jiathis_button_tqq">腾讯微博</a>
+    <a class="jiathis_button_weixin">微信</a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<style>
+    .jiathis_style div:first-child:not(.jiadiv_01) {
+        width: auto !important;
+        border: none !important;
+    }
+    .jiathis_style .jiadiv_01 {
+        margin: 10px 0;
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .jiathis_style .jiadiv_01 div:first-child {
+        display: none;
+    }
+    .jiathis_style .jiadiv_02 {
+        padding: 7px 0 !important;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle {
+        width: 85px;
+        border: none;
+        height: auto;
+        margin: 3px 10px;
+        padding: 6px 10px;
+        border-radius: 4px;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:hover {
+        border: none;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
+        margin-left: 0;
+    }
+    .jiathis_style .jtico:hover {
+        opacity: 1;
+    }
+    .jiathis_style .ckepopBottom,
+    .jiathis_style .centerBottom {
+        width: auto !important;
+        padding: 5px;
+        background: #f7f7f7;
+    }
+</style>
+
+
+
+</div>
+
+            
+    
+        <a href="http://wangfulin.github.io/2015/12/24/css-box-shadow/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://wangfulin.github.io/2015/12/24/css-box-shadow/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2016/01/24/circular-image-with-css/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    &lt;译&gt;用CSS剪切圆形图片
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2015/11/20/css-methodologies/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">&lt;译&gt;聊一聊CSS方法论</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+</section>
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/24/45-useful-javascript-tips-tricks-and-best-practices/" class="thumbnail">
+    
+    
+        <span style="background-image:url(imgs\45-useful-javascript-tips\keep-calm-and-learn-javascript.jpg)" alt="45个javascript技巧和最佳实践" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/24/45-useful-javascript-tips-tricks-and-best-practices/" class="title">45个javascript技巧和最佳实践</a></p>
+                            <p class="item-date"><time datetime="2016-03-23T16:00:00.000Z" itemprop="datePublished">2016-03-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/02/24/broswerify/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://camo.githubusercontent.com/e19e230a9371a44a2eeb484b83ff4fcf8c824cf7/687474703a2f2f737562737461636b2e6e65742f696d616765732f62726f777365726966795f6c6f676f2e706e67)" alt="browserify简介" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/02/24/broswerify/" class="title">browserify简介</a></p>
+                            <p class="item-date"><time datetime="2016-02-23T16:00:00.000Z" itemprop="datePublished">2016-02-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/01/24/circular-image-with-css/" class="thumbnail">
+    
+    
+        <span style="background-image:url(imgs\circular-image-with-css\circular-images-lead.jpg)" alt="&lt;译&gt;用CSS剪切圆形图片" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/01/24/circular-image-with-css/" class="title">&lt;译&gt;用CSS剪切圆形图片</a></p>
+                            <p class="item-date"><time datetime="2016-01-23T16:00:00.000Z" itemprop="datePublished">2016-01-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/12/24/css-box-shadow/" class="thumbnail">
+    
+    
+        <span style="background-image:url(imgs\css-box-shadow\basic-box-shadow-example.png)" alt="&lt;译&gt;深入了解CSS Box Shadow" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2015/12/24/css-box-shadow/" class="title">&lt;译&gt;深入了解CSS Box Shadow</a></p>
+                            <p class="item-date"><time datetime="2015-12-23T16:00:00.000Z" itemprop="datePublished">2015-12-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/11/20/css-methodologies/" class="thumbnail">
+    
+    
+        <span style="background-image:url(imgs\css-methodologies\object-oriented-css.png)" alt="&lt;译&gt;聊一聊CSS方法论" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2015/11/20/css-methodologies/" class="title">&lt;译&gt;聊一聊CSS方法论</a></p>
+                            <p class="item-date"><time datetime="2015-11-19T16:00:00.000Z" itemprop="datePublished">2015-11-20</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">七月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-Node-js/">javascript, Node.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-React/">javascript, React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-Web-Storage/">javascript, Web Storage</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-browserify/">javascript, browserify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-closure/">javascript, closure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-es6/">javascript, es6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-jQuery/">javascript, jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-jQuery-Ajax/">javascript, jQuery, Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-模块化/">javascript, 模块化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-设计模式/">javascript, 设计模式</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm-Node-js/">npm, Node.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web-CSS/">web, CSS</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/CSS/" style="font-size: 16.67px;">CSS</a> <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-Node-js/" style="font-size: 10px;">javascript, Node.js</a> <a href="/tags/javascript-React/" style="font-size: 10px;">javascript, React</a> <a href="/tags/javascript-Web-Storage/" style="font-size: 10px;">javascript, Web Storage</a> <a href="/tags/javascript-browserify/" style="font-size: 10px;">javascript, browserify</a> <a href="/tags/javascript-closure/" style="font-size: 10px;">javascript, closure</a> <a href="/tags/javascript-es6/" style="font-size: 10px;">javascript, es6</a> <a href="/tags/javascript-jQuery/" style="font-size: 10px;">javascript, jQuery</a> <a href="/tags/javascript-jQuery-Ajax/" style="font-size: 10px;">javascript, jQuery, Ajax</a> <a href="/tags/javascript-模块化/" style="font-size: 10px;">javascript, 模块化</a> <a href="/tags/javascript-设计模式/" style="font-size: 16.67px;">javascript, 设计模式</a> <a href="/tags/npm-Node-js/" style="font-size: 10px;">npm, Node.js</a> <a href="/tags/web-CSS/" style="font-size: 10px;">web, CSS</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2016 wangfulin<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-icarus';
+    
+    
+    var disqus_url = 'http://wangfulin.github.io/2015/12/24/css-box-shadow/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

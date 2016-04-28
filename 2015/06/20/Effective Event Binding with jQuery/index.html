@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>&lt;译&gt;jQuery事件绑定的最佳实践 | wangfulin&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="原文：Effective Event Binding with jQuery
+
+如果你经常使用jQuery，那么你也许很熟悉事件绑定。这是很基本的东西，但是深入一点，你就能够找到机会让你事件驱动的代码变得不太零碎，并且更容易管理。
+更好的选择器策略让我们从基础的例子开始。下面的HTML代码表示的是可以开合的导航菜单。
+&amp;lt;button class=&amp;quot;nav-menu-toggle&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="<译>jQuery事件绑定的最佳实践">
+<meta property="og:url" content="http://wangfulin.github.io/2015/06/20/Effective Event Binding with jQuery/index.html">
+<meta property="og:site_name" content="wangfulin's blog">
+<meta property="og:description" content="原文：Effective Event Binding with jQuery
+
+如果你经常使用jQuery，那么你也许很熟悉事件绑定。这是很基本的东西，但是深入一点，你就能够找到机会让你事件驱动的代码变得不太零碎，并且更容易管理。
+更好的选择器策略让我们从基础的例子开始。下面的HTML代码表示的是可以开合的导航菜单。
+&amp;lt;button class=&amp;quot;nav-menu-toggle&amp;">
+<meta property="og:updated_time" content="2016-04-28T04:08:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="<译>jQuery事件绑定的最佳实践">
+<meta name="twitter:description" content="原文：Effective Event Binding with jQuery
+
+如果你经常使用jQuery，那么你也许很熟悉事件绑定。这是很基本的东西，但是深入一点，你就能够找到机会让你事件驱动的代码变得不太零碎，并且更容易管理。
+更好的选择器策略让我们从基础的例子开始。下面的HTML代码表示的是可以开合的导航菜单。
+&amp;lt;button class=&amp;quot;nav-menu-toggle&amp;">
+    
+
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+    
+    
+
+</head>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">wangfulin&#39;s blog</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.png" />
+            <h2 id="name">wangfulin</h2>
+            <h3 id="title">Web Developer</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Beijing, China</span>
+            <a id="follow" target="_blank" href="https://github.com/wangfulin">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                25
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                15
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    <td><a href="https://github.com/wangfulin" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+                    
+                    <td><a href="https://segmentfault.com/u/wangfulin" target="_blank" title="segmentfault"><i class="fa fa-segmentfault"></i></a></td>
+                    
+                    <td><a href="/" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></td>
+                    
+                    <td><a href="/" target="_blank" title="dribbble"><i class="fa fa-dribbble"></i></a></td>
+                    
+                    <td><a href="/" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-Effective Event Binding with jQuery" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            &lt;译&gt;jQuery事件绑定的最佳实践
+        </h1>
+    
+
+                <div class="article-meta">
+                    
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2015/06/20/Effective Event Binding with jQuery/">
+            <time datetime="2015-06-19T16:00:00.000Z" itemprop="datePublished">2015-06-20</time>
+        </a>
+    </div>
+
+
+                    
+                    
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/javascript-jQuery/">javascript, jQuery</a>
+    </div>
+
+                </div>
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <blockquote>
+<p><strong>原文：</strong><a href="http://www.sitepoint.com/effective-event-binding-jquery/" target="_blank" rel="external">Effective Event Binding with jQuery</a></p>
+</blockquote>
+<p>如果你经常使用jQuery，那么你也许很熟悉事件绑定。这是很基本的东西，但是深入一点，你就能够找到机会让你事件驱动的代码变得不太零碎，并且更容易管理。</p>
+<h2 id="更好的选择器策略"><a href="#更好的选择器策略" class="headerlink" title="更好的选择器策略"></a>更好的选择器策略</h2><p>让我们从基础的例子开始。下面的HTML代码表示的是可以开合的导航菜单。</p>
+<pre><code>&lt;button class=&quot;nav-menu-toggle&quot;&gt;Toggle Nav Menu&lt;/button&gt;
+&lt;nav&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&quot;/&quot;&gt;West Philadelphia&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;/cab&quot;&gt;Cab Whistling&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;/throne&quot;&gt;Throne Sitting&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+</code></pre><p>下面这个是点击按钮之后控制导航菜单开合的javascript代码</p>
+<pre><code>$(&apos;.nav-menu-toggle&apos;).on(&apos;click&apos;,function(){
+    $(&apos;nav&apos;).toggle();
+});
+</code></pre><p>这可能是最常用的实现方式。它能够使用，但是比较脆。javascript代码依赖了按钮的类名<code>nav-menu-toggle</code>。很可能在未来其他开发者或者健忘的你在重构代码的时候会删除或者重命名这个类名。</p>
+<p>问题的核心是我们同时在表现和交互中使用了CSS的类名。这违反了关注点分离的原则，让维护更容易出错。</p>
+<p>让我们用一个不同的方法来实现</p>
+<pre><code>&lt;button data-hook=&quot;nav-menu-toggle&quot;&gt;Toggle Nav Menu&lt;/button&gt;
+&lt;nav data-hook=&quot;nav-menu&quot;&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&quot;/&quot;&gt;West Philadelphia&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;/cab&quot;&gt;Cab Whistling&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;/throne&quot;&gt;Throne Sitting&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+</code></pre><p>这次我们使用这个data属性（data-hook）来选择元素。任何对CSS类的改变将不会影响到javascript，让我们能够实现关注点分离以及更加稳定的代码。</p>
+<p>下面我们用<code>data-hook</code>属性来选择对应的元素：</p>
+<pre><code>$(&apos;[data-hook=&quot;nav-menu-toggle&quot;]&apos;).on(&apos;click&apos;,function(){
+    $(&apos;[data-hook=&quot;nav-menu&quot;]&apos;).toggle();
+});
+</code></pre><p>需要注意的是，我也使用<code>data-hook</code>作为<code>nav</code>元素的选择器。你不一定需要，但是我喜欢这里面包含的思想：任何使用你看到<code>data-hook</code>，你会知道这个元素在javascript中引用到啦。</p>
+<h2 id="一些语法糖"><a href="#一些语法糖" class="headerlink" title="一些语法糖"></a>一些语法糖</h2><p>我必须承认<code>data-hook</code>选择器并不是很漂亮。让我们通过扩展jQuery实现一个自定义的函数：</p>
+<pre><code>$.extend({
+    hook:function(hookName){
+        var selector;
+        if(!hookName || hookName === &apos;*&apos;){
+            // select all data-hooks
+            selector=&apos;[data-hook]&apos;
+        }else{
+            // select specific data-hook
+            selector=&apos;[data-hook*=&quot;&apos;+hookName+&apos;&quot;]&apos;;
+        }
+        return $(selector);
+    }
+});
+</code></pre><p>上面准备完毕，我们来重写一下javascript。</p>
+<pre><code>$.hook(&apos;nav-menu-toggle&apos;).on(&apos;&apos;,function(){
+    $.hook(&apos;nav-menu&apos;).toggle();
+});
+</code></pre><p>更好的是，我们甚至可以把一系列以空格分开的hook名字放在一个元素上。</p>
+<pre><code>&lt;button data-hook=&quot;nav-menu-toggle video-pause click-track&quot;&gt;Toggle Nav Menu&lt;/button&gt;
+</code></pre><p>我们可以找到里面的任意个hook名字：<br>    $.hook(‘click-track’); // returns the button as expected</p>
+<p>我们也能够找到页面上所有的hook元素</p>
+<pre><code>// both are equivalent
+$.hook();
+$.hook(&apos;*&apos;);
+</code></pre><h2 id="防止函数表达式"><a href="#防止函数表达式" class="headerlink" title="防止函数表达式"></a>防止函数表达式</h2><p>到目前为止，我们在事件处理中使用的都是匿名函数。让我们重写一下，使用声明的函数来代替它。</p>
+<pre><code>function toggleNavMenu(){
+    $.hook(&apos;nav-menu&apos;).toggle();
+}
+
+$.hook(&apos;nav-menu-toggle&apos;).on(&apos;click&apos;,toggleNavMenu);
+</code></pre><p>这让事件绑定的代码更加易读。这个<code>toggleNavMenu</code>函数名表达了意图，是代码自我注释的好例子。</p>
+<p>我们同时也获得了可复用的能力，因为其他地方可能需要使用<code>toggleNavMenu</code>函数。</p>
+<p>最后，这对于自动化测试来说是意见大喜事，因为声明的函数的单元测试要比匿名函数单元测试容易的多。</p>
+<h2 id="同时使用多个事件"><a href="#同时使用多个事件" class="headerlink" title="同时使用多个事件"></a>同时使用多个事件</h2><p>jQuery提供了一个简单方便的语法来处理多事件的问题。比如，你可以为一系列空格隔开的事件列表绑定同一个事件处理函数。</p>
+<pre><code>$.hook(&apos;nav-menu-toggle&apos;).on(&apos;click keydown mouseenter&apos;,trackAction);
+</code></pre><p>如果你需要为不同的事件绑定不同的处理函数，你可以使用对象表达方式：<br>    $.hook(‘nav-menu-toggle’).on({<br>        ‘click’:trackClick,<br>        ‘keydown’:tranckKeyDown,<br>        ‘mouseenter’:trackMouseEnter<br>    });</p>
+<p>反过来，你可以同时取消多个事件的绑定：</p>
+<pre><code>// unbinds keydown and mouseenter
+$.hook(&apos;nav-menu-toggle&apos;).off(&apos;keydown mouseenter&apos;);
+
+// nuclear options:unbinds everything
+$.hook(&apos;nav-menu-toggle&apos;).off();
+</code></pre><p>你可以想象到的是，不小心的取消事件绑定可能会导致严重的我们不想要的副作用。继续看我们可以通过哪些技巧来减轻这个问题。</p>
+<h2 id="小心的取消事件绑定"><a href="#小心的取消事件绑定" class="headerlink" title="小心的取消事件绑定"></a>小心的取消事件绑定</h2><p>一般情况下我们不会在一个元素的同一事件类型绑定多个事件处理函数。让我们再看一下之前的那个按钮：</p>
+<pre><code>&lt;button data-hook=&quot;nav-menu-toggle video-pause click-track&quot;&gt;Toggle Nav Menu&lt;/button&gt;
+</code></pre><p>不同的代码区域可能会在同一个元素的同一事件绑定不同的事件处理函数：</p>
+<pre><code>// somewhere in the nav code
+$.hook(&apos;nav-menu-toggle&apos;).on(&apos;click&apos;,toggleNavMenu);
+
+// somewhere in the video playback code
+$.hook(&apos;video-pause&apos;).on(&apos;click&apos;,pauseCarltonDanceVideo);
+
+// somewhere in the analytics code
+$.hook(&apos;click-track&apos;).on(&apos;click&apos;,trackClick);
+</code></pre><p>尽管我们使用了不同的选择器，但是这个元素现在有三个事件处理函数啦。假如我们的分析代码不在关心这个按钮：</p>
+<pre><code>// no good
+$.hook(&apos;click-track&apos;).off(&apos;click&apos;);
+</code></pre><p>糟糕的是，上面的代码实际上回删除所有的点击事件处理函数，不仅仅是<code>trackClick</code>。我们应该实用更加有辨别力的方式来指定我们需要删除的事件处理函数：</p>
+<pre><code>$.hook(&apos;click-track&apos;).off(&apos;click&apos;,trackClick);
+</code></pre><p>另一种方式是使用命名空间。任何事件都有资格使用一个命名空间来实现绑定和取消绑定，这样你就可以更好的控制事件绑定和取消绑定。</p>
+<pre><code>// binds a click event in the &quot;analytics&quot; namespace
+$.hook(&apos;click-track&apos;).on(&apos;click.analytics&apos;, trackClick);
+
+// unbinds only click events in the &quot;analytics&quot; namespace
+$.hook(&apos;click-track&apos;).off(&apos;click.analytics&apos;);
+</code></pre><p>你也可以使用多个命名空间：</p>
+<pre><code>// binds a click event in both the &quot;analytics&quot; and &quot;usability&quot; namespaces
+$.hook(&apos;click-track&apos;).on(&apos;click.analytics.usability&apos;,trackClick);
+
+// unbinds any events in either the &quot;analytics&quot; OR &quot;usability&quot; namespaces
+$.hook(&apos;click-track&apos;).off(&apos;.usability .analytics&apos;);
+
+// unbinds any events in both the &quot;analytics&quot; AND &quot;usability&quot; namespaces
+$.hook(&apos;click-track&apos;).off(&apos;.usability.analytics&apos;);
+</code></pre><p>需要注意的是，命名空间的顺序是没有关系的，因为命名空间不是层级式的。</p>
+<p>如果你有一个复杂的功能需要多个元素绑定多个事件，那么使用命名空间是一种简单的把他们组织起来然后快速清除的方式：</p>
+<pre><code>// free all elements on the page of any &quot;analytics&quot; event handling
+$(&apos;*&apos;).off(&apos;.analytics&apos;);
+</code></pre><p>命名空间在写插件的时候尤其有用，因为这样你就能保证只会取消自己命名空间范围内的事件处理函数的绑定。</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+    <div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone">QQ空间</a>
+    <a class="jiathis_button_tsina">新浪微博</a>
+    <a class="jiathis_button_tqq">腾讯微博</a>
+    <a class="jiathis_button_weixin">微信</a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<style>
+    .jiathis_style div:first-child:not(.jiadiv_01) {
+        width: auto !important;
+        border: none !important;
+    }
+    .jiathis_style .jiadiv_01 {
+        margin: 10px 0;
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .jiathis_style .jiadiv_01 div:first-child {
+        display: none;
+    }
+    .jiathis_style .jiadiv_02 {
+        padding: 7px 0 !important;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle {
+        width: 85px;
+        border: none;
+        height: auto;
+        margin: 3px 10px;
+        padding: 6px 10px;
+        border-radius: 4px;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:hover {
+        border: none;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
+        margin-left: 0;
+    }
+    .jiathis_style .jtico:hover {
+        opacity: 1;
+    }
+    .jiathis_style .ckepopBottom,
+    .jiathis_style .centerBottom {
+        width: auto !important;
+        padding: 5px;
+        background: #f7f7f7;
+    }
+</style>
+
+
+
+</div>
+
+            
+    
+        <a href="http://wangfulin.github.io/2015/06/20/Effective Event Binding with jQuery/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://wangfulin.github.io/2015/06/20/Effective Event Binding with jQuery/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/08/20/easy-two-way-data-binding-in-javascript/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    &lt;译&gt;简单的用javascript实现的数据双向绑定
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2015/05/20/Font/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">Web字体的初探</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+</section>
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/24/45-useful-javascript-tips-tricks-and-best-practices/" class="thumbnail">
+    
+    
+        <span style="background-image:url(imgs\45-useful-javascript-tips\keep-calm-and-learn-javascript.jpg)" alt="45个javascript技巧和最佳实践" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/24/45-useful-javascript-tips-tricks-and-best-practices/" class="title">45个javascript技巧和最佳实践</a></p>
+                            <p class="item-date"><time datetime="2016-03-23T16:00:00.000Z" itemprop="datePublished">2016-03-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/02/24/broswerify/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://camo.githubusercontent.com/e19e230a9371a44a2eeb484b83ff4fcf8c824cf7/687474703a2f2f737562737461636b2e6e65742f696d616765732f62726f777365726966795f6c6f676f2e706e67)" alt="browserify简介" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/02/24/broswerify/" class="title">browserify简介</a></p>
+                            <p class="item-date"><time datetime="2016-02-23T16:00:00.000Z" itemprop="datePublished">2016-02-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/01/24/circular-image-with-css/" class="thumbnail">
+    
+    
+        <span style="background-image:url(imgs\circular-image-with-css\circular-images-lead.jpg)" alt="&lt;译&gt;用CSS剪切圆形图片" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/01/24/circular-image-with-css/" class="title">&lt;译&gt;用CSS剪切圆形图片</a></p>
+                            <p class="item-date"><time datetime="2016-01-23T16:00:00.000Z" itemprop="datePublished">2016-01-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/12/24/css-box-shadow/" class="thumbnail">
+    
+    
+        <span style="background-image:url(imgs\css-box-shadow\basic-box-shadow-example.png)" alt="&lt;译&gt;深入了解CSS Box Shadow" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2015/12/24/css-box-shadow/" class="title">&lt;译&gt;深入了解CSS Box Shadow</a></p>
+                            <p class="item-date"><time datetime="2015-12-23T16:00:00.000Z" itemprop="datePublished">2015-12-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/11/20/css-methodologies/" class="thumbnail">
+    
+    
+        <span style="background-image:url(imgs\css-methodologies\object-oriented-css.png)" alt="&lt;译&gt;聊一聊CSS方法论" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2015/11/20/css-methodologies/" class="title">&lt;译&gt;聊一聊CSS方法论</a></p>
+                            <p class="item-date"><time datetime="2015-11-19T16:00:00.000Z" itemprop="datePublished">2015-11-20</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">七月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-Node-js/">javascript, Node.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-React/">javascript, React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-Web-Storage/">javascript, Web Storage</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-browserify/">javascript, browserify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-closure/">javascript, closure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-es6/">javascript, es6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-jQuery/">javascript, jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-jQuery-Ajax/">javascript, jQuery, Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-模块化/">javascript, 模块化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-设计模式/">javascript, 设计模式</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm-Node-js/">npm, Node.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web-CSS/">web, CSS</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/CSS/" style="font-size: 16.67px;">CSS</a> <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-Node-js/" style="font-size: 10px;">javascript, Node.js</a> <a href="/tags/javascript-React/" style="font-size: 10px;">javascript, React</a> <a href="/tags/javascript-Web-Storage/" style="font-size: 10px;">javascript, Web Storage</a> <a href="/tags/javascript-browserify/" style="font-size: 10px;">javascript, browserify</a> <a href="/tags/javascript-closure/" style="font-size: 10px;">javascript, closure</a> <a href="/tags/javascript-es6/" style="font-size: 10px;">javascript, es6</a> <a href="/tags/javascript-jQuery/" style="font-size: 10px;">javascript, jQuery</a> <a href="/tags/javascript-jQuery-Ajax/" style="font-size: 10px;">javascript, jQuery, Ajax</a> <a href="/tags/javascript-模块化/" style="font-size: 10px;">javascript, 模块化</a> <a href="/tags/javascript-设计模式/" style="font-size: 16.67px;">javascript, 设计模式</a> <a href="/tags/npm-Node-js/" style="font-size: 10px;">npm, Node.js</a> <a href="/tags/web-CSS/" style="font-size: 10px;">web, CSS</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2016 wangfulin<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-icarus';
+    
+    
+    var disqus_url = 'http://wangfulin.github.io/2015/06/20/Effective Event Binding with jQuery/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

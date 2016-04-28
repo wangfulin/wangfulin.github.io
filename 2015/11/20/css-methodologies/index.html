@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>&lt;译&gt;聊一聊CSS方法论 | wangfulin&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="原文链接：A Look at Some CSS methodologies
+
+CSS在大型，复杂，快速迭代的系统中难以管理的程度是出了名的。
+其中一个原因是CSS缺少内置的作用域管理机制。在CSS中，所有的一切都是全局的，这意味着任何你所做的改变都有可能层叠或者改变完全没有相关的那部分UI。
+扩展的CSS语言，也称作CSS预处理器，比如说Sass，Less和Stylus，通过增加一些新的特性让写">
+<meta property="og:type" content="article">
+<meta property="og:title" content="<译>聊一聊CSS方法论">
+<meta property="og:url" content="http://wangfulin.github.io/2015/11/20/css-methodologies/index.html">
+<meta property="og:site_name" content="wangfulin's blog">
+<meta property="og:description" content="原文链接：A Look at Some CSS methodologies
+
+CSS在大型，复杂，快速迭代的系统中难以管理的程度是出了名的。
+其中一个原因是CSS缺少内置的作用域管理机制。在CSS中，所有的一切都是全局的，这意味着任何你所做的改变都有可能层叠或者改变完全没有相关的那部分UI。
+扩展的CSS语言，也称作CSS预处理器，比如说Sass，Less和Stylus，通过增加一些新的特性让写">
+<meta property="og:image" content="http://wangfulin.github.io/imgs\css-methodologies\object-oriented-css.png">
+<meta property="og:updated_time" content="2016-04-28T04:05:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="<译>聊一聊CSS方法论">
+<meta name="twitter:description" content="原文链接：A Look at Some CSS methodologies
+
+CSS在大型，复杂，快速迭代的系统中难以管理的程度是出了名的。
+其中一个原因是CSS缺少内置的作用域管理机制。在CSS中，所有的一切都是全局的，这意味着任何你所做的改变都有可能层叠或者改变完全没有相关的那部分UI。
+扩展的CSS语言，也称作CSS预处理器，比如说Sass，Less和Stylus，通过增加一些新的特性让写">
+<meta name="twitter:image" content="http://wangfulin.github.io/imgs\css-methodologies\object-oriented-css.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+    
+    
+
+</head>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">wangfulin&#39;s blog</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.png" />
+            <h2 id="name">wangfulin</h2>
+            <h3 id="title">Web Developer</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Beijing, China</span>
+            <a id="follow" target="_blank" href="https://github.com/wangfulin">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                25
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                15
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    <td><a href="https://github.com/wangfulin" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+                    
+                    <td><a href="https://segmentfault.com/u/wangfulin" target="_blank" title="segmentfault"><i class="fa fa-segmentfault"></i></a></td>
+                    
+                    <td><a href="/" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></td>
+                    
+                    <td><a href="/" target="_blank" title="dribbble"><i class="fa fa-dribbble"></i></a></td>
+                    
+                    <td><a href="/" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-css-methodologies" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            &lt;译&gt;聊一聊CSS方法论
+        </h1>
+    
+
+                <div class="article-meta">
+                    
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2015/11/20/css-methodologies/">
+            <time datetime="2015-11-19T16:00:00.000Z" itemprop="datePublished">2015-11-20</time>
+        </a>
+    </div>
+
+
+                    
+                    
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/CSS/">CSS</a>
+    </div>
+
+                </div>
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <blockquote>
+<p><strong>原文链接：</strong><a href="">A Look at Some CSS methodologies</a></p>
+</blockquote>
+<p>CSS在大型，复杂，快速迭代的系统中难以管理的程度是出了名的。</p>
+<p>其中一个原因是CSS缺少内置的作用域管理机制。在CSS中，所有的一切都是全局的，这意味着任何你所做的改变都有可能层叠或者改变完全没有相关的那部分UI。</p>
+<p>扩展的CSS语言，也称作<a href="http://sixrevisions.com/elsewhere-on-the-web/the-best-css-preprocessors-right-now/" target="_blank" rel="external">CSS预处理器</a>，比如说Sass，Less和Stylus，通过增加一些新的特性让写CSS代码变得更简单一点。但是就算有这些扩展性的CSS语言，在我看来，也并没有解决可扩展性问题。</p>
+<p>在CSS没有自己的作用域机制之前，我们不得不设计出自己的一套系统来防止HTML文档的特定区域不被收到影响。</p>
+<p>下面是关于CSS方法论的介绍可能让我们找到一些答案。</p>
+<p>在这篇文章中，我们来看看这些CSS方法论：</p>
+<ul>
+<li>面向对象的CSS（Object-Oriented CSS(OOCSS)）</li>
+<li>块，元素，修饰符（Block,Element,Modifier(BEM)）</li>
+<li>可扩展性和模块化性CSS架构（Scalable and Modular Architecture for CSS(SMACSS)）</li>
+<li>SUIT CSS</li>
+<li>系统化CSS（Systematic CSS）</li>
+</ul>
+<p>CSS方法论是正式的，文档化写CSS的方法系统，它能够让我们以一系列小的，独立的方式来开发，维护和扩展前端代码。而不是作为一大块整体的不可分割的代码。</p>
+<p>采用一种CSS方法论，甚至是你自己创建的一种，无论项目的大小和复杂度都会让CSS变得更好设计并且更好地在设计项目中迭代。</p>
+<p><strong>相关：</strong><a href="http://sixrevisions.com/css/css-development-at-large-sites/" target="_blank" rel="external">大型网站的CSS开发</a></p>
+<p>每一种CSS方法论都提供了一系列略微不同的解决CSS可扩展性/可维护性的方法。一个CSS方法论通常会定义一些指南：</p>
+<ul>
+<li>CSS和HTML最佳实践</li>
+<li>Class和ID命名规范</li>
+<li>CSS样式规则的排序和组合</li>
+<li>代码格式</li>
+</ul>
+<p>世界上并没有“最佳”的CSS方法论。不同的方法适应于不同的个人/项目组/项目。</p>
+<p>我们希望的是，通过了解目前已经存在的CSS方法论可以帮助我们找到一种适应我们需求的方法。或者它也许能激发你的创造力，让你创建一个你自己专属的CSS方法论。</p>
+<h2 id="面向对象的CSS（OOCSS）"><a href="#面向对象的CSS（OOCSS）" class="headerlink" title="面向对象的CSS（OOCSS）"></a>面向对象的CSS（OOCSS）</h2><p><img src="imgs\css-methodologies\object-oriented-css.png" alt="lines and grids"></p>
+<p>Nicole Sullivan的面向对象的CSS，或者简单来说OOCSS，在2009年发布。</p>
+<p>这实际上是第一个大范围采用的CSS方法论。甚至到现在也有很大的影响力。</p>
+<p>OOCSS鼓励结构和样式的分离。这个方法论在内容和容器之间有着明显的区分。</p>
+<p>在OOCSS中，样式规则只由CSS类选择器来写。</p>
+<h3 id="OOCSS例子"><a href="#OOCSS例子" class="headerlink" title="OOCSS例子"></a>OOCSS例子</h3><p>比如你的button元素的样式可能有两个CSS类来设置，比如下面这两个</p>
+<ul>
+<li>.button – 提供button的基本结构</li>
+<li>.grey-btn – 提供颜色和其他视觉样式</li>
+</ul>
+<p><strong>CSS</strong></p>
+<pre><code>.button{
+    box-sizing:border-box;
+    height:50px;
+    width:100%;
+}
+.grey-btn{
+    background:#EEE;
+    border:1px solid #DDD;
+    box-shadow:rgba(0,0,0,0.5) 1px 1px 3px;
+    color:#555;
+}
+</code></pre><p><strong>HTML</strong></p>
+<pre><code>&lt;button class=&quot;button grey-btn&quot;&gt;&lt;/button&gt;
+</code></pre><h3 id="反例"><a href="#反例" class="headerlink" title="反例"></a>反例</h3><pre><code>/* 后代选择器在OOCSS中是不被提倡的 */
+.wrapper .blog-post .button{
+    ...
+}
+</code></pre><p>通过这种方式，HTML元素的样式表现就不会依赖于其所在的特定DOM结构上，也就不会受到位置的影响。</p>
+<p>OOCSS方法论这样做的最大好处就是它能够让作者最大的利用CSS层叠的样式的好处，而不是把它锁在高度具体的选择器中。</p>
+<p><strong>相关：</strong><a href="http://sixrevisions.com/css/css-specificity/" target="_blank" rel="external">CSS特性是怎么工作的？</a></p>
+<p>作者鼓励我们无论何时都去复用已有的样式而不是创建新的样式。我们也被鼓励通过新的类来扩展样式而不是修改或者覆盖已有的CSS样式。</p>
+<h3 id="反例-1"><a href="#反例-1" class="headerlink" title="反例"></a>反例</h3><p>HTML</p>
+<pre><code>&lt;!-- 反例  --&gt;
+&lt;ul class=&quot;to-do&quot;&gt;
+    &lt;li&gt;Combine my CSS files&lt;/li&gt;
+    &lt;li&gt;Run CSS Lint&lt;/li&gt;
+    &lt;li&gt;Minify my stylesheet&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre><p>CSS</p>
+<pre><code>/*  反例 */
+.to-do{
+    color:#FFF;
+    background-color:#000;
+}
+.to-do li:first-child{
+    color:#FF0000;
+}
+</code></pre><p>OOCSS例子</p>
+<p>为了让我们的CSS更具模块化和灵活度，并且防止出现后代选择器，我们用下面的方式来复写上面的反例：</p>
+<p>HTML</p>
+<pre><code>&lt;!-- OOCSS --&gt;
+&lt;ul class=&quot;to-do&quot;&gt;
+      &lt;li class=&quot;first-to-do-    item&quot;&gt;Combine my CSS files&lt;/li&gt;
+      &lt;li&gt;Run CSS Lint&lt;/li&gt;
+      &lt;li&gt;Minify my stylesheet&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre><p>CSS</p>
+<pre><code>/* OOCSS */
+.to-do {
+      color: #FFF;
+      background-color: #000;
+}
+.first-to-do-item {
+      color: #FF0000;
+}
+</code></pre><p>OOCSS的弱点是你很可能会使用很多很多的类，到最后你都无法维护或管理啦。</p>
+<p>并且，在我看来，让OOCSS产生灵感的面向对象编程的思想在CSS中并不契合。</p>
+<p>但是，这并不是说OOCSS的原则是无效的。相反，OOCSS是把大型CSS开发带来理性的常用的CSS方法论.</p>
+<h2 id="块，元素，修饰符"><a href="#块，元素，修饰符" class="headerlink" title="块，元素，修饰符"></a>块，元素，修饰符</h2><p><img src="imgs/css-methodologies/bem-methodology.png" alt="block,element,modifier"></p>
+<p>块，元素，修饰符－－更常被叫做BEM–是一个由被称为俄罗斯的谷歌的Yandex开发组开发的一套CSS体系。</p>
+<p>在BEM背后的思想是区分实现不同角色的CSS类。这是通过把CSS命名为表示其角色的类名。</p>
+<p>BEM刚好可以作为OOCSS的补充，因为OOCSS并没有施加任何的命名规范。</p>
+<p>在BEM的方法论中，一个<strong>块</strong>是一个独立的模块好的UI组件。一个块可以由多个HTML元素组成，甚至有几个块组合而成。比如说导航菜单和搜索表单就是一个块的例子。</p>
+<p>一个<strong>元素</strong>就是块的一个组件。一个元素一般用来完成一个目的。比如说，你有一个导航菜单块，那导航菜单的链接就是元素，它可以使一个列表项(li元素)或者链接(a元素).</p>
+<p>一个修饰符是用来改变块或者元素默认样式的CSS类。</p>
+<p>喜爱案就是BEM类命名的语法：</p>
+<ul>
+<li>.block</li>
+<li>.block–modifier</li>
+<li>.block__element</li>
+<li>.block__element–modifier</li>
+</ul>
+<h3 id="反例-2"><a href="#反例-2" class="headerlink" title="反例"></a>反例</h3><p>考虑下面的例子，标记代表的是一个登录表单：</p>
+<p>HTML</p>
+<pre><code>&lt;form&gt;
+    &lt;label&gt;
+    username &lt;input type=&quot;text&quot; name=&quot;username&quot; /&gt;
+    &lt;/label&gt;
+    &lt;label&gt;
+        password &lt;input type=&quot;password&quot; name=&quot;password&quot; /&gt;
+    &lt;/label&gt;
+    &lt;button&gt;
+        Sign in
+    &lt;/button&gt;
+&lt;/form&gt;
+</code></pre><h3 id="BEM范例"><a href="#BEM范例" class="headerlink" title="BEM范例"></a>BEM范例</h3><p>下面是使用BEM命名规则来为上面的标记命名：</p>
+<p>HTML</p>
+<pre><code>&lt;form class=&quot;loginform loginform--errors&quot;&gt;
+    &lt;label class=&quot;loginform__username loginform__username--error&quot;&gt;
+Username &lt;input type=&quot;text&quot; name=&quot;username&quot; /&gt;
+    &lt;/label&gt;
+    &lt;label class=&quot;loginform__password&quot;&gt;
+Password &lt;input type=&quot;password&quot; name=&quot;password&quot; /&gt;
+    &lt;/label&gt;
+   &lt;button class=&quot;loginform__btn loginform__btn--inactive&quot;&gt;
+            Sign in
+    &lt;/button&gt;
+&lt;/form&gt;
+</code></pre><p>这个.loginform类是一个块。<br>这个.loginform块由三个元素组成：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>元素</strong></th>
+<th><strong>作用</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">loginform__username</td>
+<td>代表用户名</td>
+</tr>
+<tr>
+<td style="text-align:left">loginform__password</td>
+<td>代表密码</td>
+</tr>
+<tr>
+<td style="text-align:left">loginform__btn</td>
+<td>用户点击提交表单</td>
+</tr>
+</tbody>
+</table>
+<p>这三个修饰符分别是：</p>
+<table>
+<thead>
+<tr>
+<th><strong>修饰符</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.loginform__username–errror</td>
+<td>错误时的样式</td>
+</tr>
+<tr>
+<td>.loginform__btn–inactive</td>
+<td>未激活样式</td>
+</tr>
+<tr>
+<td>.loginform–errors</td>
+<td>包含错误的样式</td>
+</tr>
+</tbody>
+</table>
+<p>这种BEM的命名规则帮助CSS的作者遵循OOCSS的原则。通过使用这种扁平的命名方式避免了多后代的选择器。</p>
+<h3 id="反例-3"><a href="#反例-3" class="headerlink" title="反例"></a>反例</h3><p>所以我们不会用下面这种样式命名规则。。。</p>
+<p>CSS</p>
+<pre><code>.loginform .username .error{
+    ...
+}
+</code></pre><h3 id="BEM范例-1"><a href="#BEM范例-1" class="headerlink" title="BEM范例"></a>BEM范例</h3><p>。。。你只需要一个类选择器：</p>
+<p>CSS</p>
+<pre><code>.loginform__username--error{
+    ...
+}
+</code></pre><p>BEM是一个非常鲁棒的命名规范。</p>
+<p>它成功地区分了类的不同关注点。并且通过类名我们可以很简单的看到标记之间的关系。</p>
+<p>一些关于BEM的主观批评如下：</p>
+<ul>
+<li>类名会变的很长很难看</li>
+<li>命名规范对于没有经验的开发者来说不是那么的好理解</li>
+</ul>
+<p>作为个人来讲，我倒不认为这是特别强烈的批评。但是如果有一个能够和BEM一样鲁棒的命名规范同时能够更简洁和好理解那就更好啦。</p>
+<p>待续。。。</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+    <div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone">QQ空间</a>
+    <a class="jiathis_button_tsina">新浪微博</a>
+    <a class="jiathis_button_tqq">腾讯微博</a>
+    <a class="jiathis_button_weixin">微信</a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<style>
+    .jiathis_style div:first-child:not(.jiadiv_01) {
+        width: auto !important;
+        border: none !important;
+    }
+    .jiathis_style .jiadiv_01 {
+        margin: 10px 0;
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .jiathis_style .jiadiv_01 div:first-child {
+        display: none;
+    }
+    .jiathis_style .jiadiv_02 {
+        padding: 7px 0 !important;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle {
+        width: 85px;
+        border: none;
+        height: auto;
+        margin: 3px 10px;
+        padding: 6px 10px;
+        border-radius: 4px;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:hover {
+        border: none;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
+        margin-left: 0;
+    }
+    .jiathis_style .jtico:hover {
+        opacity: 1;
+    }
+    .jiathis_style .ckepopBottom,
+    .jiathis_style .centerBottom {
+        width: auto !important;
+        padding: 5px;
+        background: #f7f7f7;
+    }
+</style>
+
+
+
+</div>
+
+            
+    
+        <a href="http://wangfulin.github.io/2015/11/20/css-methodologies/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://wangfulin.github.io/2015/11/20/css-methodologies/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/12/24/css-box-shadow/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    &lt;译&gt;深入了解CSS Box Shadow
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2015/11/10/Singleton-Pattern/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">&lt;译&gt; 单例模式</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+</section>
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/24/45-useful-javascript-tips-tricks-and-best-practices/" class="thumbnail">
+    
+    
+        <span style="background-image:url(imgs\45-useful-javascript-tips\keep-calm-and-learn-javascript.jpg)" alt="45个javascript技巧和最佳实践" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/03/24/45-useful-javascript-tips-tricks-and-best-practices/" class="title">45个javascript技巧和最佳实践</a></p>
+                            <p class="item-date"><time datetime="2016-03-23T16:00:00.000Z" itemprop="datePublished">2016-03-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/02/24/broswerify/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://camo.githubusercontent.com/e19e230a9371a44a2eeb484b83ff4fcf8c824cf7/687474703a2f2f737562737461636b2e6e65742f696d616765732f62726f777365726966795f6c6f676f2e706e67)" alt="browserify简介" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/02/24/broswerify/" class="title">browserify简介</a></p>
+                            <p class="item-date"><time datetime="2016-02-23T16:00:00.000Z" itemprop="datePublished">2016-02-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/01/24/circular-image-with-css/" class="thumbnail">
+    
+    
+        <span style="background-image:url(imgs\circular-image-with-css\circular-images-lead.jpg)" alt="&lt;译&gt;用CSS剪切圆形图片" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/01/24/circular-image-with-css/" class="title">&lt;译&gt;用CSS剪切圆形图片</a></p>
+                            <p class="item-date"><time datetime="2016-01-23T16:00:00.000Z" itemprop="datePublished">2016-01-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/12/24/css-box-shadow/" class="thumbnail">
+    
+    
+        <span style="background-image:url(imgs\css-box-shadow\basic-box-shadow-example.png)" alt="&lt;译&gt;深入了解CSS Box Shadow" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2015/12/24/css-box-shadow/" class="title">&lt;译&gt;深入了解CSS Box Shadow</a></p>
+                            <p class="item-date"><time datetime="2015-12-23T16:00:00.000Z" itemprop="datePublished">2015-12-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/11/20/css-methodologies/" class="thumbnail">
+    
+    
+        <span style="background-image:url(imgs\css-methodologies\object-oriented-css.png)" alt="&lt;译&gt;聊一聊CSS方法论" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2015/11/20/css-methodologies/" class="title">&lt;译&gt;聊一聊CSS方法论</a></p>
+                            <p class="item-date"><time datetime="2015-11-19T16:00:00.000Z" itemprop="datePublished">2015-11-20</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">七月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-Node-js/">javascript, Node.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-React/">javascript, React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-Web-Storage/">javascript, Web Storage</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-browserify/">javascript, browserify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-closure/">javascript, closure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-es6/">javascript, es6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-jQuery/">javascript, jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-jQuery-Ajax/">javascript, jQuery, Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-模块化/">javascript, 模块化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-设计模式/">javascript, 设计模式</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm-Node-js/">npm, Node.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web-CSS/">web, CSS</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/CSS/" style="font-size: 16.67px;">CSS</a> <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-Node-js/" style="font-size: 10px;">javascript, Node.js</a> <a href="/tags/javascript-React/" style="font-size: 10px;">javascript, React</a> <a href="/tags/javascript-Web-Storage/" style="font-size: 10px;">javascript, Web Storage</a> <a href="/tags/javascript-browserify/" style="font-size: 10px;">javascript, browserify</a> <a href="/tags/javascript-closure/" style="font-size: 10px;">javascript, closure</a> <a href="/tags/javascript-es6/" style="font-size: 10px;">javascript, es6</a> <a href="/tags/javascript-jQuery/" style="font-size: 10px;">javascript, jQuery</a> <a href="/tags/javascript-jQuery-Ajax/" style="font-size: 10px;">javascript, jQuery, Ajax</a> <a href="/tags/javascript-模块化/" style="font-size: 10px;">javascript, 模块化</a> <a href="/tags/javascript-设计模式/" style="font-size: 16.67px;">javascript, 设计模式</a> <a href="/tags/npm-Node-js/" style="font-size: 10px;">npm, Node.js</a> <a href="/tags/web-CSS/" style="font-size: 10px;">web, CSS</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2016 wangfulin<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-icarus';
+    
+    
+    var disqus_url = 'http://wangfulin.github.io/2015/11/20/css-methodologies/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
