@@ -22,7 +22,7 @@
 .disable-selection{
     -moz-user-select:">
 <meta property="og:image" content="http://wangfulin.github.io/imgs/thumbnails/css.png">
-<meta property="og:updated_time" content="2016-04-28T07:58:16.000Z">
+<meta property="og:updated_time" content="2016-04-28T08:42:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="<译>用CSS来禁止文本选择">
 <meta name="twitter:description" content="原文：Disable Text Selection with CSS
@@ -259,8 +259,8 @@
 <li>没有前缀的<code>user-select</code>是被故意略去的。</li>
 <li><code>-webkit-touch-callout</code>属性可以让在移动设备上的触摸后弹出失效。就像下面的这些，我们可以让它们不能出现。</li>
 </ul>
-<p><img src="imgs\disable-text-selection\disable-callout.jpg" alt="disable-callout"></p>
-<h2 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h2><p><img src="imgs\disable-text-selection\disable-text-selection.jpg" alt="disable-selection"></p>
+<p><img src="http://wangfulin.github.io/imgs\disable-text-selection\disable-callout.jpg" alt="disable-callout"></p>
+<h2 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h2><p><img src="http://wangfulin.github.io/imgs\disable-text-selection\disable-text-selection.jpg" alt="disable-selection"></p>
 <p><a href="http://cdn.sixrevisions.com/demos/disable-text-selection/index.html" target="_blank" rel="external">查看演示</a></p>
 <h2 id="要时常记住的"><a href="#要时常记住的" class="headerlink" title="要时常记住的"></a>要时常记住的</h2><p>有一个陷阱就是：<code>user-select</code>并不是W3C规范中标准的CSS特性。尽管<code>user-select</code>通过添加浏览器前缀有很好的浏览器支持。</p>
 <p>前面的例子中，我没有使用没有前缀的<code>user-select</code>特性声明。那是因为在web标准中根本就没有这个属性。我们可以对它的使用类比于于IE专有的CSS属性<code>ms-filter</code>或者<code>-ms-text-kashida-space</code>的属性的使用。</p>
@@ -272,7 +272,7 @@
 <li><strong>屏蔽掉文本选择是很恼人的。</strong>我会在渐进提升的过程中使用这个技巧：只有当它可以提高使用支持这个<code>user-select</code>特性的浏览器和设备的用户的用户体验的时候才使用它。但是，我绝不会把它设置成一个大范围的CSS选择器像全部选择器(*）或者<code>body</code>.</li>
 <li><strong>这个<code>user-select</code>特性可能会让你的样式表失效</strong>。如果遵循标准对你来说非常重要，使用这个属性会在你使用规范测试比如说<a href="https://jigsaw.w3.org/css-validator/" target="_blank" rel="external">CSS Validation Service</a>的使用出现问题</li>
 </ul>
-<p><img src="imgs\disable-text-selection\user-select-validation.png" alt="user-select-validation"></p>
+<p><img src="http://wangfulin.github.io/imgs\disable-text-selection\user-select-validation.png" alt="user-select-validation"></p>
 <h2 id="浏览器支持"><a href="#浏览器支持" class="headerlink" title="浏览器支持"></a>浏览器支持</h2><p><strong>更新于：</strong>2015年3月</p>
 <table>
 <thead>

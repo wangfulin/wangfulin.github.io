@@ -16,7 +16,7 @@
 在前面的教程中，你已经看到了我们在异步事件中使用回调函数。但是有些时候当它们开始不断嵌套，并且程序变得越来越长越来越复杂的时候，回调函数就会像恶梦一般。
 在这些情况下，Node.js 提供了额外的特性来修复我们在使用回调的时候遇到的问题。这些特性被分成 Promise, ge">
 <meta property="og:image" content="http://wangfulin.github.io/imgs/thumbnails/nodejs.png">
-<meta property="og:updated_time" content="2016-04-28T07:59:41.000Z">
+<meta property="og:updated_time" content="2016-04-28T08:44:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="<译> Node.js 教程">
 <meta name="twitter:description" content="[译]Node.js Tutorial: Promise, Generator, Event and Filestream
@@ -237,7 +237,7 @@
 <p>在这些情况下，Node.js 提供了额外的特性来修复我们在使用回调的时候遇到的问题。这些特性被分成 Promise, generates 和 events. 这篇文章我们会更详细地学习和理解这些概念。</p>
 <h2 id="什么是-promises"><a href="#什么是-promises" class="headerlink" title="什么是 promises"></a>什么是 promises</h2><p>在我们开始讲 promises 之前，让我们首先来回顾一下 Node.js 中 “callback” 是什么。我们在前面的章节中看到过很多，所以让我们快速地过一下其中的一个。</p>
 <p>下面的例子展示了一段代码片段，它被用来连接一个 MongoDB 的数据库，并且在数据库的一条记录中执行更新操作。</p>
-<p><img src="./imgs/node-js-promise-generator-event/callback.png" alt="callback"></p>
+<p><img src="http://wangfulin.github.io/imgs\node-js-promise-generator-event/callback.png" alt="callback"></p>
 <p><strong>代码解释：</strong></p>
 <ol>
 <li><p>上面的代码中，function(err,db) 这段代码被称作匿名函数的声明或者回调函数。当 MongoClient 创建了一个 MongoDB 数据库的连接时，一旦这个连接操作结束，它就会返回到回调函数执行。所以，某种意义上来说，连接操作在后台运行，并且当它结束之后，就会调用这个回调函数。记住这是之所以 Node.js 可以让很多操作同时发生但是不会阻塞用户执行操作的关键。</p>
@@ -263,7 +263,7 @@
 <li><p>修改代码来引入 promise</p>
 </li>
 </ol>
-<p><img src="./imgs/node-js-promise-generator-event/callback-to-promises.png" alt="callback-to-promises"></p>
+<p><img src="http://wangfulin.github.io/imgs\node-js-promise-generator-event/callback-to-promises.png" alt="callback-to-promises"></p>
 <p><strong>代码解释：</strong></p>
 <ol>
 <li>第一部分是包含这个<code>promise</code>模块，让我们能够在代码中可以使用 promise 的功能。</li>
@@ -282,7 +282,7 @@
 <p>下面的例子中，我们使用链式调用来定义了两个回调函数。两个都向数据库插入了一条记录。</p>
 <p><strong>注意：</strong>链式调用是把一个方法的执行链接到另一个上的概念。假如你的应用有两个方法分别叫做<code>methodA</code>和<code>methodB</code>.并且逻辑是<code>methodB</code>要在<code>methodA</code>之后调用，这个时候你就可以把这种执行顺序通过在<code>methodA</code>之后直接调用<code>methodB</code>来链接起来。</p>
 <p>这个例子需要注意的关键是通过使用嵌套 promises 使得代码变得更简洁，可读和可维护了。</p>
-<p><img src="./imgs/node-js-promise-generator-event/nested-promises.png" alt="nested-promises"></p>
+<p><img src="http://wangfulin.github.io/imgs\node-js-promise-generator-event/nested-promises.png" alt="nested-promises"></p>
 <p><strong>代码解释：</strong></p>
 <ol>
 <li>我们定义了两个<code>then</code>语句来实现在一个执行完之后再执行另一个。第一个<code>then</code>语句，我们将包含数据库连接的<code>db</code>作为参数传递给它。接下来我们通过使用<code>db</code>连接的属性<code>collection</code>来插入一条记录。这个<code>insertOne</code>方法被用来插入一个真正的文档对象给<code>Employee</code>集合。</li>
@@ -301,7 +301,7 @@
 <li><p>接下来就是包含这个 bluebird 模块，然后 promise 化整个 MongoDB 模块。这里的 promise 化，我们的意思是 bluebird 确保每一个定义在 MongoDB 类库中的方法都会返回一个 promise。</p>
 </li>
 </ol>
-<p><img src="./imgs/node-js-promise-generator-event/bluebird.png" alt="bluebird"></p>
+<p><img src="http://wangfulin.github.io/imgs\node-js-promise-generator-event/bluebird.png" alt="bluebird"></p>
 <p><strong>代码解释：</strong></p>
 <ul>
 <li><code>require</code>命令是用来包含这个 Bluebird 库的。</li>
@@ -310,7 +310,7 @@
 <ol>
 <li>最后一步就是连接数据库，获取集合中的所有记录然后在控制台展示它们。</li>
 </ol>
-<p><img src="./imgs/node-js-promise-generator-event/bluebird2.png" alt="bluebird2"></p>
+<p><img src="http://wangfulin.github.io/imgs\node-js-promise-generator-event/bluebird2.png" alt="bluebird2"></p>
 <p><strong>代码解释：</strong></p>
 <ol>
 <li>你会发现我们这里使用<code>connectAsync</code>方法而不是正常的<code>connect</code>方法来连接数据库。Bluebird 是通过给每一个方法添加 Async 关键字来区分返回 promise 和不返回 promise 的调用。所以我们并不能保证没有 Async 关键字的方法会有返回值。</li>
@@ -318,7 +318,7 @@
 <li>最后，如果这个 <code>findAsync</code>方法成功返回一个 promise ，我们接下来就可以定义一段代码来遍历集合中的每一个记录然后把它们的内容打印出来。</li>
 </ol>
 <p>如果上面的步骤正确的执行，所有在<code>Employee</code>集合的文档都会被打印到控制台，就像下面这样.</p>
-<p><img src="./imgs/node-js-promise-generator-event/bluebird3.png" alt="bluebird3"></p>
+<p><img src="http://wangfulin.github.io/imgs\node-js-promise-generator-event/bluebird3.png" alt="bluebird3"></p>
 <h2 id="创建一个自定义的-promise"><a href="#创建一个自定义的-promise" class="headerlink" title="创建一个自定义的 promise"></a>创建一个自定义的 promise</h2><p>一个自定义promise可以通过一个叫做<code>q</code>的 node 模块来创建。这个<code>q</code>模块需要通过 node 包管理工具来下载和安装。在使用<code>q</code>这个库之后，这个<code>denodeify</code>方法被调用之后会让任何函数变成一个会返回 promise 的函数。</p>
 <p>下面的例子中，我们首先创建一个简单的函数叫做<code>Add</code>，它会把两个数加起来。我们要让这个函数转化为一个返回 promise 对象的函数.</p>
 <p>一旦转化成功之后，我们就会通过这个<code>Add</code>函数返回的 promise 来在控制台中展示信息</p>
@@ -330,7 +330,7 @@
 <li><p>定义下面的代码来创建自定义的 promise</p>
 </li>
 </ol>
-<p><img src="./imgs/node-js-promise-generator-event/q.png" alt="q"></p>
+<p><img src="http://wangfulin.github.io/imgs\node-js-promise-generator-event/q.png" alt="q"></p>
 <p><strong>代码解释：</strong></p>
 <ol>
 <li>第一段的作用是通过<code>require</code>关键字包含这个<code>q</code>库，通过使用这个库，我们就能够定义任何函数来返回一个回调函数。</li>
@@ -339,7 +339,7 @@
 <li>现在我们调用这个<code>Add</code>函数就能够返回一个 promise ，因为我们之前<code>denodeify</code>了这个<code>Add</code>函数</li>
 <li>这里的<code>then</code>关键词被用来表示当函数成功执行之后在控制台中展示<code>Addition function completed</code>.</li>
 </ol>
-<p>当上面的代码执行之后，就会在控制台输出下面的内容<br><img src="./imgs/node-js-promise-generator-event/q1.png" alt="q1"></p>
+<p>当上面的代码执行之后，就会在控制台输出下面的内容<br><img src="http://wangfulin.github.io/imgs\node-js-promise-generator-event/q1.png" alt="q1"></p>
 <h2 id="什么是-generators"><a href="#什么是-generators" class="headerlink" title="什么是 generators"></a>什么是 generators</h2><p>generators 最近在 Node.js 中变得相当有名，这也许和它们能够做的事情有关。</p>
 <ul>
 <li>Generators 是一个能够让函数执行挂起，并且在后面的某个时间点恢复</li>
@@ -352,7 +352,7 @@
 </ol>
 <p>让我们看一下下面的例子看看 generators 是怎么使用的。</p>
 <p>下面的例子中，我们会有一个把两个数字相加的<code>Add</code>函数，但是但是我们会在函数中不同的地方停止函数的执行来展示 generators 是如何使用的。</p>
-<p><img src="./imgs/node-js-promise-generator-event/generators.png" alt="generators"></p>
+<p><img src="http://wangfulin.github.io/imgs\node-js-promise-generator-event/generators.png" alt="generators"></p>
 <p><strong>代码解释：</strong></p>
 <ol>
 <li>第一步是定义我们的 generator 函数。注意这里是通过在 function 关键字后面添加<code>*</code>完成的。接下来我们定义一个叫做<code>Add</code> 的函数，接受一个<code>x</code>作为参数.</li>
@@ -368,7 +368,7 @@
 <p> 我们的例子只创建一个简单的时间延迟函数。我们接下来会在 1s,2s,3s之后调用这个函数。</p>
 <ol>
 <li><p>创建一个回调函数有必要的时间延迟的代码</p>
-<p><img src="./imgs/node-js-promise-generator-event/callbackVsGenerators.png" alt="callbacksVsGenerators"></p>
+<p><img src="http://wangfulin.github.io/imgs\node-js-promise-generator-event/callbackVsGenerators.png" alt="callbacksVsGenerators"></p>
 <p><strong>代码解释：</strong></p>
 <ul>
 <li>这里我们创建了一个叫做<code>Timedelay</code>的函数，里面包含一个叫做 ptime 的参数，这个可以让我们等待给定的时间来执行回调</li>
@@ -376,7 +376,7 @@
 </ul>
 </li>
 <li><p>现在我们来看一下如果我们包含很多回调的代码。假如我们想要在每次调用之后都增加 1s 再调用回调函数，下面的代码就是我们需要的用来实现的回调代码。</p>
-<p><img src="./imgs/node-js-promise-generator-event/callbackVsGenerators1.png" alt="callbacksVsGenerators1"></p>
+<p><img src="http://wangfulin.github.io/imgs\node-js-promise-generator-event/callbackVsGenerators1.png" alt="callbacksVsGenerators1"></p>
 <p><strong>代码解释：</strong></p>
 <ul>
 <li>我们以 1000 作为参数调用 Timedelay 函数</li>
@@ -386,7 +386,7 @@
 <ol>
 <li>现在我们来看看如何通过 generators 来实现上面一样的功能。</li>
 </ol>
-<p><img src="./imgs/node-js-promise-generator-event/callbackVsGenerators2.png" alt="callbacksVsGenerators2"></p>
+<p><img src="http://wangfulin.github.io/imgs\node-js-promise-generator-event/callbackVsGenerators2.png" alt="callbacksVsGenerators2"></p>
 </li>
 </ol>
 

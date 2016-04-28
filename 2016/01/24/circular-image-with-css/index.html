@@ -22,7 +22,7 @@ HTML
 HTML
 &amp;lt;img class=&amp;quot;circle--sq">
 <meta property="og:image" content="http://wangfulin.github.io/imgs/thumbnails/css.png">
-<meta property="og:updated_time" content="2016-04-28T07:57:35.000Z">
+<meta property="og:updated_time" content="2016-04-28T08:46:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="<译>用CSS剪切圆形图片">
 <meta name="twitter:description" content="在这个教程，我们会介绍一下使用CSS技巧来渲染出圆形的元素，主要来实现这个效果的CSS属性是border-radius.
@@ -243,7 +243,7 @@ HTML
             
             <p>在这个教程，我们会介绍一下使用CSS技巧来渲染出圆形的<img>元素，主要来实现这个效果的CSS属性是border-radius.</p>
 <p>尽管对于正方形的图片来实现圆形这个效果是相当简单的，但是对于长方形来说可能需要多一点点工作。</p>
-<p> <img src="imgs\circular-image-with-css\circular-images-lead.jpg" alt="lead"></p>
+<p> <img src="http://wangfulin.github.io/imgs\circular-image-with-css\circular-images-lead.jpg" alt="lead"></p>
 <h2 id="正方形图片"><a href="#正方形图片" class="headerlink" title="正方形图片"></a>正方形图片</h2><p>一个百分百正方形的img标签要变成圆形的只需要一行CSS代码。这个技巧在正方形图片上使用的最方便。</p>
 <p>HTML</p>
 <pre><code>&lt;img class=&quot;circle--square&quot; src=&quot;woman.png&quot; /&gt;
@@ -252,7 +252,7 @@ HTML
     border-radius:50%;
 }
 </code></pre><p>通过设置img标签的所有的border-radius属性为正方形宽/高的50%，我们就可以把这个img标签变成圆的。</p>
-<p><img src="imgs\circular-image-with-css\circular-image-square.png" alt="square"></p>
+<p><img src="http://wangfulin.github.io/imgs\circular-image-with-css\circular-image-square.png" alt="square"></p>
 <h2 id="长方形图片"><a href="#长方形图片" class="headerlink" title="长方形图片"></a>长方形图片</h2><p>长方形图片会稍微有一点技巧一点。</p>
 <p>去渲染一个圆形，必须以圆形图片为基础</p>
 <p>要解决这个问题，我们可以通过在img标签外面套一层div，然后我们通过将超过这个外层div的img标签的内容给裁掉来实现。具体的话可以通过将外层div的overflow属性设置为hidden。</p>
@@ -281,7 +281,7 @@ HTML
 <p>一般来说，水平方向图片的主题（但不一定）会位于图片的中心位置。为了能够让我们尽量不会把图片的主题裁剪啦，我们可以通过把图片往左移来弥补图片剪切的内容有点偏右的问题。</p>
 <p>我们移动img标签的大小是外层div的25%，在这个例子中就是向左50px，我们可以通过设置margin-left的属性来完成设置</p>
 <pre><code>margin-left:-50px;
-</code></pre><p><img src="imgs\circular-image-with-css\circular-image-landscape-mode.png" alt="landscape"></p>
+</code></pre><p><img src="http://wangfulin.github.io/imgs\circular-image-with-css\circular-image-landscape-mode.png" alt="landscape"></p>
 <p>图片的主题会接近图片的水平方向中心的假设并不一定是对的，最好在你选择使用这个技巧的使用把这个假设记住。</p>
 <h3 id="垂直方向的图片"><a href="#垂直方向的图片" class="headerlink" title="垂直方向的图片"></a>垂直方向的图片</h3><p>HTML</p>
 <pre><code>&lt;div&gt;
@@ -304,7 +304,7 @@ HTML
 <p>和水平方向的图片类似，外层div的宽度和高度最好等于垂直方向图片你的宽度，这样的话可以产生最好的效果。</p>
 <p>对于垂直方向的图片，我们把宽度设置为100%，高度设置为auto（和水平方向的图片相反）</p>
 <p>我们不需要移动这个img元素，因为这张照片的主题就在上方中心位置。</p>
-<p><img src="imgs\circular-image-with-css\circular-image-portrait.png" alt="portrait"></p>
+<p><img src="http://wangfulin.github.io/imgs\circular-image-with-css\circular-image-portrait.png" alt="portrait"></p>
 <h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>这个技巧最好适用于正方形的img标签，主题正好位于图片的中心。但是，我们的世界并不是那么完美的，所有如果需求是这样，我们就可以使用div来把长方形img标签变圆。</p>
 <p>CSS中用来负责把图片变圆的属性是border-radius，把边的圆角变成高度/宽度的50%就可以产生一个圆。</p>
 <p>原文链接：<a href="http://sixrevisions.com/css/circular-images-css/" target="_blank" rel="external">circular-images-css</a></p>

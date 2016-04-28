@@ -18,7 +18,7 @@
 自从1998年CSS2作为推荐以来，表格的时候渐渐退去，成为历史。正因为此，从那以后CSS布局成为了优雅代码的代名词。
 对于所有设计师使用过的CSS概念，负边距作为最少讨论到的定位方式要记上一功。这就像是在线纹身-每个人都会做，但是没有人会谈论它。（It’s like an online ta">
 <meta property="og:image" content="http://wangfulin.github.io/imgs/thumbnails/css.png">
-<meta property="og:updated_time" content="2016-04-28T08:00:57.000Z">
+<meta property="og:updated_time" content="2016-04-28T08:45:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="<译> 使用负边距权威指南">
 <meta name="twitter:description" content="原文: The Definitive Guide to Using Negative Margins
@@ -277,7 +277,7 @@
 </li>
 </ul>
 <h2 id="与其共事"><a href="#与其共事" class="headerlink" title="与其共事"></a>与其共事</h2><p>负边距如果可以正确的使用的话它的功能是很强大的。有两种场景负边距是很重要的。</p>
-<h3 id="在static元素中使用负边距"><a href="#在static元素中使用负边距" class="headerlink" title="在static元素中使用负边距"></a>在static元素中使用负边距</h3><p><img src="/imgs/definitive-guide-to-negative-margin/margin-motion.gif" alt="static elements using negative margins"></p>
+<h3 id="在static元素中使用负边距"><a href="#在static元素中使用负边距" class="headerlink" title="在static元素中使用负边距"></a>在static元素中使用负边距</h3><p><img src="http://wangfulin.github.io/imgs\definitive-guide-to-negative-margin/margin-motion.gif" alt="static elements using negative margins"></p>
 <p>一个static元素是一个没有使用过float的元素。上面的图片展示了一个static的元素使用负边距之后的情况。</p>
 <ul>
 <li><p>当一个static元素在top/left使用负边距时，它把元素向这个特定的方向拉，比如</p>
@@ -310,7 +310,7 @@ A negative margin is applied opposite the float
 </li>
 </ul>
 <h2 id="学以致用"><a href="#学以致用" class="headerlink" title="学以致用"></a>学以致用</h2><p>既然我们知道使用负边距在CSS2中是有效的，使用它可以给我们提供一些非常有趣的CSS技巧。</p>
-<h3 id="把单个列表变成三列"><a href="#把单个列表变成三列" class="headerlink" title="把单个列表变成三列"></a>把单个列表变成三列</h3><p><img src="/imgs/definitive-guide-to-negative-margin/splitting-a-list.gif" alt="splitting a list into columns"></p>
+<h3 id="把单个列表变成三列"><a href="#把单个列表变成三列" class="headerlink" title="把单个列表变成三列"></a>把单个列表变成三列</h3><p><img src="http://wangfulin.github.io/imgs\definitive-guide-to-negative-margin/splitting-a-list.gif" alt="splitting a list into columns"></p>
 <p>如果你有一个列表垂直方向太长了，为什么不把它分成几列呢？负边距可以让你在不增加任何浮动和标签的情况下完成。你会发现用负边距实现这个是多么地简单，就像下面：</p>
 <p>HTML</p>
 <pre><code>&lt;ul&gt; 
@@ -328,9 +328,9 @@ li {line-height:1.3em;}
 .col3 {margin-left:200px;}
 .top {margin-top:-2.6em;} /* the clincher */
 </code></pre><p>通过对.top的添加margin-top:-2.6em。所有的元素会完美的对齐好。使用负边距会比使用相对定位好很多，因为你只需要给新的一列的第一个元素添加负边距即可。酷吧，哈哈哈</p>
-<h3 id="重叠来强调"><a href="#重叠来强调" class="headerlink" title="重叠来强调"></a>重叠来强调</h3><p><img src="/imgs/definitive-guide-to-negative-margin/phlashers.gif" alt="overlap for added emphasis"></p>
+<h3 id="重叠来强调"><a href="#重叠来强调" class="headerlink" title="重叠来强调"></a>重叠来强调</h3><p><img src="http://wangfulin.github.io/imgs\definitive-guide-to-negative-margin/phlashers.gif" alt="overlap for added emphasis"></p>
 <p>故意重叠元素也是一种很好地设计隐喻。重叠效果可以增强深度感从而为突出特定元素。一个很好地例子就像上图一样，通过重叠来吸引注意力。只需要使用z-index属性和一点小创意你就可以做到。</p>
-<h3 id="惊艳的3D文本效果"><a href="#惊艳的3D文本效果" class="headerlink" title="惊艳的3D文本效果"></a>惊艳的3D文本效果</h3><p><img src="/imgs/definitive-guide-to-negative-margin/nike.jpg" alt="smashing 3D text effects"></p>
+<h3 id="惊艳的3D文本效果"><a href="#惊艳的3D文本效果" class="headerlink" title="惊艳的3D文本效果"></a>惊艳的3D文本效果</h3><p><img src="http://wangfulin.github.io/imgs\definitive-guide-to-negative-margin/nike.jpg" alt="smashing 3D text effects"></p>
 <p>这是一个精致的技巧。通过使用两个视图的两种颜色创建safari一样有点倾斜的效果。然后通过负边距来把其中一个叠加到另一个上面，保持1到2像素的偏移。这样你就可以二道可选的，机器友好的倾斜字体。就不需要浪费很多贷款来加载大的图片来实现这个效果啦</p>
 <h3 id="简单的两列布局"><a href="#简单的两列布局" class="headerlink" title="简单的两列布局"></a>简单的两列布局</h3><p>负边距也是在流式布局中创建简单一列宽度固定，一列内容为宽度的100%的两列布局的好方法。</p>
 <p>HTML</p>

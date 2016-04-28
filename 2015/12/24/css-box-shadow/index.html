@@ -28,7 +28,7 @@ box-shadow:0 0 10px gray;
 
 例2：内阴影一个内阴影">
 <meta property="og:image" content="http://wangfulin.github.io/imgs/thumbnails/css.png">
-<meta property="og:updated_time" content="2016-04-28T07:57:42.000Z">
+<meta property="og:updated_time" content="2016-04-28T08:41:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="<译>深入了解CSS Box Shadow">
 <meta name="twitter:description" content="原文：A Close Look at CSS Box Shadow
@@ -258,16 +258,16 @@ box-shadow:0 0 10px gray;
 <p>###　例１：简单的外阴影</p>
 <p>下面是是给副标题添加阴影的样式。</p>
 <pre><code>box-shadow:0 0 10px gray;
-</code></pre><p><img src="imgs\css-box-shadow\basic-box-shadow-example.png" alt="simple-drop-shadow"></p>
+</code></pre><p><img src="http://wangfulin.github.io/imgs\css-box-shadow\basic-box-shadow-example.png" alt="simple-drop-shadow"></p>
 <h3 id="例2：内阴影"><a href="#例2：内阴影" class="headerlink" title="例2：内阴影"></a>例2：内阴影</h3><p>一个内阴影可以通过使用inset属性值来渲染出来。</p>
 <pre><code>box-shadow:inset 0 0 10px;
-</code></pre><p><img src="imgs\css-box-shadow\basic-inset-box-shadow-example.png" alt="inner-shadow"></p>
+</code></pre><p><img src="http://wangfulin.github.io/imgs\css-box-shadow\basic-inset-box-shadow-example.png" alt="inner-shadow"></p>
 <h3 id="例3：偏移外阴影"><a href="#例3：偏移外阴影" class="headerlink" title="例3：偏移外阴影"></a>例3：偏移外阴影</h3><p>这个例子中我们通过水平和垂直方向下和右偏移5px来实现阴影向右下方偏移</p>
 <pre><code>box-shadow:5px 5px 10px;
-</code></pre><p><img src="imgs\css-box-shadow\offset-box-shadow-example-01.png" alt="offset-drop-shadow-bottom-right"></p>
+</code></pre><p><img src="http://wangfulin.github.io/imgs\css-box-shadow\offset-box-shadow-example-01.png" alt="offset-drop-shadow-bottom-right"></p>
 <p>加入你想要阴影向左上方偏移呢？我们可以通过将水平和垂直方向的偏移量设置为-5px，正如下面的例子：</p>
 <pre><code>box-shadow:-5px -5px 10px;
-</code></pre><p><img src="imgs\css-box-shadow\offset-box-shadow-example-02.png" alt="offset-drop-shadow-top-left"></p>
+</code></pre><p><img src="http://wangfulin.github.io/imgs\css-box-shadow\offset-box-shadow-example-02.png" alt="offset-drop-shadow-top-left"></p>
 <p>既然你已经看到了<code>box-shadow</code>在现实中的使用，接下来让我们更加深入地了解一下。</p>
 <h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p><code>box-shadow</code>的一般语法如下：</p>
 <pre><code>box-shadow:[inset] [horizontal offset] [vertical 
@@ -334,41 +334,41 @@ offset] [blur radius] [spread distance] [color]
 </table>
 <h2 id="inset"><a href="#inset" class="headerlink" title="inset"></a>inset</h2><p>如果<code>inset</code>关键词存在，盒阴影将会放在HTML元素的内部</p>
 <pre><code>box-shadow:inset 0 0 5px 5px olive;
-</code></pre><p><img src="imgs\css-box-shadow\css-box-shadow-inset-property.png" alt="inset-shadow"></p>
+</code></pre><p><img src="http://wangfulin.github.io/imgs\css-box-shadow\css-box-shadow-inset-property.png" alt="inset-shadow"></p>
 <p>作为对比，这里是一个没有<code>inset</code>属性的<code>box-shadow</code>样式。</p>
 <pre><code>box-shadow:0 0 5px 5px olive;
-</code></pre><p><img src="imgs\css-box-shadow\css-box-shadow-no-inset-property.png" alt="no-inset-shadow"></p>
+</code></pre><p><img src="http://wangfulin.github.io/imgs\css-box-shadow\css-box-shadow-no-inset-property.png" alt="no-inset-shadow"></p>
 <h3 id="水平偏移"><a href="#水平偏移" class="headerlink" title="水平偏移"></a>水平偏移</h3><p>水平偏移控制了盒子阴影在x轴的偏移。正值会把盒子的阴影向右移动，负值的话会把它向左移动。</p>
 <p>下面的例子中，我们把水平的偏移设置成20px，刚好是水平偏移量的两倍，所以阴影水平宽度刚好是垂直高度的两倍。</p>
 <pre><code>box-shadow:20px 10px;
-</code></pre><p><img src="imgs\css-box-shadow\css-box-shadow-horizontal-offset-property.png" alt="horizontal offset value"></p>
+</code></pre><p><img src="http://wangfulin.github.io/imgs\css-box-shadow\css-box-shadow-horizontal-offset-property.png" alt="horizontal offset value"></p>
 <h3 id="垂直偏移"><a href="#垂直偏移" class="headerlink" title="垂直偏移"></a>垂直偏移</h3><p>垂直偏移控制了盒阴影在y轴的偏移量。正值会把盒子的阴影向下移动，负值刚好相反会把盒子网上移动。</p>
 <p>下面的例子中，垂直的偏移设置成-20px，刚好是水平偏移的两倍。同时，因为是负值，所以向上移动。</p>
 <pre><code>box-shadow:10px -20px;
-</code></pre><p><img src="imgs\css-box-shadow\css-box-shadow-vertical-offset-property.png" alt="vertical offset value"></p>
+</code></pre><p><img src="http://wangfulin.github.io/imgs\css-box-shadow\css-box-shadow-vertical-offset-property.png" alt="vertical offset value"></p>
 <h3 id="模糊半径"><a href="#模糊半径" class="headerlink" title="模糊半径"></a>模糊半径</h3><p>这个模糊半径会影响到阴影的模糊和锐利程度。</p>
 <p>模糊半径是可选的，如果你不指定它，默认值是0.另外，你不能指定它为负值，这个和水平偏移和垂直偏移不一样。</p>
 <p>如果模糊半径是0，盒子阴影会很锐利并且它的颜色是很实的。随着你不断的增大这个值，它会变得越来越模糊和透明。</p>
 <p>下面的例子，模糊半径被设置成20px，因此模糊度是相当突出。</p>
 <pre><code>box-shadow:5px 5px 20px;
-</code></pre><p><img src="imgs\css-box-shadow\css-box-shadow-blur-radius.png" alt="css-box-shadow-blur-radius"></p>
+</code></pre><p><img src="http://wangfulin.github.io/imgs\css-box-shadow\css-box-shadow-blur-radius.png" alt="css-box-shadow-blur-radius"></p>
 <h3 id="扩展距离"><a href="#扩展距离" class="headerlink" title="扩展距离"></a>扩展距离</h3><p>这个扩展距离会让盒子的阴影在各个方向上都会变大或变小。如果它有一个正值，盒子阴影会在各个方向上增加大小。如果是负值，则会在各个方向上收缩。</p>
 <p>值得注意的是，因为它的扩展距离是正5，所以会在各个方向上增加10px因为没有水平和垂直偏移。</p>
 <pre><code>box-shadow:0 0 10px 5px;
-</code></pre><p><img src="imgs\css-box-shadow\css-box-shadow-spread-distance.png" alt="css-box-shadow-spread-distance"></p>
+</code></pre><p><img src="http://wangfulin.github.io/imgs\css-box-shadow\css-box-shadow-spread-distance.png" alt="css-box-shadow-spread-distance"></p>
 <p>当扩展距离是负的时候，阴影就会在各个方向上收缩。下面的例子展示当阴影的宽度比盒子小的时候的情况</p>
 <pre><code>box-shadow:0 10px 10px -5px;
-</code></pre><p><img src="imgs\css-box-shadow\css-box-shadow-negative-spread-distance.png" alt="css-box-shadow-negative-spread-distance"></p>
+</code></pre><p><img src="http://wangfulin.github.io/imgs\css-box-shadow\css-box-shadow-negative-spread-distance.png" alt="css-box-shadow-negative-spread-distance"></p>
 <p>###　颜色</p>
 <p>通过名字你就可以判断出来，颜色值会设置盒阴影的颜色。它可以通过任何可以表示颜色的方式来表示颜色。是否设置颜色值是可选的。</p>
 <p>换句话说，默认情况下当你没有指明颜色值，阴影颜色会等于这个盒子对应的html元素的颜色值。比如有一个<code>div</code>的颜色被设置成红色，这个盒子阴影的颜色也会变成红色：</p>
 <pre><code>color:red;
 box-shadow:0 0 10px 5px;
-</code></pre><p><img src="imgs\css-box-shadow\css-box-shadow-default-color.png" alt="css-box-shadow-default-color"></p>
+</code></pre><p><img src="http://wangfulin.github.io/imgs\css-box-shadow\css-box-shadow-default-color.png" alt="css-box-shadow-default-color"></p>
 <p>如果你想要设置阴影的颜色和<code>div</code>的颜色不一样，可以通过下面的方式，你会发现尽管你的文字颜色是红色，盒子阴影颜色依然可以是蓝色。</p>
 <pre><code>color:red;
 box-shadow:0 0 10px 5px blue;
-</code></pre><p><img src="imgs\css-box-shadow\css-box-shadow-color-specified.png" alt="css-box-shadow-color-specified"></p>
+</code></pre><p><img src="http://wangfulin.github.io/imgs\css-box-shadow\css-box-shadow-color-specified.png" alt="css-box-shadow-color-specified"></p>
 <h2 id="多阴影效果"><a href="#多阴影效果" class="headerlink" title="多阴影效果"></a>多阴影效果</h2><p>这个就是能够让我们变得有创造力的CSS属性。你能够在一个盒子上设置多个阴影。</p>
 <p>语法就像下面这样。</p>
 <pre><code>box-shadow: [box shadow properties 1],
@@ -378,10 +378,10 @@ box-shadow:0 0 10px 5px blue;
 <p>下面的例子展示了两个阴影的情况，左上方红色的阴影，右下方蓝色的阴影。</p>
 <pre><code>box-shadow: -5px -5px 30px 5px red,
          5px 5px 30px 5px blue;
-</code></pre><p><img src="imgs\css-box-shadow\multiple-box-shadows.png" alt="multiple-box-shadows"></p>
+</code></pre><p><img src="http://wangfulin.github.io/imgs\css-box-shadow\multiple-box-shadows.png" alt="multiple-box-shadows"></p>
 <h2 id="浏览器支持"><a href="#浏览器支持" class="headerlink" title="浏览器支持"></a>浏览器支持</h2><p>这个CSS的<code>box-shadow</code>属性有着很好地浏览器支持。使用这个属性在拖后腿的IE浏览器也能在IE9以后得到支持啦。</p>
 <p><a href="http://cdn.sixrevisions.com/0457-01-css-box-shadow-demo/demo.html" target="_blank" rel="external">查看演示</a></p>
-<p><img src="imgs\css-box-shadow\css-box-shadow-examples.png" alt="css-box-shadow-example"></p>
+<p><img src="http://wangfulin.github.io/imgs\css-box-shadow\css-box-shadow-examples.png" alt="css-box-shadow-example"></p>
 
         
         </div>
