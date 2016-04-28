@@ -21,8 +21,8 @@ HTML
 正方形图片一个百分百正方形的img标签要变成圆形的只需要一行CSS代码。这个技巧在正方形图片上使用的最方便。
 HTML
 &amp;lt;img class=&amp;quot;circle--sq">
-<meta property="og:image" content="http://wangfulin.github.io/css\images\circular-image-with-css\circular-images-lead.jpg">
-<meta property="og:updated_time" content="2016-04-28T07:11:20.000Z">
+<meta property="og:image" content="http://wangfulin.github.io/imgs/thumbnails/css.png">
+<meta property="og:updated_time" content="2016-04-28T07:57:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="<译>用CSS剪切圆形图片">
 <meta name="twitter:description" content="在这个教程，我们会介绍一下使用CSS技巧来渲染出圆形的元素，主要来实现这个效果的CSS属性是border-radius.
@@ -31,7 +31,7 @@ HTML
 正方形图片一个百分百正方形的img标签要变成圆形的只需要一行CSS代码。这个技巧在正方形图片上使用的最方便。
 HTML
 &amp;lt;img class=&amp;quot;circle--sq">
-<meta name="twitter:image" content="http://wangfulin.github.io/css\images\circular-image-with-css\circular-images-lead.jpg">
+<meta name="twitter:image" content="http://wangfulin.github.io/imgs/thumbnails/css.png">
     
 
     
@@ -173,7 +173,7 @@ HTML
                 <span>文章</span>
             </div>
             <div class="article-info-block">
-                15
+                16
                 <span>标签</span>
             </div>
         </div>
@@ -224,6 +224,11 @@ HTML
 
 
                     
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/CSS/">CSS</a>
+    </div>
+
                     
     <div class="article-tag">
         <i class="fa fa-tag"></i>
@@ -238,7 +243,7 @@ HTML
             
             <p>在这个教程，我们会介绍一下使用CSS技巧来渲染出圆形的<img>元素，主要来实现这个效果的CSS属性是border-radius.</p>
 <p>尽管对于正方形的图片来实现圆形这个效果是相当简单的，但是对于长方形来说可能需要多一点点工作。</p>
-<p> <img src="css\images\circular-image-with-css\circular-images-lead.jpg" alt="lead"></p>
+<p> <img src="imgs\circular-image-with-css\circular-images-lead.jpg" alt="lead"></p>
 <h2 id="正方形图片"><a href="#正方形图片" class="headerlink" title="正方形图片"></a>正方形图片</h2><p>一个百分百正方形的img标签要变成圆形的只需要一行CSS代码。这个技巧在正方形图片上使用的最方便。</p>
 <p>HTML</p>
 <pre><code>&lt;img class=&quot;circle--square&quot; src=&quot;woman.png&quot; /&gt;
@@ -247,7 +252,7 @@ HTML
     border-radius:50%;
 }
 </code></pre><p>通过设置img标签的所有的border-radius属性为正方形宽/高的50%，我们就可以把这个img标签变成圆的。</p>
-<p><img src="css\images\circular-image-with-css\circular-image-square.png" alt="square"></p>
+<p><img src="imgs\circular-image-with-css\circular-image-square.png" alt="square"></p>
 <h2 id="长方形图片"><a href="#长方形图片" class="headerlink" title="长方形图片"></a>长方形图片</h2><p>长方形图片会稍微有一点技巧一点。</p>
 <p>去渲染一个圆形，必须以圆形图片为基础</p>
 <p>要解决这个问题，我们可以通过在img标签外面套一层div，然后我们通过将超过这个外层div的img标签的内容给裁掉来实现。具体的话可以通过将外层div的overflow属性设置为hidden。</p>
@@ -276,7 +281,7 @@ HTML
 <p>一般来说，水平方向图片的主题（但不一定）会位于图片的中心位置。为了能够让我们尽量不会把图片的主题裁剪啦，我们可以通过把图片往左移来弥补图片剪切的内容有点偏右的问题。</p>
 <p>我们移动img标签的大小是外层div的25%，在这个例子中就是向左50px，我们可以通过设置margin-left的属性来完成设置</p>
 <pre><code>margin-left:-50px;
-</code></pre><p><img src="css\images\circular-image-with-css\circular-image-landscape-mode.png" alt="landscape"></p>
+</code></pre><p><img src="imgs\circular-image-with-css\circular-image-landscape-mode.png" alt="landscape"></p>
 <p>图片的主题会接近图片的水平方向中心的假设并不一定是对的，最好在你选择使用这个技巧的使用把这个假设记住。</p>
 <h3 id="垂直方向的图片"><a href="#垂直方向的图片" class="headerlink" title="垂直方向的图片"></a>垂直方向的图片</h3><p>HTML</p>
 <pre><code>&lt;div&gt;
@@ -299,7 +304,7 @@ HTML
 <p>和水平方向的图片类似，外层div的宽度和高度最好等于垂直方向图片你的宽度，这样的话可以产生最好的效果。</p>
 <p>对于垂直方向的图片，我们把宽度设置为100%，高度设置为auto（和水平方向的图片相反）</p>
 <p>我们不需要移动这个img元素，因为这张照片的主题就在上方中心位置。</p>
-<p><img src="css\images\circular-image-with-css\circular-image-portrait.png" alt="portrait"></p>
+<p><img src="imgs\circular-image-with-css\circular-image-portrait.png" alt="portrait"></p>
 <h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>这个技巧最好适用于正方形的img标签，主题正好位于图片的中心。但是，我们的世界并不是那么完美的，所有如果需求是这样，我们就可以使用div来把长方形img标签变圆。</p>
 <p>CSS中用来负责把图片变圆的属性是border-radius，把边的圆角变成高度/宽度的50%就可以产生一个圆。</p>
 <p>原文链接：<a href="http://sixrevisions.com/css/circular-images-css/" target="_blank" rel="external">circular-images-css</a></p>
@@ -459,14 +464,14 @@ HTML
                             <a href="/2016/03/24/45-useful-javascript-tips-tricks-and-best-practices/" class="thumbnail">
     
     
-        <span style="background-image:url(imgs\45-useful-javascript-tips\keep-calm-and-learn-javascript.jpg)" alt="45个javascript技巧和最佳实践" class="thumbnail-image"></span>
+        <span style="background-image:url(http://wangfulin.github.io/imgs/thumbnails/javascript.png)" alt="45个javascript技巧和最佳实践" class="thumbnail-image"></span>
     
 </a>
 
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/javascript/">javascript</a></p>
                             <p class="item-title"><a href="/2016/03/24/45-useful-javascript-tips-tricks-and-best-practices/" class="title">45个javascript技巧和最佳实践</a></p>
                             <p class="item-date"><time datetime="2016-03-23T16:00:00.000Z" itemprop="datePublished">2016-03-24</time></p>
                         </div>
@@ -478,14 +483,14 @@ HTML
                             <a href="/2016/02/24/broswerify/" class="thumbnail">
     
     
-        <span style="background-image:url(https://camo.githubusercontent.com/e19e230a9371a44a2eeb484b83ff4fcf8c824cf7/687474703a2f2f737562737461636b2e6e65742f696d616765732f62726f777365726966795f6c6f676f2e706e67)" alt="browserify简介" class="thumbnail-image"></span>
+        <span style="background-image:url(http://wangfulin.github.io/imgs/thumbnails/javascript.png)" alt="browserify简介" class="thumbnail-image"></span>
     
 </a>
 
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/javascript/">javascript</a></p>
                             <p class="item-title"><a href="/2016/02/24/broswerify/" class="title">browserify简介</a></p>
                             <p class="item-date"><time datetime="2016-02-23T16:00:00.000Z" itemprop="datePublished">2016-02-24</time></p>
                         </div>
@@ -497,14 +502,14 @@ HTML
                             <a href="/2016/01/24/circular-image-with-css/" class="thumbnail">
     
     
-        <span style="background-image:url(css\images\circular-image-with-css\circular-images-lead.jpg)" alt="&lt;译&gt;用CSS剪切圆形图片" class="thumbnail-image"></span>
+        <span style="background-image:url(http://wangfulin.github.io/imgs/thumbnails/css.png)" alt="&lt;译&gt;用CSS剪切圆形图片" class="thumbnail-image"></span>
     
 </a>
 
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/CSS/">CSS</a></p>
                             <p class="item-title"><a href="/2016/01/24/circular-image-with-css/" class="title">&lt;译&gt;用CSS剪切圆形图片</a></p>
                             <p class="item-date"><time datetime="2016-01-23T16:00:00.000Z" itemprop="datePublished">2016-01-24</time></p>
                         </div>
@@ -516,14 +521,14 @@ HTML
                             <a href="/2015/12/24/css-box-shadow/" class="thumbnail">
     
     
-        <span style="background-image:url(imgs\css-box-shadow\basic-box-shadow-example.png)" alt="&lt;译&gt;深入了解CSS Box Shadow" class="thumbnail-image"></span>
+        <span style="background-image:url(http://wangfulin.github.io/imgs/thumbnails/css.png)" alt="&lt;译&gt;深入了解CSS Box Shadow" class="thumbnail-image"></span>
     
 </a>
 
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/CSS/">CSS</a></p>
                             <p class="item-title"><a href="/2015/12/24/css-box-shadow/" class="title">&lt;译&gt;深入了解CSS Box Shadow</a></p>
                             <p class="item-date"><time datetime="2015-12-23T16:00:00.000Z" itemprop="datePublished">2015-12-24</time></p>
                         </div>
@@ -535,14 +540,14 @@ HTML
                             <a href="/2015/11/20/css-methodologies/" class="thumbnail">
     
     
-        <span style="background-image:url(imgs\css-methodologies\object-oriented-css.png)" alt="&lt;译&gt;聊一聊CSS方法论" class="thumbnail-image"></span>
+        <span style="background-image:url(http://wangfulin.github.io/imgs/thumbnails/css.png)" alt="&lt;译&gt;聊一聊CSS方法论" class="thumbnail-image"></span>
     
 </a>
 
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/CSS/">CSS</a></p>
                             <p class="item-title"><a href="/2015/11/20/css-methodologies/" class="title">&lt;译&gt;聊一聊CSS方法论</a></p>
                             <p class="item-date"><time datetime="2015-11-19T16:00:00.000Z" itemprop="datePublished">2015-11-20</time></p>
                         </div>
@@ -554,6 +559,13 @@ HTML
 
     
         
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/font/">font</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/npm/">npm</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/ES6/">ES6</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/React/">React</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/gulp/">gulp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/jQuery/">jQuery</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/jQuery/Ajax/">Ajax</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/模块化/">模块化</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/设计模式/">设计模式</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/面试题/">面试题</a><span class="category-list-count">1</span></li></ul></li></ul>
+        </div>
+    </div>
+
     
         
     <div class="widget-wrap">
@@ -568,7 +580,7 @@ HTML
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-Node-js/">javascript, Node.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-React/">javascript, React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-Web-Storage/">javascript, Web Storage</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-browserify/">javascript, browserify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-closure/">javascript, closure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-es6/">javascript, es6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-jQuery/">javascript, jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-jQuery-Ajax/">javascript, jQuery, Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-模块化/">javascript, 模块化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-设计模式/">javascript, 设计模式</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm-Node-js/">npm, Node.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web-CSS/">web, CSS</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-Node-js/">javascript, Node.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-React/">javascript, React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-Web-Storage/">javascript, Web Storage</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-browserify/">javascript, browserify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-closure/">javascript, closure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-es6/">javascript, es6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-gulp/">javascript, gulp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-jQuery/">javascript, jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-jQuery-Ajax/">javascript, jQuery, Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-模块化/">javascript, 模块化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-设计模式/">javascript, 设计模式</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm-Node-js/">npm, Node.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web-CSS/">web, CSS</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -577,7 +589,7 @@ HTML
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/CSS/" style="font-size: 16.67px;">CSS</a> <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-Node-js/" style="font-size: 10px;">javascript, Node.js</a> <a href="/tags/javascript-React/" style="font-size: 10px;">javascript, React</a> <a href="/tags/javascript-Web-Storage/" style="font-size: 10px;">javascript, Web Storage</a> <a href="/tags/javascript-browserify/" style="font-size: 10px;">javascript, browserify</a> <a href="/tags/javascript-closure/" style="font-size: 10px;">javascript, closure</a> <a href="/tags/javascript-es6/" style="font-size: 10px;">javascript, es6</a> <a href="/tags/javascript-jQuery/" style="font-size: 10px;">javascript, jQuery</a> <a href="/tags/javascript-jQuery-Ajax/" style="font-size: 10px;">javascript, jQuery, Ajax</a> <a href="/tags/javascript-模块化/" style="font-size: 10px;">javascript, 模块化</a> <a href="/tags/javascript-设计模式/" style="font-size: 16.67px;">javascript, 设计模式</a> <a href="/tags/npm-Node-js/" style="font-size: 10px;">npm, Node.js</a> <a href="/tags/web-CSS/" style="font-size: 10px;">web, CSS</a>
+            <a href="/tags/CSS/" style="font-size: 16.67px;">CSS</a> <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-Node-js/" style="font-size: 10px;">javascript, Node.js</a> <a href="/tags/javascript-React/" style="font-size: 10px;">javascript, React</a> <a href="/tags/javascript-Web-Storage/" style="font-size: 10px;">javascript, Web Storage</a> <a href="/tags/javascript-browserify/" style="font-size: 10px;">javascript, browserify</a> <a href="/tags/javascript-closure/" style="font-size: 10px;">javascript, closure</a> <a href="/tags/javascript-es6/" style="font-size: 10px;">javascript, es6</a> <a href="/tags/javascript-gulp/" style="font-size: 10px;">javascript, gulp</a> <a href="/tags/javascript-jQuery/" style="font-size: 10px;">javascript, jQuery</a> <a href="/tags/javascript-jQuery-Ajax/" style="font-size: 10px;">javascript, jQuery, Ajax</a> <a href="/tags/javascript-模块化/" style="font-size: 10px;">javascript, 模块化</a> <a href="/tags/javascript-设计模式/" style="font-size: 16.67px;">javascript, 设计模式</a> <a href="/tags/npm-Node-js/" style="font-size: 10px;">npm, Node.js</a> <a href="/tags/web-CSS/" style="font-size: 10px;">web, CSS</a>
         </div>
     </div>
 
