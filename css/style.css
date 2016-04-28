@@ -613,6 +613,9 @@ code {
 #main-nav-mobile .menu .search-form-input::-webkit-search-cancel-button {
   -webkit-appearance: none;
 }
+.fa-segmentfault:before {
+  content: "\f09a";
+}
 .bio {
   text-align: center;
 }
