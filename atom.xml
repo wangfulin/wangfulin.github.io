@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wangfulin.github.io/"/>
-  <updated>2016-04-28T08:41:45.000Z</updated>
+  <updated>2016-04-28T07:57:28.000Z</updated>
   <id>http://wangfulin.github.io/</id>
   
   <author>
@@ -14,34 +14,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>45个javascript技巧和最佳实践</title>
-    <link href="http://wangfulin.github.io/2016/03/24/45-useful-javascript-tips-tricks-and-best-practices/"/>
-    <id>http://wangfulin.github.io/2016/03/24/45-useful-javascript-tips-tricks-and-best-practices/</id>
-    <published>2016-03-23T16:00:00.000Z</published>
-    <updated>2016-04-28T08:41:45.000Z</updated>
-    
-    <content type="html">&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;原文：&lt;/strong&gt;&lt;a href=&quot;http://modernweb.com/2013/12/23/45-useful-javascript-tips-tricks-and-best-practices/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;45 Useful Javascript Tips,Tricks and Best Practices&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&quot;http://wangfulin.github.io/imgs/45-useful-javascript-tips\keep-calm-and-learn-javascript.jpg&quot; alt=&quot;keep-calm-learn-js&quot;&gt;&lt;/p&gt;
-&lt;p&gt;你知道的，Javascript是世界上第一的变成语言。它能够在web端，移动混合应用（像&lt;a href=&quot;http://phonegap.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;PhoneGap&lt;/a&gt;和&lt;a href=&quot;http://www.appcelerator.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Appcelerator&lt;/a&gt;），以及服务端（&lt;a href=&quot;http://nodejs.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;NodeJS&lt;/a&gt;和&lt;a href=&quot;http://wakanda.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Wakanda&lt;/a&gt;）等其他地方都有应用。它也经常被用来当做很多世界上新的开发者的入门语言。它既能让我们在网页上展示弹窗，也能用来控制机器人。能够使用写出有组织，性能良好的javascript&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;原文：&lt;/strong&gt;&lt;a href=&quot;http://modernweb.com/2013/12/23/45-useful-javascript-tips-tricks-and-best-practices/&quot; target=&quot;_
-    
-    </summary>
-    
-      <category term="javascript" scheme="http://wangfulin.github.io/categories/javascript/"/>
-    
-    
-      <category term="javascript" scheme="http://wangfulin.github.io/tags/javascript/"/>
-    
-  </entry>
   
   <entry>
     <title>browserify简介</title>
@@ -1377,32 +1349,6 @@ Sans-serif是针对linux的，linux默认只有kernel，字体由用户自定义
   </entry>
   
   <entry>
-    <title>&lt;译&gt; ES6 生成器基础</title>
-    <link href="http://wangfulin.github.io/2015/05/04/The%20Basics%20Of%20ES6%20Generators/"/>
-    <id>http://wangfulin.github.io/2015/05/04/The Basics Of ES6 Generators/</id>
-    <published>2015-05-03T16:00:00.000Z</published>
-    <updated>2016-04-28T08:00:47.000Z</updated>
-    
-    <content type="html">&lt;p&gt;&lt;strong&gt;原文:&lt;/strong&gt;&lt;a href=&quot;https://davidwalsh.name/es6-generators&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The Basics Of ES6 Generators&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;原文:&lt;/strong&gt;&lt;a href=&quot;https://davidwalsh.name/es6-generators&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The Basics Of ES6 Generators&lt;/a&gt;&lt;/p&gt;
-
-    
-    </summary>
-    
-      <category term="javascript" scheme="http://wangfulin.github.io/categories/javascript/"/>
-    
-      <category term="ES6" scheme="http://wangfulin.github.io/categories/javascript/ES6/"/>
-    
-    
-      <category term="javascript, es6" scheme="http://wangfulin.github.io/tags/javascript-es6/"/>
-    
-  </entry>
-  
-  <entry>
     <title>出现次数最多的字符</title>
     <link href="http://wangfulin.github.io/2015/04/20/get-most-appearance-times/"/>
     <id>http://wangfulin.github.io/2015/04/20/get-most-appearance-times/</id>
@@ -1601,95 +1547,6 @@ watcher.on(&amp;apos;change&amp;apos;, function(event) {
     
     
       <category term="javascript, gulp" scheme="http://wangfulin.github.io/tags/javascript-gulp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>&lt;译&gt;javascript的闭包是怎么工作的？</title>
-    <link href="http://wangfulin.github.io/2015/02/20/how-do-javascript-closure-work/"/>
-    <id>http://wangfulin.github.io/2015/02/20/how-do-javascript-closure-work/</id>
-    <published>2015-02-19T16:00:00.000Z</published>
-    <updated>2016-04-28T07:59:05.000Z</updated>
-    
-    <content type="html">&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;原文：&lt;/strong&gt;&lt;a href=&quot;http://stackoverflow.com/questions/111102/how-do-javascript-closures-work&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;how to javascript closure work&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;原文：&lt;/strong&gt;&lt;a href=&quot;http://stackoverflow.com/questions/111102/how-do-javascript-closures-work&quot; target=&quot;_blank&quot; rel=
-    
-    </summary>
-    
-      <category term="javascript" scheme="http://wangfulin.github.io/categories/javascript/"/>
-    
-    
-      <category term="javascript, closure" scheme="http://wangfulin.github.io/tags/javascript-closure/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ajax 源码解析</title>
-    <link href="http://wangfulin.github.io/2015/01/20/jquery-ajax-analyze/"/>
-    <id>http://wangfulin.github.io/2015/01/20/jquery-ajax-analyze/</id>
-    <published>2015-01-19T16:00:00.000Z</published>
-    <updated>2016-04-28T07:59:13.000Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;Ajax-是什么？&quot;&gt;&lt;a href=&quot;#Ajax-是什么？&quot; class=&quot;headerlink&quot; title=&quot;Ajax 是什么？&quot;&gt;&lt;/a&gt;Ajax 是什么？&lt;/h2&gt;&lt;p&gt; 客户端用来创建异步 web 应用的技术集合。web 应用可以异步地向服务器发送数据或者获取内容。&lt;/p&gt;
-&lt;h2 id=&quot;Ajax-做了什么？&quot;&gt;&lt;a href=&quot;#Ajax-做了什么？&quot; class=&quot;headerlink&quot; title=&quot;Ajax 做了什么？&quot;&gt;&lt;/a&gt;Ajax 做了什么？&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;提供了快捷的接口&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;简单性&lt;/li&gt;
-&lt;li&gt;统一性&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;屏蔽了浏览器差异性&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;添加了默认的设置&lt;/li&gt;
-&lt;li&gt;提供全局 Ajax 事件处理&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;Ajax-部分的设计思路？&quot;&gt;&lt;a href=&quot;#Ajax-部分的设计思路？&quot; class=&quot;headerlink&quot; title=&quot;Ajax 部分的设计思路？&quot;&gt;&lt;/a&gt;Ajax 部分的设计思路？&lt;/h2&gt;&lt;h2 id=&quot;Ajax-核心源码解读&quot;&gt;&lt;a href=&quot;#Ajax-核心源码解读&quot; class=&quot;headerlink&quot; title=&quot;Ajax 核心源码解读&quot;&gt;&lt;/a&gt;Ajax 核心源码解读&lt;/h2&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;Ajax-是什么？&quot;&gt;&lt;a href=&quot;#Ajax-是什么？&quot; class=&quot;headerlink&quot; title=&quot;Ajax 是什么？&quot;&gt;&lt;/a&gt;Ajax 是什么？&lt;/h2&gt;&lt;p&gt; 客户端用来创建异步 web 应用的技术集合。web 应用可以异步地向服务器发送数据
-    
-    </summary>
-    
-      <category term="javascript" scheme="http://wangfulin.github.io/categories/javascript/"/>
-    
-      <category term="jQuery" scheme="http://wangfulin.github.io/categories/javascript/jQuery/"/>
-    
-      <category term="Ajax" scheme="http://wangfulin.github.io/categories/javascript/jQuery/Ajax/"/>
-    
-    
-      <category term="javascript, jQuery, Ajax" scheme="http://wangfulin.github.io/tags/javascript-jQuery-Ajax/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JS模块化初探</title>
-    <link href="http://wangfulin.github.io/2014/12/20/JS_Module/"/>
-    <id>http://wangfulin.github.io/2014/12/20/JS_Module/</id>
-    <published>2014-12-19T16:00:00.000Z</published>
-    <updated>2016-04-28T07:59:19.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;JS模块化初探&quot;&gt;&lt;a href=&quot;#JS模块化初探&quot; class=&quot;headerlink&quot; title=&quot;JS模块化初探&quot;&gt;&lt;/a&gt;JS模块化初探&lt;/h1&gt;&lt;h2 id=&quot;什么是JS模块化&quot;&gt;&lt;a href=&quot;#什么是JS模块化&quot; class=&quot;headerlink&quot; title=&quot;什么是JS模块化&quot;&gt;&lt;/a&gt;什么是JS模块化&lt;/h2&gt;&lt;h2 id=&quot;JS模块化有什么好处&quot;&gt;&lt;a href=&quot;#JS模块化有什么好处&quot; class=&quot;headerlink&quot; title=&quot;JS模块化有什么好处&quot;&gt;&lt;/a&gt;JS模块化有什么好处&lt;/h2&gt;&lt;h2 id=&quot;JS模块化实践&quot;&gt;&lt;a href=&quot;#JS模块化实践&quot; class=&quot;headerlink&quot; title=&quot;JS模块化实践&quot;&gt;&lt;/a&gt;JS模块化实践&lt;/h2&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;JS模块化初探&quot;&gt;&lt;a href=&quot;#JS模块化初探&quot; class=&quot;headerlink&quot; title=&quot;JS模块化初探&quot;&gt;&lt;/a&gt;JS模块化初探&lt;/h1&gt;&lt;h2 id=&quot;什么是JS模块化&quot;&gt;&lt;a href=&quot;#什么是JS模块化&quot; class=&quot;headerli
-    
-    </summary>
-    
-      <category term="javascript" scheme="http://wangfulin.github.io/categories/javascript/"/>
-    
-      <category term="模块化" scheme="http://wangfulin.github.io/categories/javascript/%E6%A8%A1%E5%9D%97%E5%8C%96/"/>
-    
-    
-      <category term="javascript, 模块化" scheme="http://wangfulin.github.io/tags/javascript-%E6%A8%A1%E5%9D%97%E5%8C%96/"/>
     
   </entry>
   
@@ -1938,35 +1795,408 @@ watcher.on(&amp;apos;change&amp;apos;, function(event) {
   </entry>
   
   <entry>
-    <title>&lt;译&gt; React的双向绑定</title>
-    <link href="http://wangfulin.github.io/2014/09/20/react-advanced-two-way-bind/"/>
-    <id>http://wangfulin.github.io/2014/09/20/react-advanced-two-way-bind/</id>
-    <published>2014-09-19T16:00:00.000Z</published>
-    <updated>2016-04-28T08:00:24.000Z</updated>
+    <title>&lt;译&gt; 使用负边距权威指南</title>
+    <link href="http://wangfulin.github.io/2014/08/20/the-definitive-guide-to-using-negative-margin/"/>
+    <id>http://wangfulin.github.io/2014/08/20/the-definitive-guide-to-using-negative-margin/</id>
+    <published>2014-08-19T16:00:00.000Z</published>
+    <updated>2016-04-28T08:45:44.000Z</updated>
     
     <content type="html">&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;原文：&lt;/strong&gt;&lt;a href=&quot;https://www.terlici.com/2015/02/23/react-advanced-two-way-binding.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Advanced Two Way Binding for React&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;原文:&lt;/strong&gt; &lt;a href=&quot;http://www.smashingmagazine.com/2009/07/the-definitive-guide-to-using-negative-margins/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The Definitive Guide to Using Negative Margins&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;http://reactjs.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;React&lt;/a&gt;是一个很好的库，它能够让开发web应用变得更简单。&lt;/p&gt;
-&lt;p&gt;但是，从&lt;a href=&quot;https://angularjs.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Angular&lt;/a&gt;转过来的开发者第一眼看到的就是默认是不支持双向绑定的。这也是一些开发者不想尝试它的原因。&lt;/p&gt;
-&lt;p&gt;尽管双向绑定是一个很cool的特性，但是事实上它并不是大部分应用需要的。然后，它有些时候也是很有用的。&lt;/p&gt;
-&lt;p&gt;今天，我会向你展示一个我几乎每天都会用到的现实应用实例，没有数据的双向绑定，开发这个应用就会像噩梦一般。&lt;/p&gt;
-&lt;p&gt;to be continuing&lt;/p&gt;
+&lt;p&gt;自从1998年CSS2作为推荐以来，表格的时候渐渐退去，成为历史。正因为此，从那以后CSS布局成为了优雅代码的代名词。&lt;/p&gt;
+&lt;p&gt;对于所有设计师使用过的CSS概念，负边距作为最少讨论到的定位方式要记上一功。这就像是在线纹身-每个人都会做，但是没有人会谈论它。（It’s like an online taboo—everyone’s doing it, yet no one wants to talk about it.）&lt;/p&gt;
+&lt;h2 id=&quot;为其正名&quot;&gt;&lt;a href=&quot;#为其正名&quot; class=&quot;headerlink&quot; title=&quot;为其正名&quot;&gt;&lt;/a&gt;为其正名&lt;/h2&gt;&lt;p&gt;我们都使用过CSS得外边距，但是当谈到负边距的时候，我们好像往差的方向发展啦。在网页设计中负边距的使用出现了两种极端，一种特别喜欢它，也有一些人认为这完全就是魔鬼的作品。&lt;/p&gt;
+&lt;p&gt;负边距的使用如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#content {margin-left:-100px; }
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;负边距通常在小范围使用。但是接下来你会看到，它能做的事情很多。下面是一些你应该知道的关于负边距的事情：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;他们是完全有效的CSS&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这不是在跟你开玩笑。W3C甚至都说，在外边框中使用负边距是允许的。要了解更多可以点击这边&lt;a href=&quot;http://www.w3.org/TR/CSS2/box.html#margin-properties&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;文章&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;负边距不是在hack&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这是尤其正确的。正是因为没有很好地了解负边距才是导致各种奇怪的问题。只有在被用来解决其他地方的bug的时候才是hack&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;它符合正常的文档流&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;当负边距使用在没有浮动的元素上时并不会破坏正常的文档流。所以付过你使用负边距把元素向上微调的话，所有后面的元素也会向上微调。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;它是相当好的兼容性&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;负边距基本上被所有现代的浏览器支持（IE6的大部分情况也是）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;当使用了float之后，会有不同的表现&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;负边距不是你平常使用的属性，所以使用的时候要格外小心。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Dreamweaver不理解它&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;负边距不会在DW的设计窗口展示出效果。那你为什么还用DW的设计窗口查看效果呢？&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;与其共事&quot;&gt;&lt;a href=&quot;#与其共事&quot; class=&quot;headerlink&quot; title=&quot;与其共事&quot;&gt;&lt;/a&gt;与其共事&lt;/h2&gt;&lt;p&gt;负边距如果可以正确的使用的话它的功能是很强大的。有两种场景负边距是很重要的。&lt;/p&gt;
+&lt;h3 id=&quot;在static元素中使用负边距&quot;&gt;&lt;a href=&quot;#在static元素中使用负边距&quot; class=&quot;headerlink&quot; title=&quot;在static元素中使用负边距&quot;&gt;&lt;/a&gt;在static元素中使用负边距&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://wangfulin.github.io/imgs\definitive-guide-to-negative-margin/margin-motion.gif&quot; alt=&quot;static elements using negative margins&quot;&gt;&lt;/p&gt;
+&lt;p&gt;一个static元素是一个没有使用过float的元素。上面的图片展示了一个static的元素使用负边距之后的情况。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;当一个static元素在top/left使用负边距时，它把元素向这个特定的方向拉，比如&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/* Moves the element 10px upwards */
+#mydiv1 {margin-top:-10px;}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;但是当你将负边距设置为相对bottom/right时，它并不会把元素向下或右拉，相反，它会把后面的元素往里面拉，从而覆盖自己。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/*
+* 所有在#mydiv1后面的元素都会向上
+* 移动10px，而#mydiv1一点都不会移动
+*/
+#mydiv1{margin-bottom:-10px;}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;如果宽度没有设置，左右负边距会把元素向两个方向拉以增加宽度。在这里margin的作用相当于padding&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;在浮动中使用负边距&quot;&gt;&lt;a href=&quot;#在浮动中使用负边距&quot; class=&quot;headerlink&quot; title=&quot;在浮动中使用负边距&quot;&gt;&lt;/a&gt;在浮动中使用负边距&lt;/h3&gt;&lt;p&gt;加入下面就是我们的html代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;div id=&amp;quot;mydiv1&amp;quot;&amp;gt;First&amp;lt;/div&amp;gt;
+&amp;lt;div id=&amp;quot;mydiv2&amp;quot;&amp;gt;Second&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;如果对一个浮动的元素使用负边距，它会产生一个空白，其他元素就可以覆盖这一部分。这个技巧可以很好地用户流式布局。比如有一列宽度100%，另一列有固定的宽度，比如说100px。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/* 
+A negative margin is applied opposite the float 
+*/
+#mydiv1 {float:left; margin-right:-100px;}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;如果两个元素都使用了左浮动并且设置margin-right:-20px。#mydiv2会把#mydiv1看成宽度缩小20px（所以会覆盖一部分），但是有趣的是#mydiv1并不会有任何变化，而是依然保持原先的宽度。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;如果负边距和宽度一样大的话，它就会被完全覆盖掉。因为外边距，内边距，边框和内容加起来等于元素的宽度。如果负外边距等于元素的宽度的话，那么该元素的宽度就会变成0px。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;学以致用&quot;&gt;&lt;a href=&quot;#学以致用&quot; class=&quot;headerlink&quot; title=&quot;学以致用&quot;&gt;&lt;/a&gt;学以致用&lt;/h2&gt;&lt;p&gt;既然我们知道使用负边距在CSS2中是有效的，使用它可以给我们提供一些非常有趣的CSS技巧。&lt;/p&gt;
+&lt;h3 id=&quot;把单个列表变成三列&quot;&gt;&lt;a href=&quot;#把单个列表变成三列&quot; class=&quot;headerlink&quot; title=&quot;把单个列表变成三列&quot;&gt;&lt;/a&gt;把单个列表变成三列&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://wangfulin.github.io/imgs\definitive-guide-to-negative-margin/splitting-a-list.gif&quot; alt=&quot;splitting a list into columns&quot;&gt;&lt;/p&gt;
+&lt;p&gt;如果你有一个列表垂直方向太长了，为什么不把它分成几列呢？负边距可以让你在不增加任何浮动和标签的情况下完成。你会发现用负边距实现这个是多么地简单，就像下面：&lt;/p&gt;
+&lt;p&gt;HTML&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;ul&amp;gt; 
+    &amp;lt;li class=&amp;quot;col1&amp;quot;&amp;gt;Eggs&amp;lt;/li&amp;gt;
+    &amp;lt;li class=&amp;quot;col1&amp;quot;&amp;gt;Ham&amp;lt;li&amp;gt; 
+    &amp;lt;li class=&amp;quot;col2 top&amp;quot;&amp;gt;Bread&amp;lt;li&amp;gt; 
+    &amp;lt;li class=&amp;quot;col2&amp;quot;&amp;gt;Butter&amp;lt;li&amp;gt; 
+    &amp;lt;li class=&amp;quot;col3 top&amp;quot;&amp;gt;Flour&amp;lt;li&amp;gt; 
+    &amp;lt;li class=&amp;quot;col3&amp;quot;&amp;gt;Cream&amp;lt;/li&amp;gt; 
+&amp;lt;/ul&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;CSS&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ul {list-style:none;}
+li {line-height:1.3em;}
+.col2 {margin-left:100px;}
+.col3 {margin-left:200px;}
+.top {margin-top:-2.6em;} /* the clincher */
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;通过对.top的添加margin-top:-2.6em。所有的元素会完美的对齐好。使用负边距会比使用相对定位好很多，因为你只需要给新的一列的第一个元素添加负边距即可。酷吧，哈哈哈&lt;/p&gt;
+&lt;h3 id=&quot;重叠来强调&quot;&gt;&lt;a href=&quot;#重叠来强调&quot; class=&quot;headerlink&quot; title=&quot;重叠来强调&quot;&gt;&lt;/a&gt;重叠来强调&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://wangfulin.github.io/imgs\definitive-guide-to-negative-margin/phlashers.gif&quot; alt=&quot;overlap for added emphasis&quot;&gt;&lt;/p&gt;
+&lt;p&gt;故意重叠元素也是一种很好地设计隐喻。重叠效果可以增强深度感从而为突出特定元素。一个很好地例子就像上图一样，通过重叠来吸引注意力。只需要使用z-index属性和一点小创意你就可以做到。&lt;/p&gt;
+&lt;h3 id=&quot;惊艳的3D文本效果&quot;&gt;&lt;a href=&quot;#惊艳的3D文本效果&quot; class=&quot;headerlink&quot; title=&quot;惊艳的3D文本效果&quot;&gt;&lt;/a&gt;惊艳的3D文本效果&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://wangfulin.github.io/imgs\definitive-guide-to-negative-margin/nike.jpg&quot; alt=&quot;smashing 3D text effects&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这是一个精致的技巧。通过使用两个视图的两种颜色创建safari一样有点倾斜的效果。然后通过负边距来把其中一个叠加到另一个上面，保持1到2像素的偏移。这样你就可以二道可选的，机器友好的倾斜字体。就不需要浪费很多贷款来加载大的图片来实现这个效果啦&lt;/p&gt;
+&lt;h3 id=&quot;简单的两列布局&quot;&gt;&lt;a href=&quot;#简单的两列布局&quot; class=&quot;headerlink&quot; title=&quot;简单的两列布局&quot;&gt;&lt;/a&gt;简单的两列布局&lt;/h3&gt;&lt;p&gt;负边距也是在流式布局中创建简单一列宽度固定，一列内容为宽度的100%的两列布局的好方法。&lt;/p&gt;
+&lt;p&gt;HTML&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;div id=&amp;quot;content&amp;quot;&amp;gt; &amp;lt;p&amp;gt;Main content in here&amp;lt;/p&amp;gt; &amp;lt;/div&amp;gt; 
+&amp;lt;div id=&amp;quot;sidebar&amp;quot;&amp;gt; &amp;lt;p&amp;gt;I’m the Sidebar! &amp;lt;/p&amp;gt; &amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;CSS&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#content {width:100%; float:left; margin-right:-200px;}
+#sidebar {width:200px; float:left;}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;哈哈，这样你就得到了一个简单的两列布局。它也能在IE6完美的渲染出来。现在为了让#sidebar不要被#content给掩盖，只要简单的加上：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/* Prevent text from being overlapped */
+
+#content p {margin-right:210px;}
+
+/* It’s 200px + 10px, the 10px being an additional margin.*/
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;当适当的使用的时候，负外边距能够提供一个灵活的文档结构，完爆table的布局。灵活的文档布局是一种可访问性和SEO的技巧，通过它能够让你根据你的关注点以任意顺序组织你的html代码。这里有一个&lt;a href=&quot;http://www.severnsolutions.co.uk/twblog/archive/2004/07/01/cssnegativemarginsalgebra&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;文章&lt;/a&gt;讨论了负边距在多列布局中的应用。&lt;/p&gt;
+&lt;h3 id=&quot;微调元素&quot;&gt;&lt;a href=&quot;#微调元素&quot; class=&quot;headerlink&quot; title=&quot;微调元素&quot;&gt;&lt;/a&gt;微调元素&lt;/h3&gt;&lt;p&gt;这是负外边距最常也是最简单的使用方式。假如你把第十个div插入到9个其他的div中，不知道什么原因没有正确的排列，使用负边距来调整这个div就不需要改变其他9个div了，很方便。&lt;/p&gt;
+&lt;h2 id=&quot;解决bug&quot;&gt;&lt;a href=&quot;#解决bug&quot; class=&quot;headerlink&quot; title=&quot;解决bug&quot;&gt;&lt;/a&gt;解决bug&lt;/h2&gt;&lt;h3 id=&quot;文本和链接问题&quot;&gt;&lt;a href=&quot;#文本和链接问题&quot; class=&quot;headerlink&quot; title=&quot;文本和链接问题&quot;&gt;&lt;/a&gt;文本和链接问题&lt;/h3&gt;&lt;p&gt;在float中使用负边距可能会在旧的浏览器造成一些问题，比如下面的这些：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;让链接不可点击&lt;/li&gt;
+&lt;li&gt;文本变得很难选择&lt;/li&gt;
+&lt;li&gt;失去焦点的时候按tab键失效&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;解决方法：&lt;/strong&gt;只要添加position:relative，就可以啦。&lt;/p&gt;
+&lt;p&gt;###　图片被剪切啦&lt;/p&gt;
+&lt;p&gt;如果你运气不好刚好在办公室使用IE6，当遇到覆盖和浮动的时候内容有些时候回突然被剪切掉。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;解决方法：&lt;/strong&gt;同样的只要给浮动元素加上position:relative，所有的问题就解决啦。&lt;/p&gt;
+&lt;h2 id=&quot;结论&quot;&gt;&lt;a href=&quot;#结论&quot; class=&quot;headerlink&quot; title=&quot;结论&quot;&gt;&lt;/a&gt;结论&lt;/h2&gt;&lt;p&gt;负外边距能够在不使用任何额外标签的情况下定位元素让它在现在网页设计中占有一席之地。随着更多的用户使用更新的浏览器（包括IE8)，未来使用这些技巧的网站会变得更加有前景。&lt;/p&gt;
+&lt;p&gt;##　资源链接&lt;/p&gt;
+&lt;p&gt;更多关于负边距的信息可以在看下面的链接：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.search-this.com/2007/08/01/the-positive-side-of-negative-margins/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Search This&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.severnsolutions.co.uk/twblog/archive/2004/07/01/cssnegativemarginsalgebra&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Severn Solutions&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </content>
     
     <summary type="html">
     
       &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;原文：&lt;/strong&gt;&lt;a href=&quot;https://www.terlici.com/2015/02/23/react-advanced-two-way-binding.html&quot; target=&quot;_blank&quot; rel=&quot;ex
+&lt;p&gt;&lt;strong&gt;原文:&lt;/strong&gt; &lt;a href=&quot;http://www.smashingmagazine.com/2009/07/the-definitive-guide-to-using-negative-margins/&quot; targe
+    
+    </summary>
+    
+      <category term="CSS" scheme="http://wangfulin.github.io/categories/CSS/"/>
+    
+    
+      <category term="css" scheme="http://wangfulin.github.io/tags/css/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>&lt;译&gt; 清楚地了解javascript中的`this`并且掌握它</title>
+    <link href="http://wangfulin.github.io/2014/07/20/Understand-javascript-this-with-clarity-and-master-it/"/>
+    <id>http://wangfulin.github.io/2014/07/20/Understand-javascript-this-with-clarity-and-master-it/</id>
+    <published>2014-07-19T16:00:00.000Z</published>
+    <updated>2016-04-28T08:01:05.000Z</updated>
+    
+    <content type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;原文：&lt;/strong&gt;&lt;a href=&quot;http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Understand Javascript’s “this” With Clarity,and Master It&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;(同时也学一下所有&lt;code&gt;this&lt;/code&gt;最容易被误解的场景)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Javascript中这个&lt;code&gt;this&lt;/code&gt;关键词同时会让新手和有经验的人困惑。这篇文章的目的就是把它彻底地讲清楚。当我们看完这篇文章的时候，&lt;code&gt;this&lt;/code&gt;会成为javascript当中我们从来不用担心的那部分啦。我们会懂得如何在每一个场景正确地使用&lt;code&gt;this&lt;/code&gt;，包括在一些最让人迷惑最诡异的场景。&lt;/p&gt;
+&lt;p&gt;我们使用&lt;code&gt;this&lt;/code&gt;的方式就像自然语言英语和法语使用主语一样。我们这样写：“约翰跑得很快，因为他想赶上火车。”注意主语&lt;code&gt;他&lt;/code&gt;的使用。我们也能这样写：“约翰跑得很快，因为约翰想赶上火车。”我们在这种情况下一般不会重复使用&lt;code&gt;约翰&lt;/code&gt;。因为如果我们这样做的话，我们的家人，朋友，同事会抛弃我们的。是的，他们会的。当然，也许不是你的家庭，但是像那些有钱有地位的朋友和同时会的。javascript中也会用这种优雅的方式，我们使用&lt;code&gt;this&lt;/code&gt;关键词作为对对象的简称和引用。也就是说，场景的主题或者正在执行的代码的主题。考虑下面的例子：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var person={
+    firstName:&amp;quot;penelope&amp;quot;,
+    lastName:&amp;quot;Barrymore&amp;quot;,
+    fullName:function(){
+        //Notice we use &amp;quot;this&amp;quot; as we used &amp;quot;he&amp;quot; in 
+        //the example sentence earlier
+        console.log(this.firstName+&amp;quot; &amp;quot;+this.lastName);
+        // We could have also written this:
+        console.log(person.firstName+&amp;quot; &amp;quot;+person.lastName);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果我们使用&lt;code&gt;person.firstName&lt;/code&gt;和&lt;code&gt;person.lastName&lt;/code&gt;，就像上面的例子一样，我们的代码会变得不清晰。考虑到有可能有另外一个全局变量的名字是&lt;code&gt;person&lt;/code&gt;（我们可能注意或者没注意到）。然后，对&lt;code&gt;person.firstName&lt;/code&gt;的引用可能会尝试从&lt;code&gt;person&lt;/code&gt;这个全局变量里面获取属性。这可能会导致很难debug的错误。所以我们使用&lt;code&gt;this&lt;/code&gt;关键词不仅仅只是为了美感，而且也为了能够精确。它的使用事实上让我们的代码变得更加清晰，就好像主语&lt;code&gt;他&lt;/code&gt;让我们的句子变得更清楚一样。它告诉我们我们正在指代句子开始特定的那个约翰。&lt;/p&gt;
+&lt;p&gt;就好像主语&lt;code&gt;他&lt;/code&gt;被用来指代前面那个人一样，这个&lt;code&gt;this&lt;/code&gt;关键词类似地也被用来指代这个函数所绑定的对象。这个&lt;code&gt;this&lt;/code&gt;关键词不仅指代这个对象，同时也包含了这个对象的值。就好像这个主语一样，&lt;code&gt;this&lt;/code&gt;被用来作为这个上下文的对象的指代。下面我们会了解到更多。&lt;/p&gt;
+&lt;h2 id=&quot;Javascript的this关键词基础&quot;&gt;&lt;a href=&quot;#Javascript的this关键词基础&quot; class=&quot;headerlink&quot; title=&quot;Javascript的this关键词基础&quot;&gt;&lt;/a&gt;Javascript的&lt;code&gt;this&lt;/code&gt;关键词基础&lt;/h2&gt;&lt;p&gt;首先，你要知道在javascript中所有的函数都是有属性的，就像对象有属性一样。并且，当函数执行的时候，它会获得这个&lt;code&gt;this&lt;/code&gt;属性，&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;原文：&lt;/strong&gt;&lt;a href=&quot;http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/&quot; target=&quot;_b
     
     </summary>
     
       <category term="javascript" scheme="http://wangfulin.github.io/categories/javascript/"/>
     
-      <category term="React" scheme="http://wangfulin.github.io/categories/javascript/React/"/>
+    
+      <category term="javascript" scheme="http://wangfulin.github.io/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>&lt;译&gt; Web Storage初探</title>
+    <link href="http://wangfulin.github.io/2014/06/20/web-storage-primer/"/>
+    <id>http://wangfulin.github.io/2014/06/20/web-storage-primer/</id>
+    <published>2014-06-19T16:00:00.000Z</published>
+    <updated>2016-04-28T08:01:14.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;a href=&quot;http://www.w3.org/TR/webstorage/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Web Storage&lt;/a&gt;是相对比较新的一种可以将数据存储在用户电脑（客户端）的一种方式。&lt;/p&gt;
+&lt;p&gt;Web Storage给网站/应用提供了很多好处。比如，Web Storage可以用来跨网站/应用监测用户的行为而不需要服务端脚本和数据库。Web Storage也能在用户即使突然断网的情况下保存一部分web应用的能力，让你不会因为网络连接的问题受到影响&lt;/p&gt;
+&lt;h2 id=&quot;Web-Storage-vs-Cookies&quot;&gt;&lt;a href=&quot;#Web-Storage-vs-Cookies&quot; class=&quot;headerlink&quot; title=&quot;Web Storage vs. Cookies&quot;&gt;&lt;/a&gt;Web Storage vs. Cookies&lt;/h2&gt;&lt;p&gt;传统的用来在客户端保存数据的方式是通过HTTP cookies。&lt;/p&gt;
+&lt;p&gt;Web Storage和cookies之间存在着很多的区别。让我们把注意力放在这两种客户端数据存储的方法的真正的区别上。&lt;/p&gt;
+&lt;h3 id=&quot;存储原理&quot;&gt;&lt;a href=&quot;#存储原理&quot; class=&quot;headerlink&quot; title=&quot;存储原理&quot;&gt;&lt;/a&gt;存储原理&lt;/h3&gt;&lt;p&gt;Cookies是一种结构化的数据，是由web服务器返回给请求的一个服务器响应的一部分。Cookie可以通过设置HTTP响应头来进行设置。无论什么时候发送请求，浏览器都会把cookie作为请求头的一部分返回给服务器。&lt;/p&gt;
+&lt;p&gt;简单的来说，请求发送的目的是为了能够更新cookie里面的值。同时，无论数据有没有改变，cookies也总是会占据HTTP响应头的一部分。&lt;/p&gt;
+&lt;p&gt;另一方面，Web Storage的创建和管理完全是由客户端控制的。因此，尽管有服务器的参与有很多其他的优势，但Web Storage还是避免了web服务器的参与。这个方法产生了很多有益的结果，最明显的莫过于理论上导致了更好的web性能&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;相关：&lt;a href=&quot;http://sixrevisions.com/category/web-performance/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Web性能文章&lt;/a&gt;&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;同时，因为Web Storage可以在没有HTTP请求/响应的情况下工作（摆脱了网页初始与服务器的交互），在良好的实现情况下，存储在用户浏览器的数据可以在失去网络连接的情况下也能安全的更新和修改。&lt;/p&gt;
+&lt;h3 id=&quot;不同的浏览器实例&quot;&gt;&lt;a href=&quot;#不同的浏览器实例&quot; class=&quot;headerlink&quot; title=&quot;不同的浏览器实例&quot;&gt;&lt;/a&gt;不同的浏览器实例&lt;/h3&gt;&lt;p&gt;Web Storage能够解决用户开启多个浏览器窗口/标签的同步问题。在一个浏览器窗口在存储或者更新数据能够同时在其他浏览器窗口上同步，只要其他浏览器窗口在同一个网站上。&lt;/p&gt;
+&lt;p&gt;Cookies，相反，设计之初就不是用来处理设计多个浏览器窗口的情况。&lt;/p&gt;
+&lt;h3 id=&quot;存储大小限制&quot;&gt;&lt;a href=&quot;#存储大小限制&quot; class=&quot;headerlink&quot; title=&quot;存储大小限制&quot;&gt;&lt;/a&gt;存储大小限制&lt;/h3&gt;&lt;p&gt;HTTP cookies和Web Storage对存储大小的限制在不同浏览器之间是不同的。但是，一般为了能够好的跨浏览器支持把存储大小限制在4.0KB左右是最佳的实践方案。&lt;/p&gt;
+&lt;p&gt;（这里有一种&lt;a href=&quot;http://browsercookielimits.squawky.net/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;cookie测试工具&lt;/a&gt;可以让你测试浏览器的cookie的存储大小限制）&lt;/p&gt;
+&lt;p&gt;W3C Web Storage标准并没有推荐一个默认的存储限制，让浏览器自己决定。但是，现实中Web Storage完虐cookies的4.0KB的限制，一般情况下对于Web Storage对象的限制时5MB左右。&lt;/p&gt;
+&lt;p&gt;也就是说，Web Storage的大小限制是cookies的124527%倍那么大。&lt;/p&gt;
+&lt;p&gt;（这里也有一种&lt;a href=&quot;http://dev-test.nemikor.com/web-storage/support-test/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Web Storage测试工具&lt;/a&gt;可以让你测试浏览器Web Storage的存储大小限制）&lt;/p&gt;
+&lt;h2 id=&quot;Storage的种类&quot;&gt;&lt;a href=&quot;#Storage的种类&quot; class=&quot;headerlink&quot; title=&quot;Storage的种类&quot;&gt;&lt;/a&gt;Storage的种类&lt;/h2&gt;&lt;p&gt;Web Storage有两种方式来存储客户端数据：sessionStorage和localStorage.     &lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;strong&gt;Web Storage&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;存储数据的生命周期&lt;/strong&gt;&lt;/th&gt;
+&lt;th style=&quot;text-align:right&quot;&gt;&lt;strong&gt;数据结构&lt;/strong&gt;&lt;/th&gt;
+&lt;th style=&quot;text-align:right&quot;&gt;&lt;strong&gt;数据类型&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;sessionStorage&lt;/td&gt;
+&lt;td&gt;只在回话中保存&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;键值对&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;字符串&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;localStorage&lt;/td&gt;
+&lt;td&gt;持久保存&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;键值对&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;字符串&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;sessionStorage&quot;&gt;&lt;a href=&quot;#sessionStorage&quot; class=&quot;headerlink&quot; title=&quot;sessionStorage&quot;&gt;&lt;/a&gt;sessionStorage&lt;/h3&gt;&lt;p&gt;sessionStorage是设计用来保存浏览器会话这个时间段的客户端数据的。换句话说数据只在用户还在网站浏览的时候才保存起来。&lt;/p&gt;
+&lt;p&gt;sessionStorage在实践中主要用来暂时的数据 存储。比如说，用户在网页表单上的输入能够在用户浏览器会话的阶段保存在sessionStorage对象当中。这样的话，数据就能够在浏览的整个过程中获得到而不需要把数据存储到服务器当中。也就是说，当用户不小心关闭或者刷新浏览器窗口，暂时的数据存储可以防止用户不得不重复输入数据。&lt;/p&gt;
+&lt;h3 id=&quot;localStorage&quot;&gt;&lt;a href=&quot;#localStorage&quot; class=&quot;headerlink&quot; title=&quot;localStorage&quot;&gt;&lt;/a&gt;localStorage&lt;/h3&gt;&lt;p&gt;从实现的角度来说，localStorage和sessionStorage的实现方式是基本类似的。&lt;/p&gt;
+&lt;p&gt;localStorage和sessionStorage分享一套javascript方法（比如说：&lt;code&gt;getItem&lt;/code&gt;,&lt;code&gt;setIte&lt;/code&gt;m等等），并且它也以键值对的方式存储数据。&lt;/p&gt;
+&lt;p&gt;但是，把数据存储在localStorage对象上意味着数据可以在用户的会话之间一直保存着。换句话说，数据可以在用户下一次访问这个网站的时候依然可以获取到。&lt;/p&gt;
+&lt;h2 id=&quot;Web-Storage的浏览器支持&quot;&gt;&lt;a href=&quot;#Web-Storage的浏览器支持&quot; class=&quot;headerlink&quot; title=&quot;Web Storage的浏览器支持&quot;&gt;&lt;/a&gt;Web Storage的浏览器支持&lt;/h2&gt;&lt;p&gt;Caniuse.com的结论是Web Storage有良好的浏览器支持。&lt;/p&gt;
+&lt;p&gt;Web Storage浏览器支持表&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;浏览器&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;版本&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Internet Explorer&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;IE8及IE8以上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Mozilla Firefox&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Firefox 3.5及以上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Google Chrome&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Chrome 4及以上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Apple Safari&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Safari 4及以上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Opera&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;Opera 11.5及以上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;目前，Web Storage标准是&lt;em&gt;W3C Candidate Recommendation&lt;/em&gt;.总共有五个级别的推荐。”Candidate Recommendation”是这五个级别中的第三个级别。目前的Web Storage已经相当成熟因为这已经不是一个工作草案啦，但是与此同时，这个也不是最终的方案。&lt;/p&gt;
+&lt;p&gt;支持旧的没有Web Storage这个特性的浏览器可以通过使用polyfill来支持。对于localStorage的支持可以选择&lt;a href=&quot;https://github.com/marcuswestin/store.js&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Store.js&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;##　数据隐私和安全考虑&lt;/p&gt;
+&lt;p&gt;Ｗeb Storage和cookies有一样的禁止跨域的策略。这意味着一个网站的Web Storage不能被其他网站访问。这对于数据安全来说是有益的。但是这也导致了我们在需要子域的时候出现问题。对于这个问题，有其他的解决方案，比如由Zendesk开发的一个开源包&lt;a href=&quot;https://github.com/zendesk/cross-storage&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Cross-Storage&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;就像任何其他的客户端数据存储机制一样，保护存储的数据也是一个很重要的需要考虑的点。保存用户私密或者敏感的数据是不推荐的。这也让能够接触设备的人更方便的获取到本地数据。尤其是在一些其他人可以用公共的网络环境比如大学，图书馆，工作电脑等访问你的网站的地方更应该格外小心。&lt;/p&gt;
+&lt;p&gt;数据完备性也是一个考虑因素。必须要有在存储事务失败的时候的解决方案。当用户的Web Storage被关闭时候，或者当用户的存储空间不足的时候，或者超过浏览器的Web Storage限制的时候都有可能造成失败。Web Storage规范说明了当触发存储失败事件的标准的错误/警告输出，比如QuotaExceededError异常。&lt;/p&gt;
+&lt;h2 id=&quot;IndexedDB怎么样呢？&quot;&gt;&lt;a href=&quot;#IndexedDB怎么样呢？&quot; class=&quot;headerlink&quot; title=&quot;IndexedDB怎么样呢？&quot;&gt;&lt;/a&gt;IndexedDB怎么样呢？&lt;/h2&gt;&lt;p&gt;对于客户端存储来说，&lt;a href=&quot;http://www.w3.org/TR/IndexedDB/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Indexed Database API&lt;/a&gt;(IndexedDB)提供了很多可以从Web Storage衍生出来的相同的有点。但是IndexedDB不是Web Storage规范的一部分所以这也超出了我们所要讨论的范围。&lt;/p&gt;
+&lt;p&gt;但是。IndexedDB也很值得我们简单的聊一下，因为它和Web Storage实现有很多共享的特点以及未来可能有联系的可能。&lt;/p&gt;
+&lt;p&gt;通过IndexedDB存储数据相对于Web Storage来说可能会更加复杂一些。但是，它也打开了通往更加复杂数据结构和关系的大门。&lt;/p&gt;
+&lt;p&gt;通过IndexedDB，数据会像你喜欢的客户端数据管理系统比如&lt;code&gt;MYSQL&lt;/code&gt;,&lt;code&gt;MSSQ&lt;/code&gt;L,&lt;code&gt;PostgreSQ&lt;/code&gt;L等等数据库一样通过索引存储起来&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;相关：&lt;a href=&quot;http://sixrevisions.com/tools/top-five-best-database-management-tools/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;最好的五中数据库管理工具&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;除此之外，如果你实现了一个可以处理IndexedDB数据库的查询语言，你也可以想服务端数据库一样检索数据库。&lt;/p&gt;
+&lt;p&gt;相对于IndexedDB来说，Web Storage的数据获取能力是很基础的。Web Storage只有两个内置的获取数据的方法：&lt;code&gt;.getItem&lt;/code&gt;和&lt;code&gt;.key&lt;/code&gt;。（除了能够可以获取Web Storage对象的&lt;code&gt;length&lt;/code&gt;属性）。因此，当你考虑到需要更加复杂的数据存储的时候，你可以考虑IndexedDB而不是Web Storage。&lt;/p&gt;
+&lt;h2 id=&quot;原文链接&quot;&gt;&lt;a href=&quot;#原文链接&quot; class=&quot;headerlink&quot; title=&quot;原文链接&quot;&gt;&lt;/a&gt;原文链接&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;http://sixrevisions.com/web-technology/web-storage-primer/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;web-storage-primer&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;http://www.w3.org/TR/webstorage/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Web Storage&lt;/a&gt;是相对比较新的一种可以将数据存储在用户电脑（客户端）的一种方式。&lt;/p&gt;
+&lt;p&gt;Web Stor
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://wangfulin.github.io/categories/javascript/"/>
     
     
-      <category term="javascript, React" scheme="http://wangfulin.github.io/tags/javascript-React/"/>
+      <category term="javascript, Web Storage" scheme="http://wangfulin.github.io/tags/javascript-Web-Storage/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Great tools</title>
+    <link href="http://wangfulin.github.io/2014/05/20/web_resource_link/"/>
+    <id>http://wangfulin.github.io/2014/05/20/web_resource_link/</id>
+    <published>2014-05-19T16:00:00.000Z</published>
+    <updated>2016-04-28T08:01:22.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;jQuery-plugin&quot;&gt;&lt;a href=&quot;#jQuery-plugin&quot; class=&quot;headerlink&quot; title=&quot;jQuery plugin&quot;&gt;&lt;/a&gt;jQuery plugin&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/jssor/slider&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;slider&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;module-package-tool&quot;&gt;&lt;a href=&quot;#module-package-tool&quot; class=&quot;headerlink&quot; title=&quot;module package tool&quot;&gt;&lt;/a&gt;module package tool&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/substack/node-browserify&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;browserify&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/webpack/webpack&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;webpack&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/gruntjs/grunt&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;grunt&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/gulpjs/gulp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;gulp&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/bower/bower&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;bower&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/yeoman/yeoman&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;yeoman&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/sgentle/phantomjs-node&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Phantomjs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/vuejs&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;vuejs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/Homebrew&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;homebrew&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/jekyll/jekyll&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;jekyll&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;enhanced-cmd&quot;&gt;&lt;a href=&quot;#enhanced-cmd&quot; class=&quot;headerlink&quot; title=&quot;enhanced cmd&quot;&gt;&lt;/a&gt;enhanced cmd&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://cmder.net&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;cmder&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;library-or-framework&quot;&gt;&lt;a href=&quot;#library-or-framework&quot; class=&quot;headerlink&quot; title=&quot;library or framework&quot;&gt;&lt;/a&gt;library or framework&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/angular/angular.js&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;angular.js&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/facebook/react&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;react&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/Polymer/polymer&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;polymer&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;resource&quot;&gt;&lt;a href=&quot;#resource&quot; class=&quot;headerlink&quot; title=&quot;resource&quot;&gt;&lt;/a&gt;resource&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;jQuery-plugin&quot;&gt;&lt;a href=&quot;#jQuery-plugin&quot; class=&quot;headerlink&quot; title=&quot;jQuery plugin&quot;&gt;&lt;/a&gt;jQuery plugin&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.co
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://wangfulin.github.io/categories/javascript/"/>
+    
+    
+      <category term="javascript" scheme="http://wangfulin.github.io/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Webpapck的简介</title>
+    <link href="http://wangfulin.github.io/2014/04/20/webpack/"/>
+    <id>http://wangfulin.github.io/2014/04/20/webpack/</id>
+    <published>2014-04-19T16:00:00.000Z</published>
+    <updated>2016-04-28T08:01:29.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;img src=&quot;https://camo.githubusercontent.com/ebc085019011ababb0d35024824304831c7dc72a/68747470733a2f2f7765627061636b2e6769746875622e696f2f6173736574732f6c6f676f2e706e67&quot; alt=&quot;webpack&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;1，什么是webpack？&quot;&gt;&lt;a href=&quot;#1，什么是webpack？&quot; class=&quot;headerlink&quot; title=&quot;1，什么是webpack？&quot;&gt;&lt;/a&gt;1，什么是webpack？&lt;/h2&gt;&lt;p&gt;webpack是一个模块打包工具，主要作用是把浏览器中打包起来使用，然后它也能转换，打包，组合几乎所有的资源。&lt;/p&gt;
+&lt;p&gt;主要作用如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1. 可以使用`CommonJs`和`AMD`模块加载（甚至同时使用）
+2. 可以创建一个整包或者几个区块进行运行时异步加载（减少初始加载时间）
+3. 在编译的时候解析依赖，减少运行时的大小
+4. 加载器可以在编译的时候预处理文件，比如把`coffescript`转换成`Javacript` ,`handlebars strings`转换成`compiled function`,`iamges`转换成`Base64`,等等
+5. 高度模块化的插件系统可以让你的应用做任何其他想做的事情
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;2，如何开始？&quot;&gt;&lt;a href=&quot;#2，如何开始？&quot; class=&quot;headerlink&quot; title=&quot;2，如何开始？&quot;&gt;&lt;/a&gt;2，如何开始？&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;创建一个文件夹，比如webpacktest&lt;/li&gt;
+&lt;li&gt;创建文件entry.js&lt;blockquote&gt;
+&lt;p&gt;document.write(“It works”);&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;创建文件index.html&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;html&amp;gt;
+    &amp;lt;head&amp;gt;
+        &amp;lt;meta charset=&amp;quot;utf-8&amp;quot; /&amp;gt;
+    &amp;lt;/head&amp;gt;
+    &amp;lt;body&amp;gt;
+        &amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;bundle.js&amp;quot; charset=&amp;quot;utf-8&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;运行命令webpack ./entry.js bundle.js&lt;h2 id=&quot;参考链接&quot;&gt;&lt;a href=&quot;#参考链接&quot; class=&quot;headerlink&quot; title=&quot;参考链接&quot;&gt;&lt;/a&gt;参考链接&lt;/h2&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/webpack/webpack&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;github-webpack&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://webpack.github.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;webpack-github-io&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;https://camo.githubusercontent.com/ebc085019011ababb0d35024824304831c7dc72a/68747470733a2f2f7765627061636b2e6769746875622e696f2
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://wangfulin.github.io/categories/javascript/"/>
+    
+    
+      <category term="javascript" scheme="http://wangfulin.github.io/tags/javascript/"/>
     
   </entry>
   
